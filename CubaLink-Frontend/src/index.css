@@ -1,0 +1,76 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ====== CubaLink - Estilos base (heredados del diseño Google Stitch) ====== */
+
+body {
+  font-family: 'Inter', sans-serif;
+  background-color: #f8f9ff;
+  color: #0b1c30;
+  -webkit-font-smoothing: antialiased;
+}
+
+.material-symbols-outlined {
+  font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+}
+
+/* Glass cards (landing / comunidad) */
+.glass-card {
+  background: rgba(255, 255, 255, 0.8);
+  backdrop-filter: blur(12px);
+  border: 1px solid rgba(226, 232, 240, 0.5);
+}
+
+/* Hero gradient de la landing */
+.hero-gradient {
+  background: radial-gradient(circle at top right, rgba(212, 175, 55, 0.05), transparent),
+    radial-gradient(circle at bottom left, rgba(0, 51, 102, 0.03), transparent);
+}
+
+/* Sombras premium (comunidad / perfil) */
+.premium-shadow {
+  box-shadow: 0px 4px 20px rgba(0, 51, 102, 0.05);
+}
+.premium-shadow-hover:hover {
+  box-shadow: 0px 8px 30px rgba(0, 51, 102, 0.08);
+}
+
+/* Sombras y píldoras (empleos) */
+.custom-shadow {
+  box-shadow: 0px 4px 20px rgba(0, 51, 102, 0.05);
+}
+.active-pill {
+  background-color: #003366;
+  color: #ffffff;
+}
+.active-glow {
+  box-shadow: 0 0 15px rgba(212, 175, 55, 0.3);
+}
+
+/* Header glass (perfil) */
+.glass-header {
+  backdrop-filter: blur(12px);
+  background: rgba(255, 255, 255, 0.8);
+}
+
+/* Safe area para la navegación inferior móvil */
+.pb-safe {
+  padding-bottom: env(safe-area-inset-bottom);
+}
+
+/* Scrollbar sutil acorde al diseño */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background: #c3c6d1;
+  border-radius: 8px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #737780;
+}

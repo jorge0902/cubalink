@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>CubaLink | Red Profesional de los Cubanos</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: 'Inter', sans-serif; background: #F8FAFC; color: #0b1c30; }
+  nav { background: #fff; border-bottom: 1px solid #E2E8F0; padding: 16px 48px; display: flex; justify-content: space-between; align-items: center; position: sticky; top: 0; z-index: 100; }
+  .brand { font-size: 24px; font-weight: 700; color: #001e40; text-decoration: none; }
+  .brand span { color: #D4AF37; }
+  .nav-links { display: flex; gap: 24px; align-items: center; }
+  .nav-links a { color: #43474f; text-decoration: none; font-size: 14px; font-weight: 600; transition: color 0.2s; }
+  .nav-links a:hover { color: #001e40; }
+  .nav-links .btn { background: #003366; color: #fff; padding: 10px 24px; border-radius: 4px; font-weight: 600; font-size: 14px; border: none; cursor: pointer; text-decoration: none; }
+  .nav-links .btn:hover { opacity: 0.9; }
+  .hero { min-height: 90vh; display: flex; align-items: center; justify-content: center; padding: 48px; background: radial-gradient(circle at top right, rgba(212,175,55,0.05), transparent), radial-gradient(circle at bottom left, rgba(0,51,102,0.03), transparent); }
+  .hero-content { max-width: 1280px; margin: 0 auto; display: grid; grid-template-columns: 1fr 1fr; gap: 48px; align-items: center; }
+  .hero-text h1 { font-size: 48px; font-weight: 700; line-height: 1.1; color: #001e40; margin-bottom: 24px; }
+  .hero-text p { font-size: 18px; line-height: 1.6; color: #43474f; margin-bottom: 32px; max-width: 500px; }
+  .hero-buttons { display: flex; gap: 16px; flex-wrap: wrap; }
+  .hero-buttons .btn-primary { background: #003366; color: #fff; padding: 16px 32px; border-radius: 4px; font-weight: 600; font-size: 16px; border: none; cursor: pointer; text-decoration: none; transition: all 0.2s; }
+  .hero-buttons .btn-primary:hover { opacity: 0.9; transform: scale(0.98); }
+  .hero-buttons .btn-secondary { background: #fff; border: 1px solid #E2E8F0; color: #003366; padding: 16px 32px; border-radius: 4px; font-weight: 600; font-size: 16px; cursor: pointer; text-decoration: none; transition: all 0.2s; }
+  .hero-buttons .btn-secondary:hover { background: #eff4ff; }
+  .hero-stats { margin-top: 32px; display: flex; align-items: center; gap: 12px; }
+  .hero-stats .avatar { width: 32px; height: 32px; border-radius: 50%; border: 2px solid #fff; }
+  .hero-stats .avatar:nth-child(1) { background: #cbd5e1; }
+  .hero-stats .avatar:nth-child(2) { background: #94a3b8; }
+  .hero-stats .avatar:nth-child(3) { background: #64748b; }
+  .hero-stats p { font-size: 12px; font-weight: 600; color: #43474f; }
+  .hero-image { display: none; }
+  @media (min-width: 768px) { .hero-image { display: block; } }
+  .hero-image img { width: 100%; aspect-ratio: 1; object-fit: cover; border-radius: 8px; box-shadow: 0 8px 30px rgba(0,51,102,0.12); }
+  .section { padding: 96px 48px; }
+  .section-white { background: #fff; }
+  .section-light { background: #f0f4ff; }
+  .container { max-width: 1280px; margin: 0 auto; }
+  .section-header { text-align: center; margin-bottom: 64px; }
+  .section-header .tag { color: #D4AF37; font-weight: 700; font-size: 12px; text-transform: uppercase; letter-spacing: 0.05em; }
+  .section-header h2 { font-size: 32px; font-weight: 700; color: #001e40; margin-top: 8px; }
+  .features { display: grid; grid-template-columns: 1fr; gap: 24px; }
+  @media (min-width: 768px) { .features { grid-template-columns: repeat(3, 1fr); } }
+  .feature-card { background: #f8f9ff; border: 1px solid #c3c6d1; border-radius: 8px; padding: 32px; display: flex; flex-direction: column; justify-content: space-between; transition: box-shadow 0.2s; }
+  .feature-card:hover { box-shadow: 0 8px 30px rgba(0,51,102,0.08); }
+  .feature-card .icon { font-size: 48px; color: #003366; margin-bottom: 16px; }
+  .feature-card h3 { font-size: 20px; font-weight: 600; color: #001e40; margin-bottom: 8px; }
+  .feature-card p { font-size: 16px; line-height: 1.6; color: #43474f; }
+  .feature-card .link { margin-top: 16px; color: #D4AF37; font-weight: 700; font-size: 14px; cursor: pointer; display: flex; align-items: center; gap: 4px; }
+  .jobs-grid { display: grid; grid-template-columns: 1fr; gap: 24px; }
+  @media (min-width: 768px) { .jobs-grid { grid-template-columns: repeat(2, 1fr); } }
+  @media (min-width: 1024px) { .jobs-grid { grid-template-columns: repeat(3, 1fr); } }
+  .job-card { background: #fff; border: 1px solid #E2E8F0; border-radius: 8px; padding: 24px; transition: box-shadow 0.2s; }
+  .job-card:hover { box-shadow: 0 4px 20px rgba(0,51,102,0.05); }
+  .job-card .job-header { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 16px; }
+  .job-card .job-icon { width: 48px; height: 48px; background: #e5eeff; border-radius: 8px; display: flex; align-items: center; justify-content: center; font-size: 24px; color: #001e40; }
+  .job-card .badge { background: rgba(0,51,102,0.1); color: #001e40; padding: 4px 12px; border-radius: 999px; font-size: 12px; font-weight: 600; }
+  .job-card h4 { font-size: 20px; font-weight: 600; color: #001e40; margin-bottom: 4px; }
+  .job-card .company { font-size: 16px; color: #43474f; margin-bottom: 16px; }
+  .job-card .job-footer { display: flex; justify-content: space-between; align-items: center; border-top: 1px solid #f1f5f9; padding-top: 16px; }
+  .job-card .salary { color: #D4AF37; font-weight: 700; font-size: 14px; }
+  .job-card .apply { background: #001e40; color: #fff; padding: 8px 16px; border-radius: 4px; font-size: 14px; font-weight: 600; border: none; cursor: pointer; }
+  .cta-section { padding: 80px 48px; }
+  .cta-card { max-width: 800px; margin: 0 auto; background: #fff; border-radius: 16px; padding: 48px; text-align: center; box-shadow: 0 4px 20px rgba(0,51,102,0.05); position: relative; overflow: hidden; }
+  .cta-card::before { content: ''; position: absolute; inset: 0; background: #001e40; opacity: 0.02; }
+  .cta-card h2 { font-size: 32px; font-weight: 700; color: #001e40; margin-bottom: 16px; position: relative; }
+  .cta-card p { font-size: 18px; line-height: 1.6; color: #43474f; margin-bottom: 32px; max-width: 500px; margin-left: auto; margin-right: auto; position: relative; }
+  .cta-buttons { display: flex; gap: 16px; justify-content: center; flex-wrap: wrap; position: relative; }
+  .cta-buttons .btn-primary { background: #003366; color: #fff; padding: 16px 32px; border-radius: 4px; font-weight: 700; font-size: 16px; border: none; cursor: pointer; text-decoration: none; transition: all 0.2s; }
+  .cta-buttons .btn-secondary { border: 1px solid #001e40; color: #001e40; padding: 16px 32px; border-radius: 4px; font-weight: 700; font-size: 16px; cursor: pointer; text-decoration: none; background: transparent; transition: all 0.2s; }
+  .cta-buttons .btn-secondary:hover { background: #f0f4ff; }
+  footer { background: #001e40; color: #eaf1ff; padding: 48px; }
+  .footer-content { max-width: 1280px; margin: 0 auto; display: flex; flex-direction: column; gap: 32px; }
+  @media (min-width: 768px) { .footer-content { flex-direction: row; justify-content: space-between; align-items: flex-start; } }
+  .footer-brand { font-size: 32px; font-weight: 700; color: #ffe088; margin-bottom: 8px; }
+  .footer-brand p { font-size: 16px; opacity: 0.8; max-width: 300px; }
+  .footer-links { display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px; }
+  @media (min-width: 768px) { .footer-links { grid-template-columns: repeat(4, 1fr); } }
+  .footer-links a { color: #eaf1ff; opacity: 0.8; text-decoration: none; font-size: 14px; font-weight: 600; transition: color 0.2s; }
+  .footer-links a:hover { color: #ffe088; }
+  .footer-bottom { max-width: 1280px; margin: 32px auto 0; padding-top: 24px; border-top: 1px solid rgba(255,255,255,0.1); display: flex; flex-direction: column; gap: 16px; align-items: center; }
+  @media (min-width: 768px) { .footer-bottom { flex-direction: row; justify-content: space-between; } }
+  .footer-bottom p { font-size: 12px; opacity: 0.6; }
+  .footer-bottom .icons { display: flex; gap: 16px; }
+  .footer-bottom .icons span { cursor: pointer; opacity: 0.8; transition: opacity 0.2s; }
+  .footer-bottom .icons span:hover { opacity: 1; }
+  .mobile-nav { display: flex; justify-content: space-around; align-items: center; position: fixed; bottom: 0; left: 0; right: 0; background: #fff; border-top: 1px solid #E2E8F0; padding: 8px 0; padding-bottom: env(safe-area-inset-bottom); z-index: 100; }
+  @media (min-width: 768px) { .mobile-nav { display: none; } }
+  .mobile-nav button { display: flex; flex-direction: column; align-items: center; gap: 4px; background: none; border: none; cursor: pointer; font-size: 12px; font-weight: 600; color: #43474f; padding: 4px 12px; }
+  .mobile-nav button.active { color: #001e40; }
+  .mobile-nav button .material-icons { font-size: 24px; }
+  @media (min-width: 768px) { .desktop-nav { display: flex !important; } }
+</style>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+</head>
+<body>
+<nav>
+  <a href="index.html" class="brand">C<span>u</span>baLink</a>
+  <div class="nav-links">
+    <a href="cubalink_landing_page/code.html">Inicio</a>
+    <a href="empleos_y_oportunidades/code.html">Empleos</a>
+    <a href="comunidad_cubalink/code.html">Comunidad</a>
+    <a href="perfil_profesional/code.html">Perfil</a>
+    <a href="cubalink_landing_page/code.html" class="btn">Ingresar</a>
+  </div>
+</nav>
+
+<main>
+  <!-- Hero -->
+  <section class="hero">
+    <div class="hero-content">
+      <div class="hero-text">
+        <h1>CubaLink: La red profesional de los cubanos.</h1>
+        <p>Conecta talento cubano con nuevas oportunidades globales. La plataforma líder para el networking ejecutivo y la colaboración profesional sin fronteras.</p>
+        <div class="hero-buttons">
+          <a href="perfil_profesional/code.html" class="btn-primary">Crear perfil</a>
+          <a href="empleos_y_oportunidades/code.html" class="btn-secondary">Encontrar oportunidades</a>
+        </div>
+        <div class="hero-stats">
+          <div class="avatar"></div>
+          <div class="avatar"></div>
+          <div class="avatar"></div>
+          <p>+10k profesionales ya se han unido</p>
+        </div>
+      </div>
+      <div class="hero-image">
+        <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuAdCL8RYAEXUrL3msh7RHoUxoEnuBNVgCuELtd_VmeKiffMIELVINW7o4K3nRUtpL0VuFOZrj95d6D4sF1QkK0y2UCdfHkNEwa0PwKejaE8imK8_YRdSpDxohz6tMvOeD4GO_af5F9QsCV079jPrUMU7yG4OITFmDQUhnkWLa_JrNE_toLo63zdpAm7jLW7_EZUInvh26YSLHcmSFGeJhPoswP3DZKAlyfVM9XkyKbq2E9dJQMHI6CQDQ" alt="CubaLink profesional"/>
+      </div>
+    </div>
+  </section>
+
+  <!-- How it Works -->
+  <section class="section section-white">
+    <div class="container">
+      <div class="section-header">
+        <span class="tag">Metodología</span>
+        <h2>¿Cómo funciona CubaLink?</h2>
+      </div>
+      <div class="features">
+        <div class="feature-card">
+          <div>
+            <div class="icon">account_circle</div>
+            <h3>Crea tu Identidad</h3>
+            <p>Construye un perfil profesional robusto que destaque tus habilidades, experiencia y aspiraciones globales.</p>
+          </div>
+          <div class="link">Comenzar →</div>
+        </div>
+        <div class="feature-card">
+          <div>
+            <div class="icon">hub</div>
+            <h3>Expande tu Red</h3>
+            <p>Conéctate con mentores, reclutadores y otros profesionales cubanos en cualquier parte del mundo.</p>
+          </div>
+          <div class="link">Explorar red →</div>
+        </div>
+        <div class="feature-card">
+          <div>
+            <div class="icon">rocket_launch</div>
+            <h3>Aplica a Oportunidades</h3>
+            <p>Accede a vacantes exclusivas en empresas internacionales que valoran el talento y la resiliencia cubana.</p>
+          </div>
+          <div class="link">Ver empleos →</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Featured Jobs -->
+  <section class="section section-light">
+    <div class="container">
+      <div class="section-header">
+        <span class="tag">Tendencias</span>
+        <h2>Empleos Destacados</h2>
+      </div>
+      <div class="jobs-grid">
+        <div class="job-card">
+          <div class="job-header">
+            <div class="job-icon">code</div>
+            <span class="badge">Full Remote</span>
+          </div>
+          <h4>Senior Software Engineer</h4>
+          <p class="company">Global Tech Solutions • Madrid, ES</p>
+          <div class="job-footer">
+            <span class="salary">$65k - $90k USD</span>
+            <button class="apply">Postular</button>
+          </div>
+        </div>
+        <div class="job-card">
+          <div class="job-header">
+            <div class="job-icon">palette</div>
+            <span class="badge">Hybrid</span>
+          </div>
+          <h4>Lead Product Designer</h4>
+          <p class="company">Creative Agency • Miami, US</p>
+          <div class="job-footer">
+            <span class="salary">$80k - $110k USD</span>
+            <button class="apply">Postular</button>
+          </div>
+        </div>
+        <div class="job-card">
+          <div class="job-header">
+            <div class="job-icon">bar_chart</div>
+            <span class="badge">Freelance</span>
+          </div>
+          <h4>Marketing Strategist</h4>
+          <p class="company">Startup Hub • Remote</p>
+          <div class="job-footer">
+            <span class="salary">$45 - $70 / hr</span>
+            <button class="apply">Postular</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="cta-section">
+    <div class="cta-card">
+      <h2>Lleva tu carrera al siguiente nivel</h2>
+      <p>Únete a la red más exclusiva de profesionales cubanos y accede a un mundo de posibilidades sin límites geográficos.</p>
+      <div class="cta-buttons">
+        <a href="perfil_profesional/code.html" class="btn-primary">Crear cuenta gratis</a>
+        <a href="cubalink_landing_page/code.html" class="btn-secondary">Saber más</a>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="footer-content">
+    <div>
+      <div class="footer-brand">CubaLink</div>
+      <p>Elevando el potencial del profesional cubano en el mercado global.</p>
+    </div>
+    <div class="footer-links">
+      <a href="#">Privacy Policy</a>
+      <a href="#">Terms of Service</a>
+      <a href="#">Help Center</a>
+      <a href="#">Contact Us</a>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <p>© 2024 CubaLink Professional. All rights reserved.</p>
+    <div class="icons">
+      <span>language</span>
+      <span>share</span>
+    </div>
+  </div>
+</footer>
+
+<div class="mobile-nav">
+  <button class="active"><span class="material-icons">home</span>Home</button>
+  <button><span class="material-icons">work</span>Jobs</button>
+  <button><span class="material-icons">groups</span>Network</button>
+  <button><span class="material-icons">person</span>Profile</button>
+</div>
+</body>
+</html>

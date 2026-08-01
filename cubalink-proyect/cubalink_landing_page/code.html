@@ -1,0 +1,350 @@
+<!DOCTYPE html>
+
+<html class="light" lang="es"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>CubaLink | Red Profesional de los Cubanos</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "surface-bright": "#f8f9ff",
+                    "surface-container": "#e5eeff",
+                    "on-surface": "#0b1c30",
+                    "surface-container-lowest": "#ffffff",
+                    "on-primary": "#ffffff",
+                    "secondary-fixed": "#ffe088",
+                    "inverse-on-surface": "#eaf1ff",
+                    "on-tertiary": "#ffffff",
+                    "on-background": "#0b1c30",
+                    "on-primary-container": "#799dd6",
+                    "tertiary-fixed": "#d6e3ff",
+                    "primary-fixed-dim": "#a7c8ff",
+                    "inverse-surface": "#213145",
+                    "primary": "#001e40",
+                    "on-surface-variant": "#43474f",
+                    "on-error-container": "#93000a",
+                    "primary-fixed": "#d5e3ff",
+                    "on-primary-fixed-variant": "#1f477b",
+                    "secondary-container": "#fed65b",
+                    "surface-variant": "#d3e4fe",
+                    "on-secondary-fixed-variant": "#574500",
+                    "surface": "#f8f9ff",
+                    "on-secondary": "#ffffff",
+                    "on-primary-fixed": "#001b3c",
+                    "surface-tint": "#3a5f94",
+                    "brand-gold": "#D4AF37",
+                    "brand-blue-deep": "#003366"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.125rem",
+                    "lg": "0.25rem",
+                    "xl": "0.5rem",
+                    "full": "0.75rem"
+            },
+            "spacing": {
+                    "margin-desktop": "48px",
+                    "gutter": "24px",
+                    "unit": "8px",
+                    "margin-mobile": "16px",
+                    "container-max": "1280px"
+            },
+            "fontFamily": {
+                    "label-sm": ["Inter"],
+                    "body-lg": ["Inter"],
+                    "headline-lg-mobile": ["Inter"],
+                    "display-lg": ["Inter"],
+                    "body-md": ["Inter"],
+                    "headline-lg": ["Inter"],
+                    "title-md": ["Inter"]
+            },
+            "fontSize": {
+                    "label-sm": ["12px", {"lineHeight": "1", "letterSpacing": "0.05em", "fontWeight": "600"}],
+                    "body-lg": ["18px", {"lineHeight": "1.6", "fontWeight": "400"}],
+                    "headline-lg-mobile": ["24px", {"lineHeight": "1.2", "fontWeight": "700"}],
+                    "display-lg": ["48px", {"lineHeight": "1.1", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                    "body-md": ["16px", {"lineHeight": "1.6", "fontWeight": "400"}],
+                    "headline-lg": ["32px", {"lineHeight": "1.2", "letterSpacing": "-0.01em", "fontWeight": "700"}],
+                    "title-md": ["20px", {"lineHeight": "1.4", "fontWeight": "600"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        body { font-family: 'Inter', sans-serif; background-color: #F8FAFC; }
+        .material-symbols-outlined { font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24; }
+        .glass-card { background: rgba(255, 255, 255, 0.8); backdrop-filter: blur(12px); border: 1px solid rgba(226, 232, 240, 0.5); }
+        .hero-gradient { background: radial-gradient(circle at top right, rgba(212, 175, 55, 0.05), transparent), radial-gradient(circle at bottom left, rgba(0, 51, 102, 0.03), transparent); }
+    </style>
+</head>
+<body class="text-on-surface antialiased overflow-x-hidden">
+<!-- TopAppBar -->
+<header class="fixed top-0 left-0 w-full z-50 flex justify-between items-center px-margin-mobile md:px-margin-desktop h-16 bg-surface-container-lowest dark:bg-inverse-surface border-b border-outline-variant dark:border-outline shadow-sm dark:shadow-none">
+<div class="flex items-center gap-4">
+<span class="material-symbols-outlined text-primary dark:text-primary-fixed cursor-pointer active:scale-95 transition-transform" data-icon="language">language</span>
+<span class="text-title-md font-title-md font-bold tracking-tight text-primary dark:text-primary-fixed-dim">CubaLink</span>
+</div>
+<nav class="hidden md:flex gap-8 items-center">
+<a class="text-primary dark:text-primary-fixed font-semibold font-label-sm text-label-sm" href="#">Home</a>
+<a class="text-on-surface-variant dark:text-surface-variant hover:bg-surface-container-low dark:hover:bg-surface-container-high transition-colors duration-200 px-3 py-1 rounded font-label-sm text-label-sm" href="#">Jobs</a>
+<a class="text-on-surface-variant dark:text-surface-variant hover:bg-surface-container-low dark:hover:bg-surface-container-high transition-colors duration-200 px-3 py-1 rounded font-label-sm text-label-sm" href="#">Network</a>
+<a class="text-on-surface-variant dark:text-surface-variant hover:bg-surface-container-low dark:hover:bg-surface-container-high transition-colors duration-200 px-3 py-1 rounded font-label-sm text-label-sm" href="#">Profile</a>
+</nav>
+<div class="flex items-center gap-4">
+<span class="material-symbols-outlined text-on-surface-variant dark:text-surface-variant cursor-pointer" data-icon="notifications">notifications</span>
+<button class="bg-primary text-on-primary px-4 py-2 rounded-lg font-label-sm text-label-sm hover:opacity-90 transition-all">Ingresar</button>
+</div>
+</header>
+<main class="pt-16">
+<!-- Hero Section -->
+<section class="relative min-h-[90vh] flex items-center justify-center hero-gradient px-margin-mobile md:px-margin-desktop overflow-hidden">
+<div class="max-w-container-max mx-auto grid md:grid-cols-2 gap-gutter items-center">
+<div class="z-10">
+<h1 class="font-display-lg text-display-lg text-primary mb-6 leading-tight">
+                        CubaLink: La red profesional de los cubanos.
+                    </h1>
+<p class="font-body-lg text-body-lg text-on-surface-variant mb-10 max-w-lg">
+                        Conecta talento cubano con nuevas oportunidades globales. La plataforma líder para el networking ejecutivo y la colaboración profesional sin fronteras.
+                    </p>
+<div class="flex flex-col sm:flex-row gap-4">
+<button class="bg-brand-blue-deep text-white px-8 py-4 rounded shadow-md hover:shadow-lg transition-all active:scale-95 font-title-md">
+                            Crear perfil
+                        </button>
+<button class="bg-white border border-outline text-brand-blue-deep px-8 py-4 rounded hover:bg-surface-container-low transition-all active:scale-95 font-title-md">
+                            Encontrar oportunidades
+                        </button>
+</div>
+<div class="mt-8 flex items-center gap-3">
+<div class="flex -space-x-2">
+<div class="w-8 h-8 rounded-full border-2 border-white bg-slate-200"></div>
+<div class="w-8 h-8 rounded-full border-2 border-white bg-slate-300"></div>
+<div class="w-8 h-8 rounded-full border-2 border-white bg-slate-400"></div>
+</div>
+<p class="font-label-sm text-label-sm text-on-surface-variant">
+                            +10k profesionales ya se han unido
+                        </p>
+</div>
+</div>
+<div class="relative hidden md:block">
+<div class="relative z-10 w-full aspect-square rounded-xl overflow-hidden shadow-2xl">
+<img class="w-full h-full object-cover" data-alt="A professional high-end portrait of a diverse group of Cuban business executives in a modern glass-walled office in Miami, with soft natural lighting and a clean, corporate aesthetic. The scene features deep blues and subtle gold accents to match the brand identity, conveying trust, global connectivity, and professional excellence." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAdCL8RYAEXUrL3msh7RHoUxoEnuBNVgCuELtd_VmeKiffMIELVINW7o4K3nRUtpL0VuFOZrj95d6D4sF1QkK0y2UCdfHkNEwa0PwKejaE8imK8_YRdSpDxohz6tMvOeD4GO_af5F9QsCV079jPrUMU7yG4OITFmDQUhnkWLa_JrNE_toLo63zdpAm7jLW7_EZUInvh26YSLHcmSFGeJhPoswP3DZKAlyfVM9XkyKbq2E9dJQMHI6CQDQ"/>
+</div>
+<!-- Decorative Elements -->
+<div class="absolute -top-10 -right-10 w-40 h-40 bg-secondary-fixed/30 blur-3xl rounded-full"></div>
+<div class="absolute -bottom-10 -left-10 w-64 h-64 bg-primary/10 blur-3xl rounded-full"></div>
+</div>
+</div>
+</section>
+<!-- How it Works (Bento Layout) -->
+<section class="py-24 px-margin-mobile md:px-margin-desktop bg-white">
+<div class="max-w-container-max mx-auto">
+<div class="mb-16 text-center">
+<span class="text-brand-gold font-bold uppercase tracking-widest text-label-sm">Metodología</span>
+<h2 class="font-headline-lg text-headline-lg text-primary mt-2">¿Cómo funciona CubaLink?</h2>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+<div class="p-8 rounded-xl border border-outline-variant hover:shadow-xl transition-shadow bg-surface-bright flex flex-col justify-between h-full">
+<div>
+<span class="material-symbols-outlined text-brand-blue-deep text-4xl mb-6" data-icon="account_circle">account_circle</span>
+<h3 class="font-title-md text-title-md text-primary mb-4">Crea tu Identidad</h3>
+<p class="font-body-md text-body-md text-on-surface-variant">Construye un perfil profesional robusto que destaque tus habilidades, experiencia y aspiraciones globales.</p>
+</div>
+<div class="mt-6 text-brand-gold font-bold flex items-center gap-2 cursor-pointer">
+                            Comenzar <span class="material-symbols-outlined text-sm" data-icon="arrow_forward">arrow_forward</span>
+</div>
+</div>
+<div class="p-8 rounded-xl border border-outline-variant hover:shadow-xl transition-shadow bg-surface-bright flex flex-col justify-between h-full">
+<div>
+<span class="material-symbols-outlined text-brand-blue-deep text-4xl mb-6" data-icon="hub">hub</span>
+<h3 class="font-title-md text-title-md text-primary mb-4">Expande tu Red</h3>
+<p class="font-body-md text-body-md text-on-surface-variant">Conéctate con mentores, reclutadores y otros profesionales cubanos en cualquier parte del mundo.</p>
+</div>
+<div class="mt-6 text-brand-gold font-bold flex items-center gap-2 cursor-pointer">
+                            Explorar red <span class="material-symbols-outlined text-sm" data-icon="arrow_forward">arrow_forward</span>
+</div>
+</div>
+<div class="p-8 rounded-xl border border-outline-variant hover:shadow-xl transition-shadow bg-surface-bright flex flex-col justify-between h-full">
+<div>
+<span class="material-symbols-outlined text-brand-blue-deep text-4xl mb-6" data-icon="rocket_launch">rocket_launch</span>
+<h3 class="font-title-md text-title-md text-primary mb-4">Aplica a Oportunidades</h3>
+<p class="font-body-md text-body-md text-on-surface-variant">Accede a vacantes exclusivas en empresas internacionales que valoran el talento y la resiliencia cubana.</p>
+</div>
+<div class="mt-6 text-brand-gold font-bold flex items-center gap-2 cursor-pointer">
+                            Ver empleos <span class="material-symbols-outlined text-sm" data-icon="arrow_forward">arrow_forward</span>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Featured Jobs (Grid Cards) -->
+<section class="py-24 px-margin-mobile md:px-margin-desktop bg-surface-container-low/30">
+<div class="max-w-container-max mx-auto">
+<div class="flex justify-between items-end mb-12">
+<div>
+<span class="text-brand-gold font-bold uppercase tracking-widest text-label-sm">Tendencias</span>
+<h2 class="font-headline-lg text-headline-lg text-primary mt-2">Empleos Destacados</h2>
+</div>
+<button class="hidden md:block border-b-2 border-primary text-primary font-bold hover:text-brand-gold hover:border-brand-gold transition-colors">Ver todas las vacantes</button>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-gutter">
+<!-- Job Card 1 -->
+<div class="bg-white p-6 rounded-lg shadow-sm border border-slate-100 hover:shadow-md transition-all group">
+<div class="flex justify-between items-start mb-4">
+<div class="w-12 h-12 bg-surface-container rounded flex items-center justify-center">
+<span class="material-symbols-outlined text-primary" data-icon="code">code</span>
+</div>
+<span class="bg-primary/10 text-primary px-3 py-1 rounded-full text-label-sm font-label-sm">Full Remote</span>
+</div>
+<h4 class="font-title-md text-title-md text-primary mb-1 group-hover:text-brand-blue-deep transition-colors">Senior Software Engineer</h4>
+<p class="font-body-md text-body-md text-on-surface-variant mb-6">Global Tech Solutions • Madrid, ES</p>
+<div class="flex items-center justify-between border-t border-slate-50 pt-4">
+<span class="text-brand-gold font-bold text-label-sm">$65k - $90k USD</span>
+<button class="bg-primary text-white px-4 py-2 rounded text-label-sm">Postular</button>
+</div>
+</div>
+<!-- Job Card 2 -->
+<div class="bg-white p-6 rounded-lg shadow-sm border border-slate-100 hover:shadow-md transition-all group">
+<div class="flex justify-between items-start mb-4">
+<div class="w-12 h-12 bg-surface-container rounded flex items-center justify-center">
+<span class="material-symbols-outlined text-primary" data-icon="palette">palette</span>
+</div>
+<span class="bg-secondary-container/20 text-on-secondary-container px-3 py-1 rounded-full text-label-sm font-label-sm">Hybrid</span>
+</div>
+<h4 class="font-title-md text-title-md text-primary mb-1 group-hover:text-brand-blue-deep transition-colors">Lead Product Designer</h4>
+<p class="font-body-md text-body-md text-on-surface-variant mb-6">Creative Agency • Miami, US</p>
+<div class="flex items-center justify-between border-t border-slate-50 pt-4">
+<span class="text-brand-gold font-bold text-label-sm">$80k - $110k USD</span>
+<button class="bg-primary text-white px-4 py-2 rounded text-label-sm">Postular</button>
+</div>
+</div>
+<!-- Job Card 3 -->
+<div class="bg-white p-6 rounded-lg shadow-sm border border-slate-100 hover:shadow-md transition-all group">
+<div class="flex justify-between items-start mb-4">
+<div class="w-12 h-12 bg-surface-container rounded flex items-center justify-center">
+<span class="material-symbols-outlined text-primary" data-icon="bar_chart">bar_chart</span>
+</div>
+<span class="bg-primary/10 text-primary px-3 py-1 rounded-full text-label-sm font-label-sm">Freelance</span>
+</div>
+<h4 class="font-title-md text-title-md text-primary mb-1 group-hover:text-brand-blue-deep transition-colors">Marketing Strategist</h4>
+<p class="font-body-md text-body-md text-on-surface-variant mb-6">Startup Hub • Remote</p>
+<div class="flex items-center justify-between border-t border-slate-50 pt-4">
+<span class="text-brand-gold font-bold text-label-sm">$45 - $70 / hr</span>
+<button class="bg-primary text-white px-4 py-2 rounded text-label-sm">Postular</button>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Community Highlights (Asymmetric Layout) -->
+<section class="py-24 px-margin-mobile md:px-margin-desktop bg-white overflow-hidden">
+<div class="max-w-container-max mx-auto">
+<div class="grid md:grid-cols-12 gap-gutter items-center">
+<div class="md:col-span-5 mb-12 md:mb-0">
+<span class="text-brand-gold font-bold uppercase tracking-widest text-label-sm">Comunidad</span>
+<h2 class="font-headline-lg text-headline-lg text-primary mt-2 mb-6">Casos de Éxito</h2>
+<p class="font-body-lg text-body-lg text-on-surface-variant mb-8">
+                            Nuestra misión es empoderar al profesional cubano dondequiera que se encuentre. Descubre cómo nuestra red ha transformado carreras reales.
+                        </p>
+<div class="space-y-6">
+<blockquote class="border-l-4 border-brand-gold pl-6 py-2">
+<p class="font-body-md italic text-primary mb-4">"Gracias a CubaLink, logré conectar con una empresa en Silicon Valley que buscaba talento con mi formación técnica. Hoy lidero un equipo de desarrollo remoto desde México."</p>
+<footer class="font-label-sm text-label-sm font-bold">— Carlos Rodríguez, Fullstack Developer</footer>
+</blockquote>
+</div>
+</div>
+<div class="md:col-span-7 grid grid-cols-2 gap-4">
+<div class="space-y-4 pt-12">
+<div class="aspect-[4/5] rounded-xl overflow-hidden shadow-lg transform hover:-translate-y-2 transition-transform duration-500">
+<img class="w-full h-full object-cover" data-alt="A professional business woman of Cuban descent smiling confidently in a high-rise office building at sunset. She is wearing executive attire, and the city lights of Havana are subtly visible in the background through a window. The aesthetic is warm, golden, and premium, symbolizing professional achievement and global reach." src="https://lh3.googleusercontent.com/aida-public/AB6AXuC48OZxttJwl6AvSNFXkZ6cb4wnvamF3QQIRgJSRB-3OlWI0AC0DqoRY9z_1PExPdE-M-fnRMgK1qxCZvi03Ux-vJd0hyA5zjf5xOIPrBljdjwXcDAPTHI2XIRDgm41AUURdFRejSpT-NqqCBmJyJ3ADVaS6-OisFjzpUy_hViL86eDVQU9eiPlIuPEMyNp8TH7Zej2752s8fV26XQG-YS0_-gJpkjQQkcNhiGNmBrm2P1ISzzGKtHMig"/>
+</div>
+<div class="aspect-square rounded-xl overflow-hidden shadow-lg transform hover:-translate-y-2 transition-transform duration-500">
+<img class="w-full h-full object-cover" data-alt="A close-up shot of two professional hands shaking in a modern boardroom setting. The lighting is crisp and cool, with deep blue tones. On the table, there is a premium laptop and a minimalist notepad. This image represents a successful professional agreement and the networking core of the CubaLink platform." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAHbn1TheVxOEH_bw5sGaklWKAPg9jv92utel-7rbLzFwy5QpOIZ7MRQlxTMmivevjgeSb7t-rGEzoPHh_iUB3K4PdPRYPIUS5DVADVFBR9fonSgQIErt2PtrYKWKdUTl7NaOnMkC293LMe7W-EukyEpkXVDeqBT56xbZuU7XZaExtDr-rjYJlvNVq5nLyFFr0hShAZUDRDTFr3ygjaazp_i5gmyH5DP8JaZDg-wxozdDm9HkiTcxW9Ow"/>
+</div>
+</div>
+<div class="space-y-4">
+<div class="aspect-square rounded-xl overflow-hidden shadow-lg transform hover:-translate-y-2 transition-transform duration-500">
+<img class="w-full h-full object-cover" data-alt="A tech-savvy young professional working in a sleek coworking space with multiple monitors showing complex code and data visualizations. The environment is vibrant and modern, utilizing a soft blue and gold color scheme to reflect the CubaLink brand identity of innovation and excellence." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDCAx5lqPlHybzJRQWRigJExoB6TfF2CJbCxga7lr0DFMV9WdT9S-HdCJvklvSpvgPws9b-4mzGblhoC1Lu59z6VzUUnJzMe_lv1g1t8q7gvAVR3nPofzCpzOzz4V0gB_mAwxGGsRMdhTWVof5W8VgOQ4ndFkc9rvaSHB-WXVQbGZudyIP4XV_N3A9DW1jr8qdKPZ94llEfz9uevCae1Mfv3ojrBfaYpC1p_fBIY7omqdnDjRZUDaHqTg"/>
+</div>
+<div class="aspect-[4/5] rounded-xl overflow-hidden shadow-lg transform hover:-translate-y-2 transition-transform duration-500">
+<img class="w-full h-full object-cover" data-alt="A diverse group of professionals having a collaborative meeting around a minimalist white table in a sun-drenched office. The mood is optimistic and professional, with high-key lighting that emphasizes a light-mode, modern design aesthetic consistent with a premium professional social network." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAO4nyTJlOKlUzAc8IptJ5uZa9-AqD0yR709kXJ-QwWkCyffcgLLfQTI9KT7RSMJqOq4Cp24xn2vzt_BpZBJ_zGWfKOGxqmmibsqrwY1FaWp1YIUtF-pZkhVeD8GFMEV_zLXwSX1VqPirUFQ5A72uR8xfppq9DsLAy6B4ie92KOwkmMt5RTyLKKlhLyyP1-uQZYK-n-rMaxEqWqkO6ucVvgHubZfieVPfO0lSiDrmp2D61rnRxGXDOORQ"/>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Final CTA -->
+<section class="py-20 px-margin-mobile md:px-margin-desktop">
+<div class="max-w-4xl mx-auto glass-card p-12 rounded-2xl text-center shadow-2xl relative overflow-hidden">
+<div class="absolute inset-0 bg-primary opacity-[0.02] pointer-events-none"></div>
+<h2 class="font-headline-lg text-headline-lg text-primary mb-6">Lleva tu carrera al siguiente nivel</h2>
+<p class="font-body-lg text-body-lg text-on-surface-variant mb-10 max-w-2xl mx-auto">
+                    Únete a la red más exclusiva de profesionales cubanos y accede a un mundo de posibilidades sin límites geográficos.
+                </p>
+<div class="flex flex-col sm:flex-row gap-4 justify-center">
+<button class="bg-brand-blue-deep text-white px-10 py-4 rounded-lg font-bold shadow-lg hover:bg-opacity-90 transition-all">Crear cuenta gratis</button>
+<button class="border border-primary text-primary px-10 py-4 rounded-lg font-bold hover:bg-surface-container-low transition-all">Saber más</button>
+</div>
+</div>
+</section>
+</main>
+<!-- Footer -->
+<footer class="w-full bg-primary dark:bg-primary-container text-on-primary dark:text-on-primary-container py-12 px-margin-desktop">
+<div class="max-w-container-max mx-auto flex flex-col md:flex-row justify-between items-start md:items-center gap-8">
+<div class="space-y-4">
+<span class="text-headline-lg font-headline-lg text-secondary-fixed">CubaLink</span>
+<p class="font-body-md text-body-md opacity-80 max-w-xs">Elevando el potencial del profesional cubano en el mercado global.</p>
+</div>
+<div class="grid grid-cols-2 sm:grid-cols-4 gap-8">
+<a class="font-label-sm text-label-sm text-on-primary dark:text-on-primary-container opacity-80 hover:text-secondary-fixed-dim transition-colors" href="#">Privacy Policy</a>
+<a class="font-label-sm text-label-sm text-on-primary dark:text-on-primary-container opacity-80 hover:text-secondary-fixed-dim transition-colors" href="#">Terms of Service</a>
+<a class="font-label-sm text-label-sm text-on-primary dark:text-on-primary-container opacity-80 hover:text-secondary-fixed-dim transition-colors" href="#">Help Center</a>
+<a class="font-label-sm text-label-sm text-on-primary dark:text-on-primary-container opacity-80 hover:text-secondary-fixed-dim transition-colors" href="#">Contact Us</a>
+</div>
+</div>
+<div class="max-w-container-max mx-auto mt-12 pt-8 border-t border-white/10 flex flex-col md:flex-row justify-between items-center gap-4">
+<p class="font-label-sm text-label-sm opacity-60">© 2024 CubaLink Professional. All rights reserved.</p>
+<div class="flex gap-6">
+<span class="material-symbols-outlined cursor-pointer opacity-80 hover:opacity-100" data-icon="language">language</span>
+<span class="material-symbols-outlined cursor-pointer opacity-80 hover:opacity-100" data-icon="share">share</span>
+</div>
+</div>
+</footer>
+<!-- BottomNavBar (Mobile Only) -->
+<div class="md:hidden fixed bottom-0 left-0 w-full z-50 flex justify-around items-center h-16 bg-surface-container-lowest dark:bg-inverse-surface pb-safe border-t border-outline-variant shadow-lg">
+<button class="flex flex-col items-center justify-center text-primary dark:text-primary-fixed-dim font-bold active:scale-90 transition-all duration-150">
+<span class="material-symbols-outlined" data-icon="home" data-weight="fill">home</span>
+<span class="font-label-sm text-label-sm">Home</span>
+</button>
+<button class="flex flex-col items-center justify-center text-on-surface-variant dark:text-surface-variant opacity-70 active:scale-90 transition-all duration-150">
+<span class="material-symbols-outlined" data-icon="work">work</span>
+<span class="font-label-sm text-label-sm">Jobs</span>
+</button>
+<button class="flex flex-col items-center justify-center text-on-surface-variant dark:text-surface-variant opacity-70 active:scale-90 transition-all duration-150">
+<span class="material-symbols-outlined" data-icon="groups">groups</span>
+<span class="font-label-sm text-label-sm">Network</span>
+</button>
+<button class="flex flex-col items-center justify-center text-on-surface-variant dark:text-surface-variant opacity-70 active:scale-90 transition-all duration-150">
+<span class="material-symbols-outlined" data-icon="person">person</span>
+<span class="font-label-sm text-label-sm">Profile</span>
+</button>
+</div>
+<script>
+        // Simple scroll effect for TopAppBar
+        window.addEventListener('scroll', () => {
+            const header = document.querySelector('header');
+            if (window.scrollY > 20) {
+                header.classList.add('shadow-md', 'backdrop-blur-md', 'bg-surface-container-lowest/90');
+            } else {
+                header.classList.remove('shadow-md', 'backdrop-blur-md', 'bg-surface-container-lowest/90');
+            }
+        });
+    </script>
+</body></html>
