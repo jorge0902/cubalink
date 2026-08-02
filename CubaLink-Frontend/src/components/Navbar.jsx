@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react'
 import { Link, NavLink } from 'react-router-dom'
 import MaterialIcon from './MaterialIcon'
+import logoCubaLink from '../logo/mixboard-image (2).png'
 
 // Navegación principal de CubaLink (diseño del TopAppBar original de la landing)
 export const NAV_LINKS = [
@@ -37,9 +38,11 @@ export default function Navbar() {
     <>
       <header className={headerClass}>
         <div className="flex items-center gap-4">
-          <MaterialIcon name="language" className="text-primary cursor-pointer active:scale-95 transition-transform" />
-          <Link to="/" className="text-title-md font-title-md font-bold tracking-tight text-primary">
-            CubaLink
+          <Link to="/" className="flex items-center gap-2">
+            <img src={logoCubaLink} alt="CubaLink logo" className="h-10 w-10 object-contain rounded-lg" />
+            <span className="text-title-md font-title-md font-bold tracking-tight text-primary">
+              CubaLink
+            </span>
           </Link>
         </div>
 
