@@ -3,7 +3,7 @@ import MaterialIcon from '../components/MaterialIcon'
 import JobCard from '../components/JobCard'
 import { jobs } from '../data/jobs'
 
-// Imágenes originales de la landing (Google Stitch / AIDA)
+// Nota: Estas imágenes se sustituirán pronto por fotografía real de nuestra comunidad en Rusia
 const HERO_IMG =
   'https://lh3.googleusercontent.com/aida-public/AB6AXuAdCL8RYAEXUrL3msh7RHoUxoEnuBNVgCuELtd_VmeKiffMIELVINW7o4K3nRUtpL0VuFOZrj95d6D4sF1QkK0y2UCdfHkNEwa0PwKejaE8imK8_YRdSpDxohz6tMvOeD4GO_af5F9QsCV079jPrUMU7yG4OITFmDQUhnkWLa_JrNE_toLo63zdpAm7jLW7_EZUInvh26YSLHcmSFGeJhPoswP3DZKAlyfVM9XkyKbq2E9dJQMHI6CQDQ'
 const SUCCESS_1 =
@@ -18,22 +18,22 @@ const SUCCESS_4 =
 const features = [
   {
     icon: 'account_circle',
-    title: 'Crea tu Identidad',
-    text: 'Construye un perfil profesional robusto que destaque tus habilidades, experiencia y aspiraciones globales.',
+    title: 'Pon tus datos al kilo',
+    text: 'Mientras más completo esté tu perfil, más fácil le pones a los empleadores encontrarte. No cojas lucha, es rápido.',
     link: 'Comenzar',
     to: '/perfil',
   },
   {
     icon: 'hub',
-    title: 'Expande tu Red',
-    text: 'Conéctate con mentores, reclutadores y otros profesionales cubanos en cualquier parte del mundo.',
+    title: 'Conecta con la gente',
+    text: 'Asere, aquí estamos para ayudarnos. Conecta con otros cubanos que ya saben cómo funciona el trámite en Rusia.',
     link: 'Explorar red',
     to: '/comunidad',
   },
   {
     icon: 'rocket_launch',
-    title: 'Aplica a Oportunidades',
-    text: 'Accede a vacantes exclusivas en empresas internacionales que valoran el talento y la resiliencia cubana.',
+    title: 'Busca brete sin cuento',
+    text: 'Ofertas frescas todos los días. Sin rodeos y de gente de confianza para que no te pase nada raro.',
     link: 'Ver empleos',
     to: '/empleos',
   },
@@ -47,24 +47,23 @@ export default function Home() {
         <div className="max-w-container-max mx-auto grid md:grid-cols-2 gap-gutter items-center">
           <div className="z-10">
             <h1 className="font-display-lg text-display-lg text-primary mb-6 leading-tight">
-              CubaLink: La red profesional de los cubanos.
+              CubaLink: Pa' que los cubanos en Rusia echen pa'lante.
             </h1>
             <p className="font-body-lg text-body-lg text-on-surface-variant mb-10 max-w-lg">
-              Conecta talento cubano con nuevas oportunidades globales. La plataforma líder para el networking
-              ejecutivo y la colaboración profesional sin fronteras.
+              Aquí nos ayudamos entre todos. Trámites, brete y esa mano que hace falta cuando estás lejos de casa.
             </p>
             <div className="flex flex-col sm:flex-row gap-4">
               <Link
                 to="/perfil"
                 className="bg-brand-blue-deep text-white px-8 py-4 rounded shadow-md hover:shadow-lg transition-all active:scale-95 font-title-md text-center"
               >
-                Crear perfil
+                Súmate a la familia
               </Link>
               <Link
                 to="/empleos"
                 className="bg-white border border-outline text-brand-blue-deep px-8 py-4 rounded hover:bg-surface-container-low transition-all active:scale-95 font-title-md text-center"
               >
-                Encontrar oportunidades
+                Ver qué hay hoy
               </Link>
             </div>
             <div className="mt-8 flex items-center gap-3">
@@ -151,11 +150,10 @@ export default function Home() {
               <div className="space-y-6">
                 <blockquote className="border-l-4 border-brand-gold pl-6 py-2">
                   <p className="font-body-md italic text-primary mb-4">
-                    &ldquo;Gracias a CubaLink, logré conectar con una empresa en Silicon Valley que buscaba talento con mi
-                    formación técnica. Hoy lidero un equipo de desarrollo remoto desde México.&rdquo;
+                    &ldquo;Gracias a CubaLink, logré conectar con una empresa en Rusia que buscaba talento cubano confiable. Hoy estoy trabajando y adaptado.&rdquo;
                   </p>
                   <footer className="font-label-sm text-label-sm font-bold">
-                    — Carlos Rodríguez, Fullstack Developer
+                    — Carlos Rodríguez, Profesional en Moscú
                   </footer>
                 </blockquote>
               </div>
