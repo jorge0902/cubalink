@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { NavLink } from 'react-router-dom'
+import { NavLink, useLocation } from 'react-router-dom'
 import MaterialIcon from './MaterialIcon'
 import { EXPLORE_LINKS } from './Navbar'
 
@@ -13,6 +13,7 @@ const items = [
 
 export default function BottomNav() {
   const [exploreOpen, setExploreOpen] = useState(false)
+  const location = useLocation()
 
   return (
     <>
@@ -54,32 +55,31 @@ export default function BottomNav() {
               Todo lo que CubaLink te ofrece
             </p>
             <div className="grid grid-cols-2 gap-2">
-              {EXPLORE_LINKS.map((link) => (
-                <NavLink
-                  key={link.to}
-                  to={link.to}
-                  onClick={() => setExploreOpen(false)}
-                  className={({ isActive }) =>
-                    `flex items-center gap-3 p-3 rounded-xl border transition-all ${
-                      isActive
-                        ? 'bg-brand-blue-deep text-white border-brand-blue-deep'
-                        : 'bg-surface-container-lowest border-outline-variant hover:border-brand-blue-deep'
-                    }`
-                  }
-                >
-                  <span className={`w-9 h-9 rounded-lg flex items-center justify-center flex-shrink-0 ${isActive ? 'bg-white/15 text-white' : 'bg-surface-container text-primary'}`}>
-                    <MaterialIcon name={link.icon} className="text-[18px]" />
-                  </span>
-                  <span className="min-w-0">
-                    <span className={`block font-label-sm text-label-sm font-semibold ${isActive ? 'text-white' : 'text-primary'}`}>
-                      {link.label}
+              {EXPLORE_LINKS.map((link) => {
+                const isActive = location.pathname === link.to
+                return (
+                  <NavLink
+                    key={link.to}
+                    to={link.to}
+                    onClick={() => setExploreOpen(false)}
+                    className={isActive
+                      ? 'flex items-center gap-3 p-3 rounded-xl border transition-all bg-brand-blue-deep text-white border-brand-blue-deep'
+                      : 'flex items-center gap-3 p-3 rounded-xl border transition-all bg-surface-container-lowest border-outline-variant hover:border-brand-blue-deep'}
+                  >
+                    <span className={`w-9 h-9 rounded-lg flex items-center justify-center flex-shrink-0 ${isActive ? 'bg-white/15 text-white' : 'bg-surface-container text-primary'}`}>
+                      <MaterialIcon name={link.icon} className="text-[18px]" />
                     </span>
-                    <span className={`block text-[10px] truncate ${isActive ? 'text-white/70' : 'text-on-surface-variant'}`}>
-                      {link.desc}
+                    <span className="min-w-0">
+                      <span className={`block font-label-sm text-label-sm font-semibold ${isActive ? 'text-white' : 'text-primary'}`}>
+                        {link.label}
+                      </span>
+                      <span className={`block text-[10px] truncate ${isActive ? 'text-white/70' : 'text-on-surface-variant'}`}>
+                        {link.desc}
+                      </span>
                     </span>
-                  </span>
-                </NavLink>
-              ))}
+                  </NavLink>
+                )
+              })}
             </div>
           </div>
         </div>
