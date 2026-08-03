@@ -1,186 +1,240 @@
+import { useState } from 'react'
+import { Link } from 'react-router-dom'
 import MaterialIcon from '../components/MaterialIcon'
+import RoleChips from '../components/RoleChips'
+import TrustBadge from '../components/TrustBadge'
+import CarnetConfianza from '../components/CarnetConfianza'
+import AdminActivitiesPanel from '../components/AdminActivitiesPanel'
+import RoleTab from '../components/RoleTab'
+import { useActivity } from '../context/ActivityContext'
+import { ROLE_MAP, REPUTATION } from '../data/roles'
+import { PERSONA, VERIFICATIONS, BADGES } from '../data/persona'
 
-// Imágenes originales de perfil_profesional/code.html
-const HEADER_AVATAR =
+const COVER =
   'https://lh3.googleusercontent.com/aida-public/AB6AXuDo831PEmrJDJlAgkCT0pmBunLH_e7KDGAGJTOSxK8q9FynFk6w6ofThqGNdn3TkMAcSL8qnd6Z_-TTrc9YvqQNZgm9B77lt-bCIXvSv8sLC0G1uIslYUBPR3nCSTftq6s6vpsRjxv-q5OJa1UBTAXu6-GTJwyGGfOlVyg--OtFns9yjgouj0fwcCLv56lcIZxNBL6pZMwggJiddCKKj2T9yRGBTvkoppXsl5CZLeHDxM8GV5IbUPOwdQ'
-const PROFILE_PIC =
-  'https://lh3.googleusercontent.com/aida-public/AB6AXuCPjjyFYrQnr1z3VjpCJKJ0an-PiiGCIfqS-YluHHhw5eMh-kR5t2xhlFz6mf0gTjMj_YVACKY8b6YTUANCnsJe9_nUqP3BWW7ngri5ydkRRnBkeoXU-1rSKWs3_hBDgR59BndhBPotQnGUSzgtGdom85A55i7ZVjlxIOAqfS1bITBm6gWq_7pdc9ZFkqPJtY88wstdUuzLav88gJOkksmOlNDZXWWK7NLhcf1u81x4YHrddVF6LFTU_A'
-const CLOUDSPHERE_LOGO =
-  'https://lh3.googleusercontent.com/aida-public/AB6AXuDIYIARpHWuq2rYpw3JGxlomGldssVu_qxuYfuoGYtHwPzLNBsxd31OEePBpDqFAOXN6RV8gCMN4bYklqUWSJTEEpBoHvnuL8pp4B7Yxc1I5cnDU_gFctHU_BmCoKsGajcGNEHmC4PJkkH71rdjnwqf9JDMVXw4pEmhn5RcWIeFM3ZWvYpTn9pAGdqwU4un_HRGByDPLB9Qm789Y_P0xq2qNgJfC0LI5k2us_egDAcvP84H-fwluGnr3g'
-const MDS_LOGO =
-  'https://lh3.googleusercontent.com/aida-public/AB6AXuDHbFC9BDO3sZHNWOR-UIKr3Qi1qO368DZhvAvDhwXzA0y2RoTywgTfbii5pXNUGSQ5VmBpCC7P0QI4ygYi-0YPkFl5yJlx3WVSES6PNw_4i2-MpJo1f029iSH8KpHeSQbO05XFlweH1bnX0-L7KSBYa76Vm9rd2qiiIFfsAXrfBPsQSs0N1WkCjSUyf6GaC--wA2eyA0yKNnekzr4hhnpzzcxF70fs68u8_4yANdIzbOOhOdcA3oaajg'
 
-const experience = [
-  {
-    logo: CLOUDSPHERE_LOGO,
-    title: 'Lead Full-Stack Architect',
-    company: 'CloudSphere Tech • Full-time',
-    period: 'Jan 2021 - Present • 3 yrs 4 mos',
-    description:
-      'Leading the development of a cross-border remittance platform for the diaspora. Managing a team of 12 engineers across Moscow and Madrid.',
-  },
-  {
-    logo: MDS_LOGO,
-    title: 'Senior Software Engineer',
-    company: 'Moscow Digital Systems • Contract',
-    period: 'Jun 2018 - Dec 2020 • 2 yrs 7 mos',
-    description:
-      'Optimized backend microservices using Node.js and PostgreSQL, resulting in a 40% reduction in latency for international user queries.',
-  },
-]
-
-const skills = [
-  'TypeScript',
-  'React / Next.js',
-  'Node.js',
-  'AWS Infrastructure',
-  'PostgreSQL',
-  'System Design',
-  'Redis',
-]
-
-const languages = [
-  { name: 'Spanish', level: 'Native' },
-  { name: 'Russian', level: 'Full Professional' },
-  { name: 'English', level: 'Fluent' },
-]
-
+// Perfil unificado: UN SOLO PERFIL, MÚLTIPLES ROLES. Las pestañas nacen de los módulos activos.
 export default function Profile() {
+  const { activeRoles } = useActivity()
+  const [tab, setTab] = useState('informacion')
+  const [contactado, setContactado] = useState(false)
+
+  // Pestañas = Información (siempre) + una por rol activo
+  const tabs = [{ id: 'informacion', label: 'Información', icon: 'person' }].concat(
+    activeRoles.map((id) => ({ id, label: ROLE_MAP[id].chip, icon: ROLE_MAP[id].icon }))
+  )
+
+  const reputacionPromedio =
+    activeRoles.length === 0
+      ? 0
+      : activeRoles.reduce((acc, id) => acc + (REPUTATION[id]?.stars || 0), 0) / activeRoles.length
+
+  const chipsActivos = activeRoles.map((id) => ROLE_MAP[id].chip)
+
+  const contactar = () => {
+    setContactado(true)
+    setTimeout(() => setContactado(false), 2500)
+  }
+
   return (
-    <main className="pt-20 pb-24 px-margin-mobile md:px-margin-desktop max-w-container-max mx-auto">
-      <div className="grid grid-cols-1 md:grid-cols-12 gap-gutter">
-        {/* ===== Main Info Card ===== */}
-        <div className="md:col-span-8 bg-surface-container-lowest premium-shadow rounded-xl overflow-hidden border border-outline-variant">
-          <div className="h-48 relative bg-primary-container overflow-hidden">
-            <div className="absolute inset-0 bg-gradient-to-b from-transparent to-black/20"></div>
-          </div>
-          <div className="px-8 pb-8 -mt-12 relative z-10">
-            <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-6">
-              <div className="flex flex-col">
-                <div className="w-32 h-32 rounded-xl border-4 border-surface-container-lowest overflow-hidden premium-shadow bg-surface">
-                  <img className="w-full h-full object-cover" src={PROFILE_PIC} alt="Alejandro Perez" />
-                </div>
-                <div className="mt-4">
-                  <div className="flex items-center gap-2">
-                    <h1 className="font-headline-lg text-headline-lg text-primary">Alejandro Perez</h1>
-                    <MaterialIcon name="verified" fill className="text-secondary" />
+    <main className="pt-16 pb-24 bg-surface">
+      <div className="max-w-container-max mx-auto px-margin-mobile md:px-margin-desktop py-8">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-gutter">
+          {/* ===== Columna principal ===== */}
+          <div className="lg:col-span-8 space-y-gutter">
+            {/* Header del perfil */}
+            <section className="bg-surface-container-lowest rounded-xl premium-shadow border border-outline-variant overflow-hidden">
+              <div className="h-44 relative bg-primary-container overflow-hidden">
+                <div className="absolute inset-0 bg-gradient-to-b from-transparent to-black/25"></div>
+              </div>
+              <div className="px-6 md:px-8 pb-8 -mt-14 relative z-10">
+                <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-6">
+                  <div className="flex flex-col md:flex-row md:items-end gap-5">
+                    <div className="w-28 h-28 rounded-xl border-4 border-surface-container-lowest overflow-hidden premium-shadow bg-surface shrink-0">
+                      <img className="w-full h-full object-cover" src={PERSONA.avatar} alt={PERSONA.nombre} />
+                    </div>
+                    <div className="mt-14 md:mt-0">
+                      <div className="flex items-center gap-2 flex-wrap">
+                        <h1 className="font-headline-lg text-headline-lg text-primary">{PERSONA.nombre}</h1>
+                        <TrustBadge emoji="🟢" label="Verificado" className="bg-green-100 text-green-800 border-green-300" />
+                        <TrustBadge emoji="🟣" label="Premium" className="bg-purple-100 text-purple-800 border-purple-300" />
+                      </div>
+                      <p className="font-title-md text-title-md text-on-surface-variant mt-1">{PERSONA.profesion}</p>
+                      <div className="flex items-center gap-1 mt-2 text-on-surface-variant opacity-80">
+                        <MaterialIcon name="location_on" className="text-body-md" />
+                        <span className="font-body-md text-body-md">{PERSONA.ubicacion}</span>
+                        <span className="mx-1">•</span>
+                        <MaterialIcon name="schedule" className="text-body-md" />
+                        <span className="font-body-md text-body-md">{PERSONA.tiempoEnRusia}</span>
+                      </div>
+                      {/* Roles activos como chips */}
+                      <div className="mt-3">
+                        <RoleChips roles={chipsActivos} size="lg" />
+                      </div>
+                    </div>
                   </div>
-                  <p className="font-title-md text-title-md text-on-surface-variant">Senior Developer</p>
-                  <div className="flex items-center gap-1 mt-2 text-on-surface-variant opacity-80">
-                    <MaterialIcon name="location_on" className="text-body-md" />
-                    <span className="font-body-md text-body-md">Moscow, Russia</span>
-                  </div>
-                </div>
-              </div>
-              <div className="flex flex-wrap gap-3 mb-2">
-                <button className="bg-primary text-on-primary font-label-sm text-label-sm px-6 py-3 rounded-lg premium-shadow-hover transition-all active:scale-95 flex items-center gap-2">
-                  <MaterialIcon name="mail" className="text-[18px]" />
-                  Contact
-                </button>
-                <button className="border border-outline-variant bg-surface-container-lowest text-primary font-label-sm text-label-sm px-6 py-3 rounded-lg premium-shadow-hover transition-all active:scale-95 flex items-center gap-2">
-                  <MaterialIcon name="share" className="text-[18px]" />
-                  Share Profile
-                </button>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        {/* ===== Stats Sidebar ===== */}
-        <div className="md:col-span-4 grid grid-cols-1 gap-gutter">
-          <div className="bg-surface-container-lowest premium-shadow rounded-xl border border-outline-variant p-6 flex flex-col justify-between">
-            <div>
-              <div className="flex justify-between items-center mb-4">
-                <h3 className="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider">
-                  Profile Strength
-                </h3>
-                <span className="font-label-sm text-label-sm text-secondary font-bold">Excellent</span>
-              </div>
-              <div className="w-full bg-surface-container h-2 rounded-full overflow-hidden">
-                <div className="bg-secondary h-full rounded-full w-[92%]"></div>
-              </div>
-            </div>
-            <p className="font-body-md text-body-md text-on-surface-variant mt-4 opacity-70">
-              Your profile is in the top 5% of Cuban developers in Europe.
-            </p>
-          </div>
-          <div className="grid grid-cols-2 gap-4">
-            <div className="bg-primary text-on-primary premium-shadow rounded-xl p-4 flex flex-col items-center justify-center text-center transition-transform hover:scale-[1.02]">
-              <span className="font-headline-lg text-headline-lg">1.2k</span>
-              <span className="font-label-sm text-label-sm opacity-80">Connections</span>
-            </div>
-            <div className="bg-surface-container-lowest border border-outline-variant premium-shadow rounded-xl p-4 flex flex-col items-center justify-center text-center transition-transform hover:scale-[1.02]">
-              <span className="font-headline-lg text-headline-lg text-primary">854</span>
-              <span className="font-label-sm text-label-sm text-on-surface-variant opacity-80">Job Views</span>
-            </div>
-          </div>
-        </div>
-
-        {/* ===== Experience ===== */}
-        <div className="md:col-span-8 space-y-gutter">
-          <section className="bg-surface-container-lowest premium-shadow rounded-xl border border-outline-variant overflow-hidden">
-            <div className="px-8 py-6 border-b border-outline-variant flex justify-between items-center">
-              <h2 className="font-title-md text-title-md text-primary">Experience</h2>
-              <button className="text-primary hover:bg-surface-container-low p-2 rounded-full transition-colors">
-                <MaterialIcon name="edit" />
-              </button>
-            </div>
-            <div className="p-8 space-y-8">
-              {experience.map((job) => (
-                <div key={job.title} className="flex gap-6 group">
-                  <div className="w-16 h-16 shrink-0 rounded-lg bg-surface border border-outline-variant flex items-center justify-center p-2 premium-shadow overflow-hidden">
-                    <img className="w-full h-full object-contain" src={job.logo} alt={job.company} />
-                  </div>
-                  <div className="flex-1">
-                    <h4 className="font-title-md text-title-md text-primary group-hover:text-primary-container transition-colors">
-                      {job.title}
-                    </h4>
-                    <p className="font-body-md text-body-md text-on-surface">{job.company}</p>
-                    <p className="font-label-sm text-label-sm text-on-surface-variant opacity-70 mt-1">{job.period}</p>
-                    <p className="font-body-md text-body-md text-on-surface-variant mt-3 leading-relaxed">
-                      {job.description}
-                    </p>
+                  <div className="flex flex-wrap gap-3 md:mb-1">
+                    <button
+                      onClick={contactar}
+                      className="bg-primary text-on-primary font-label-sm text-label-sm px-6 py-3 rounded-lg premium-shadow-hover transition-all active:scale-95 flex items-center gap-2"
+                    >
+                      <MaterialIcon name="mail" className="text-[18px]" />
+                      Contactar
+                    </button>
+                    <button className="border border-outline-variant bg-surface-container-lowest text-primary font-label-sm text-label-sm px-6 py-3 rounded-lg premium-shadow-hover transition-all active:scale-95 flex items-center gap-2">
+                      <MaterialIcon name="share" className="text-[18px]" />
+                      Compartir
+                    </button>
+                    <Link
+                      to="/registro"
+                      className="border border-outline-variant bg-surface-container-lowest text-primary font-label-sm text-label-sm px-6 py-3 rounded-lg premium-shadow-hover transition-all active:scale-95 flex items-center gap-2"
+                    >
+                      <MaterialIcon name="add_circle" className="text-[18px]" />
+                      Activar módulos
+                    </Link>
                   </div>
                 </div>
-              ))}
-            </div>
-          </section>
-        </div>
+              </div>
+            </section>
 
-        {/* ===== Skills & Languages ===== */}
-        <div className="md:col-span-4 space-y-gutter">
-          <section className="bg-surface-container-lowest premium-shadow rounded-xl border border-outline-variant p-6">
-            <div className="flex justify-between items-center mb-6">
-              <h2 className="font-title-md text-title-md text-primary">Expertise</h2>
-              <MaterialIcon name="psychology" className="text-primary-fixed-dim" />
-            </div>
-            <div className="flex flex-wrap gap-2">
-              {skills.map((skill) => (
-                <span
-                  key={skill}
-                  className="px-4 py-2 bg-surface-container-low text-primary-container font-label-sm text-label-sm rounded-full border border-surface-variant"
+            {/* Tabs dinámicas por rol activo */}
+            <div className="flex gap-2 overflow-x-auto pb-2 -mx-1 px-1">
+              {tabs.map((t) => (
+                <button
+                  key={t.id}
+                  onClick={() => setTab(t.id)}
+                  className={`px-4 py-2 rounded-full font-label-sm text-label-sm whitespace-nowrap transition-all inline-flex items-center gap-1.5 ${
+                    tab === t.id
+                      ? 'bg-brand-blue-deep text-white shadow-md'
+                      : 'bg-surface-container-lowest text-on-surface-variant border border-outline-variant hover:border-brand-blue-deep'
+                  }`}
                 >
-                  {skill}
-                </span>
+                  <MaterialIcon name={t.icon} className="text-[16px]" />
+                  {t.label}
+                </button>
               ))}
             </div>
-          </section>
 
-          <section className="bg-surface-container-lowest premium-shadow rounded-xl border border-outline-variant p-6">
-            <h2 className="font-title-md text-title-md text-primary mb-6">Languages</h2>
-            <div className="space-y-4">
-              {languages.map((lang) => (
-                <div key={lang.name} className="flex justify-between items-center">
-                  <span className="font-body-md text-body-md text-on-surface">{lang.name}</span>
-                  <span className="font-label-sm text-label-sm text-on-surface-variant bg-surface-variant px-2 py-1 rounded">
-                    {lang.level}
-                  </span>
+            {/* Contenido de la pestaña */}
+            {tab === 'informacion' ? (
+              <>
+                {/* Bio + datos básicos */}
+                <section className="bg-surface-container-lowest rounded-xl premium-shadow border border-outline-variant p-6">
+                  <h2 className="font-title-md text-title-md text-primary mb-3">Sobre mí</h2>
+                  <p className="font-body-md text-body-md text-on-surface-variant leading-relaxed">{PERSONA.bio}</p>
+                </section>
+
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-gutter">
+                  {/* Idiomas y ruso */}
+                  <section className="bg-surface-container-lowest rounded-xl premium-shadow border border-outline-variant p-6">
+                    <h2 className="font-title-md text-title-md text-primary mb-4">Idiomas</h2>
+                    <div className="space-y-3">
+                      {PERSONA.idiomas.map((idioma) => (
+                        <div key={idioma} className="flex items-center justify-between">
+                          <span className="font-body-md text-body-md text-on-surface">{idioma}</span>
+                          <MaterialIcon name="check_circle" className="text-brand-blue-deep" />
+                        </div>
+                      ))}
+                    </div>
+                    <div className="mt-5 bg-surface-container-low rounded-lg p-3 flex items-start gap-2">
+                      <MaterialIcon name="translate" className="text-brand-blue-deep mt-0.5" />
+                      <div>
+                        <p className="font-label-sm text-label-sm text-on-surface-variant">¿Habla ruso?</p>
+                        <p className="font-body-md text-body-md text-primary text-[14px]">{PERSONA.hablaRuso}</p>
+                      </div>
+                    </div>
+                  </section>
+
+                  {/* Documentación y datos */}
+                  <section className="bg-surface-container-lowest rounded-xl premium-shadow border border-outline-variant p-6">
+                    <h2 className="font-title-md text-title-md text-primary mb-4">Documentación</h2>
+                    <div className="space-y-2.5">
+                      {PERSONA.documentacion.map((doc) => (
+                        <div key={doc} className="flex items-center gap-2 text-on-surface font-body-md text-body-md text-[14px]">
+                          <MaterialIcon name="description" className="text-brand-blue-deep text-[18px]" />
+                          {doc}
+                        </div>
+                      ))}
+                    </div>
+                    <div className="mt-5 pt-5 border-t border-outline-variant space-y-2">
+                      <div className="flex justify-between">
+                        <span className="font-label-sm text-label-sm text-on-surface-variant">Miembro desde</span>
+                        <span className="font-label-sm text-label-sm text-primary font-semibold">{PERSONA.miembroDesde}</span>
+                      </div>
+                      <div className="flex justify-between">
+                        <span className="font-label-sm text-label-sm text-on-surface-variant">Última conexión</span>
+                        <span className="font-label-sm text-label-sm text-primary font-semibold">{PERSONA.ultimaConexion}</span>
+                      </div>
+                    </div>
+                  </section>
                 </div>
-              ))}
-            </div>
-          </section>
+
+                {/* Badges del usuario */}
+                <section className="bg-surface-container-lowest rounded-xl premium-shadow border border-outline-variant p-6">
+                  <h2 className="font-title-md text-title-md text-primary mb-4">Insignias</h2>
+                  <div className="flex flex-wrap gap-2">
+                    {BADGES.map((b) => (
+                      <span key={b.id} className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-brand-gold/10 text-on-surface border border-brand-gold/30 font-label-sm text-label-sm">
+                        {b.icon} {b.label}
+                      </span>
+                    ))}
+                  </div>
+                </section>
+
+                {/* Reputación por rol (NO única) */}
+                <section className="bg-surface-container-lowest rounded-xl premium-shadow border border-outline-variant p-6">
+                  <h2 className="font-title-md text-title-md text-primary mb-1">Reputación por actividad</h2>
+                  <p className="font-body-md text-body-md text-on-surface-variant mb-4 text-[14px]">
+                    Cada módulo tiene su propia reputación. Así da más confianza.
+                  </p>
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                    {activeRoles.map((id) => (
+                      <div key={id} className="flex items-center justify-between p-3 rounded-xl bg-surface-container-low border border-outline-variant">
+                        <span className="inline-flex items-center gap-2 font-label-sm text-label-sm text-primary font-semibold">
+                          {ROLE_MAP[id].chip}
+                        </span>
+                        <span className="inline-flex items-center gap-1">
+                          <MaterialIcon name="star" fill className="text-brand-gold text-[16px]" />
+                          <span className="font-label-sm text-label-sm text-on-surface font-bold">{REPUTATION[id].stars.toFixed(1)}</span>
+                        </span>
+                      </div>
+                    ))}
+                  </div>
+                </section>
+              </>
+            ) : (
+              <RoleTab roleId={tab} />
+            )}
+          </div>
+
+          {/* ===== Barra lateral ===== */}
+          <div className="lg:col-span-4 space-y-gutter">
+            <CarnetConfianza persona={PERSONA} activeRoles={activeRoles} reputacionPromedio={reputacionPromedio} />
+
+            {/* Verificaciones */}
+            <section className="bg-surface-container-lowest rounded-xl premium-shadow border border-outline-variant p-6">
+              <h3 className="font-title-md text-title-md text-primary mb-4">Verificaciones</h3>
+              <div className="space-y-2.5">
+                {VERIFICATIONS.map((v) => (
+                  <div key={v.id} className="flex items-center gap-2">
+                    <span className="text-[16px]">{v.emoji}</span>
+                    <span className="font-label-sm text-label-sm text-on-surface">{v.label}</span>
+                  </div>
+                ))}
+              </div>
+            </section>
+
+            <AdminActivitiesPanel />
+          </div>
         </div>
       </div>
+
+      {/* Toast contactar */}
+      {contactado && (
+        <div className="fixed bottom-24 left-1/2 -translate-x-1/2 z-50 bg-brand-blue-deep text-white px-6 py-3 rounded-full shadow-2xl font-label-sm text-label-sm md:bottom-8">
+          ✓ Mensaje enviado a {PERSONA.nombre}
+        </div>
+      )}
     </main>
   )
 }

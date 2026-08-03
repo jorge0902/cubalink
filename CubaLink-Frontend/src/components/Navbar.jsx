@@ -19,6 +19,7 @@ export const EXPLORE_LINKS = [
   { to: '/remesas', label: 'Remesas', icon: 'currency_exchange', desc: 'Envíos de dinero' },
   { to: '/empresas', label: 'Empresas', icon: 'apartment', desc: 'Aliados y vacantes' },
   { to: '/servicios', label: 'Servicios', icon: 'handyman', desc: 'Profesionales de la red' },
+  { to: '/ranking', label: 'Ranking', icon: 'emoji_events', desc: 'Top de la comunidad' },
 ]
 
 export default function Navbar() {
@@ -116,10 +117,10 @@ export default function Navbar() {
         <div className="flex items-center gap-4">
           <MaterialIcon name="notifications" className="text-on-surface-variant cursor-pointer active:scale-95 transition-transform" />
           <Link
-            to="/perfil"
+            to="/registro"
             className="hidden sm:inline-block bg-primary text-on-primary px-4 py-2 rounded-lg font-label-sm text-label-sm hover:opacity-90 transition-all"
           >
-            Ingresar
+            Unirte
           </Link>
           {/* Hamburger móvil */}
           <button
@@ -173,11 +174,11 @@ export default function Navbar() {
             ))}
 
             <Link
-              to="/perfil"
+              to="/registro"
               onClick={() => setMenuOpen(false)}
               className="mt-2 bg-primary text-on-primary text-center px-4 py-3 rounded-lg font-label-sm text-label-sm"
             >
-              Ingresar
+              Unirte a CubaLink
             </Link>
           </nav>
         </div>

@@ -21,7 +21,7 @@ const features = [
     title: 'Pon tus datos al kilo',
     text: 'Mientras más completo esté tu perfil, más fácil le pones a los empleadores encontrarte. No cojas lucha, es rápido.',
     link: 'Comenzar',
-    to: '/perfil',
+    to: '/registro',
   },
   {
     icon: 'hub',
@@ -54,7 +54,7 @@ export default function Home() {
             </p>
             <div className="flex flex-col sm:flex-row gap-4">
               <Link
-                to="/perfil"
+                to="/registro"
                 className="bg-brand-blue-deep text-white px-8 py-4 rounded shadow-md hover:shadow-lg transition-all active:scale-95 font-title-md text-center"
               >
                 Súmate a la familia
@@ -261,7 +261,7 @@ export default function Home() {
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Link
-              to="/perfil"
+              to="/registro"
               className="bg-brand-blue-deep text-white px-10 py-4 rounded-lg font-bold shadow-lg hover:bg-opacity-90 transition-all"
             >
               Crear cuenta gratis

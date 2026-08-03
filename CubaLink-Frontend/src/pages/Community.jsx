@@ -135,17 +135,22 @@ export default function Community() {
               )}
 
               <div className="flex items-center justify-between pt-4 border-t border-outline-variant">
-                <div className="flex gap-6">
-                  <button className="flex items-center gap-1.5 text-on-surface-variant hover:text-brand-blue-deep transition-colors group">
-                    <MaterialIcon name="thumb_up" className="text-[20px] group-active:scale-125 transition-transform" />
-                    <span className="font-label-sm text-label-sm">{post.likes}</span>
+                <div className="flex flex-wrap gap-2 sm:gap-3">
+                  <button className="flex items-center gap-1.5 px-2.5 py-1.5 rounded-full bg-green-50 text-green-800 hover:bg-green-100 transition-colors group">
+                    <MaterialIcon name="thumb_up" className="text-[18px] group-active:scale-125 transition-transform" />
+                    <span className="font-label-sm text-label-sm">Me sirvió · {post.likes}</span>
                   </button>
-                  <button className="flex items-center gap-1.5 text-on-surface-variant hover:text-brand-blue-deep transition-colors group">
-                    <MaterialIcon name="chat_bubble" className="text-[20px]" />
-                    <span className="font-label-sm text-label-sm">{post.comments}</span>
+                  <button className="flex items-center gap-1.5 px-2.5 py-1.5 rounded-full bg-red-50 text-red-700 hover:bg-red-100 transition-colors group">
+                    <MaterialIcon name="thumb_down" className="text-[18px] group-active:scale-125 transition-transform" />
+                    <span className="font-label-sm text-label-sm">No me sirvió</span>
                   </button>
-                  <button className="flex items-center gap-1.5 text-on-surface-variant hover:text-brand-blue-deep transition-colors group">
-                    <MaterialIcon name="share" className="text-[20px]" />
+                  <button className="flex items-center gap-1.5 px-2.5 py-1.5 rounded-full bg-pink-50 text-pink-600 hover:bg-pink-100 transition-colors group">
+                    <MaterialIcon name="favorite" className="text-[18px] group-active:scale-125 transition-transform" />
+                    <span className="font-label-sm text-label-sm">Gracias</span>
+                  </button>
+                  <button className="flex items-center gap-1.5 px-2.5 py-1.5 rounded-lg text-on-surface-variant hover:bg-surface-container transition-colors group">
+                    <MaterialIcon name="chat_bubble" className="text-[18px]" />
+                    <span className="font-label-sm text-label-sm">{post.comments} coment.</span>
                   </button>
                 </div>
                 <button
