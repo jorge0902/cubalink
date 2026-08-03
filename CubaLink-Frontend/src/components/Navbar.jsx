@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react'
 import { Link, NavLink } from 'react-router-dom'
 import MaterialIcon from './MaterialIcon'
-import logoCubaLink from '../logo/mixboard-image (2).png'
+import logoCubaLink from '../assets/cubalink-logo.png'
 
 // Navegación principal de CubaLink (diseño del TopAppBar original de la landing)
 export const NAV_LINKS = [

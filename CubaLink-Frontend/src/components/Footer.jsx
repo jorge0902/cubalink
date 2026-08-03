@@ -1,5 +1,6 @@
 import { Link } from 'react-router-dom'
 import MaterialIcon from './MaterialIcon'
+import logoCubaLink from '../assets/cubalink-logo.png'
 
 // Footer de CubaLink (diseño original de la landing page)
 export default function Footer() {
@@ -7,7 +8,14 @@ export default function Footer() {
     <footer className="w-full bg-primary text-on-primary py-12 px-margin-mobile md:px-margin-desktop">
       <div className="max-w-container-max mx-auto flex flex-col md:flex-row justify-between items-start md:items-center gap-8">
         <div className="space-y-4">
-          <span className="text-headline-lg font-headline-lg text-secondary-fixed">CubaLink</span>
+          <div className="flex items-center gap-3">
+            <img
+              src={logoCubaLink}
+              alt="CubaLink logo"
+              className="h-12 w-12 object-contain rounded-lg bg-white p-0.5 shadow-sm"
+            />
+            <span className="text-headline-lg font-headline-lg text-secondary-fixed">CubaLink</span>
+          </div>
           <p className="font-body-md text-body-md opacity-80 max-w-xs">
             Elevando el potencial del profesional cubano en el mercado global.
           </p>
