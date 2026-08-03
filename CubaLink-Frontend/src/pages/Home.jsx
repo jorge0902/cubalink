@@ -113,6 +113,76 @@ export default function Home() {
         </div>
       </section>
 
+      {/* ===== Nuevas secciones de la red ===== */}
+      <section className="py-24 px-margin-mobile md:px-margin-desktop bg-surface-container-low/30">
+        <div className="max-w-container-max mx-auto">
+          <div className="mb-12 text-center">
+            <span className="text-brand-gold font-bold uppercase tracking-widest text-label-sm">La red completa</span>
+            <h2 className="font-headline-lg text-headline-lg text-primary mt-2">Todo lo que necesitas, en un solo lugar</h2>
+            <p className="font-body-md text-body-md text-on-surface-variant mt-3 max-w-2xl mx-auto">
+              Cuarto, chamba, paquete o remesa: la comunidad cubana en Rusia resuelve aquí, entre nosotros.
+            </p>
+          </div>
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-gutter">
+            {[
+              {
+                to: '/rentas',
+                icon: 'home_work',
+                title: 'Rentas Moscú',
+                text: 'Cuartos, estudios y apartamentos con todo claro: precio, depósito y metro.',
+                cta: 'Buscar alquiler',
+                emoji: '🏠',
+              },
+              {
+                to: '/marketplace',
+                icon: 'storefront',
+                title: 'Marketplace',
+                text: 'Compra y vende entre cubanos: teléfonos, ropa, vehículos y más.',
+                cta: 'Ver anuncios',
+                emoji: '🛒',
+              },
+              {
+                to: '/viajes',
+                icon: 'flight_takeoff',
+                title: 'Viajes',
+                text: 'Paquetes y encargos entre Cuba y Rusia. Gente de confianza que viaja.',
+                cta: 'Conectar viajeros',
+                emoji: '✈️',
+              },
+              {
+                to: '/remesas',
+                icon: 'currency_exchange',
+                title: 'Remesas',
+                text: 'Envía dinero a tu familia con tasas claras y gente verificada.',
+                cta: 'Comparar tasas',
+                emoji: '💸',
+              },
+            ].map((sec) => (
+              <Link
+                key={sec.to}
+                to={sec.to}
+                className="bg-surface-container-lowest p-6 rounded-xl border border-outline-variant premium-shadow hover:border-brand-blue-deep hover:shadow-xl transition-all group flex flex-col"
+              >
+                <div className="flex items-center justify-between mb-6">
+                  <span className="w-12 h-12 rounded-xl bg-brand-blue-deep/10 flex items-center justify-center text-brand-blue-deep group-hover:bg-brand-blue-deep group-hover:text-white transition-colors">
+                    <MaterialIcon name={sec.icon} className="text-2xl" />
+                  </span>
+                  <span className="text-2xl">{sec.emoji}</span>
+                </div>
+                <h3 className="font-title-md text-title-md text-primary mb-2 group-hover:text-brand-blue-deep transition-colors">
+                  {sec.title}
+                </h3>
+                <p className="font-body-md text-body-md text-on-surface-variant mb-6 flex-grow">{sec.text}</p>
+                <span className="text-brand-gold font-bold flex items-center gap-2 text-label-sm">
+                  {sec.cta}
+                  <MaterialIcon name="arrow_forward" className="text-sm group-hover:translate-x-1 transition-transform" />
+                </span>
+              </Link>
+            ))}
+          </div>
+        </div>
+      </section>
+
       {/* ===== Featured Jobs (Grid Cards) ===== */}
       <section className="py-24 px-margin-mobile md:px-margin-desktop bg-surface-container-low/30">
         <div className="max-w-container-max mx-auto">

@@ -10,6 +10,10 @@ import Community from './pages/Community'
 import Profile from './pages/Profile'
 import Companies from './pages/Companies'
 import Services from './pages/Services'
+import Rentals from './pages/Rentals'
+import Marketplace from './pages/Marketplace'
+import Travel from './pages/Travel'
+import Remittances from './pages/Remittances'
 
 export default function App() {
   return (
@@ -26,6 +30,10 @@ export default function App() {
             <Route path="/perfil" element={<Profile />} />
             <Route path="/empresas" element={<Companies />} />
             <Route path="/servicios" element={<Services />} />
+            <Route path="/rentas" element={<Rentals />} />
+            <Route path="/marketplace" element={<Marketplace />} />
+            <Route path="/viajes" element={<Travel />} />
+            <Route path="/remesas" element={<Remittances />} />
             <Route path="*" element={
               <div className="h-screen flex items-center justify-center text-center px-4">
                 <div>

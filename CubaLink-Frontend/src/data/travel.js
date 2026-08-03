@@ -1,0 +1,163 @@
+// Viajes Cuba ⇄ Rusia — paquetes, acompañantes y espacio en equipaje (demo navegable)
+export const travelTypes = [
+  { id: 'rus_a_cuba', label: 'Viajo de Rusia a Cuba', icon: 'flight' },
+  { id: 'cuba_a_rus', label: 'Viajo de Cuba a Rusia', icon: 'flight_land' },
+  { id: 'busco_paquete', label: 'Busco quien lleve un paquete', icon: 'inventory_2' },
+  { id: 'llevo_paquetes', label: 'Llevo paquetes', icon: 'luggage' },
+  { id: 'busco_acompanante', label: 'Busco acompañante', icon: 'groups' },
+  { id: 'espacio_equipaje', label: 'Ofrezco espacio en equipaje', icon: 'work' },
+]
+
+export const travelCities = [
+  'Moscú',
+  'San Petersburgo',
+  'La Habana',
+  'Santiago de Cuba',
+  'Varadero',
+  'Camagüey',
+  'Santa Clara',
+  'Holguín',
+  'Ekaterimburgo',
+  'Kazán',
+]
+
+export const travels = [
+  {
+    id: 1,
+    type: 'rus_a_cuba',
+    from: 'Moscú',
+    to: 'La Habana',
+    date: '2026-08-28',
+    weight: 10,
+    price: 1500,
+    description:
+      'Viajo a La Habana el 28 de agosto por Aeroflot. Tengo 10 kg libres en la maleta. Puedo llevar paquetes, medicinas o encargos pequeños. Precio 1500₽ por kg, negociable según volumen. Entrego personalmente en La Habana o en el aeropuerto.',
+    contact: '+7 926 556-77-88',
+    posted: 'Hace 2 horas',
+  },
+  {
+    id: 2,
+    type: 'cuba_a_rus',
+    from: 'La Habana',
+    to: 'Moscú',
+    date: '2026-09-05',
+    weight: 8,
+    price: 1200,
+    description:
+      'Vuelvo a Moscú el 5 de septiembre. Llevo hasta 8 kg de Cuba para quien lo necesite (café, ron, dulces... lo que sea legal). Recogo en La Habana y entrego en Moscú. Escríbeme al privado.',
+    contact: '+7 905 112-33-44',
+    posted: 'Hace 5 horas',
+  },
+  {
+    id: 3,
+    type: 'busco_paquete',
+    from: 'Moscú',
+    to: 'La Habana',
+    date: '2026-09-10',
+    weight: 5,
+    price: 0,
+    description:
+      'Busco a alguien que viaje a La Habana alrededor del 10 de septiembre para llevar 5 kg de medicina para mi mamá. Pago el costo que pidan, es urgente. Es una caja pequeña de medicamentos con receta.',
+    contact: '+7 909 889-01-23',
+    posted: 'Hace 1 día',
+  },
+  {
+    id: 4,
+    type: 'llevo_paquetes',
+    from: 'Moscú',
+    to: 'Santiago de Cuba',
+    date: '2026-09-15',
+    weight: 15,
+    price: 1000,
+    description:
+      'Viajo a Santiago de Cuba el 15 de septiembre. Tengo 15 kg disponibles para paquetes. Experiencia: llevo paquetes desde hace 2 años, todo con compromiso y entrega verificada. Precio por kg según tamaño.',
+    contact: '+7 913 556-77-88',
+    posted: 'Hace 1 día',
+  },
+  {
+    id: 5,
+    type: 'busco_acompanante',
+    from: 'Moscú',
+    to: 'La Habana',
+    date: '2026-09-20',
+    weight: 0,
+    price: 0,
+    description:
+      'Busco acompañante para viaje a La Habana el 20 de septiembre. Soy cubano, viajo seguido. Prefiero alguien que ya haya viajado y conozca el camino para hacer el viaje más llevadero. Los gastos se comparten.',
+    contact: '+7 920 445-66-77',
+    posted: 'Hace 2 días',
+  },
+  {
+    id: 6,
+    type: 'espacio_equipaje',
+    from: 'San Petersburgo',
+    to: 'La Habana',
+    date: '2026-10-02',
+    weight: 12,
+    price: 1300,
+    description:
+      'Salgo de San Petersburgo el 2 de octubre con escala en Moscú y destino La Habana. Ofrezco 12 kg de espacio en mi maleta. Puedo recoger en Moscú y entregar en Cuba. Trato serio y puntual.',
+    contact: '+7 915 443-22-11',
+    posted: 'Hace 2 días',
+  },
+  {
+    id: 7,
+    type: 'cuba_a_rus',
+    from: 'Varadero',
+    to: 'Moscú',
+    date: '2026-09-25',
+    weight: 10,
+    price: 1100,
+    description:
+      'Viajo de Varadero a Moscú el 25 de septiembre. Puedo llevar encargos de comida, café y lo que sea. Entrego en Moscú cualquier punto. Seriedad garantizada, tengo referencias en la comunidad.',
+    contact: '+7 907 334-55-66',
+    posted: 'Hace 3 días',
+  },
+  {
+    id: 8,
+    type: 'busco_paquete',
+    from: 'Moscú',
+    to: 'Santa Clara',
+    date: '2026-10-05',
+    weight: 3,
+    price: 2000,
+    description:
+      'Necesito enviar 3 kg de medicinas a Santa Clara antes del 10 de octubre. Pago 2000₽ por el favor. La entrega sería a mi familia directa, ellos recogen donde quede. Urgente por favor.',
+    contact: '+7 910 334-55-66',
+    posted: 'Hace 3 días',
+  },
+  {
+    id: 9,
+    type: 'rus_a_cuba',
+    from: 'Moscú',
+    to: 'Camagüey',
+    date: '2026-10-12',
+    weight: 20,
+    price: 900,
+    description:
+      'Viajo a Camagüey el 12 de octubre, dos maletas llenas de espacio (20 kg). Precio económico 900₽/kg. Puedo llevar hasta muebles pequeños desarmados. Aviso con tiempo para coordinar.',
+    contact: '+7 916 778-88-99',
+    posted: 'Hace 4 días',
+  },
+  {
+    id: 10,
+    type: 'espacio_equipaje',
+    from: 'Moscú',
+    to: 'Holguín',
+    date: '2026-11-01',
+    weight: 15,
+    price: 1200,
+    description:
+      'Vuelo Moscú-Holguín el 1 de noviembre. Espacio en maleta para 15 kg. Ideal para enviar regalos o encargos a la familia antes de diciembre. Coordinación por privado, entrega en Holguín capital o aeropuerto.',
+    contact: '+7 968 826-15-68',
+    posted: 'Hace 4 días',
+  },
+]
+
+export const travelFilters = {
+  priceOptions: [
+    { id: 'todos', label: 'Cualquier precio' },
+    { id: 'gratis', label: 'Gratis' },
+    { id: 'pago', label: 'Con costo' },
+  ],
+}
