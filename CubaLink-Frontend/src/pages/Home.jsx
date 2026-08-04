@@ -135,15 +135,15 @@ export default function Home() {
               Cuarto, chamba, paquete o remesa: la comunidad cubana en Rusia resuelve aquí, entre nosotros.
             </p>
           </div>
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-gutter">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-gutter">
             {[
               {
-                to: '/rentas',
-                icon: 'home_work',
-                title: 'Rentas Moscú',
-                text: 'Cuartos, estudios y apartamentos con todo claro: precio, depósito y metro.',
-                cta: 'Buscar alquiler',
-                image: '/images/renta-casa.jpg',
+                to: '/confiables',
+                icon: 'shield',
+                title: 'Confiables',
+                text: 'Personas y negocios recomendados por la comunidad. Seguridad garantizada.',
+                cta: 'Ver Confiables',
+                image: '/images/seccion-remesas.jpg',
               },
               {
                 to: '/marketplace',

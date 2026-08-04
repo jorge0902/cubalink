@@ -17,6 +17,8 @@ import Travel from './pages/Travel'
 import Remittances from './pages/Remittances'
 import Register from './pages/Register'
 import Ranking from './pages/Ranking'
+import Trust from './pages/Trust'
+import TrustProfile from './pages/TrustProfile'
 
 export default function App() {
   return (
@@ -34,6 +36,8 @@ export default function App() {
               <Route path="/perfil" element={<Profile />} />
               <Route path="/registro" element={<Register />} />
               <Route path="/ranking" element={<Ranking />} />
+              <Route path="/confiables" element={<Trust />} />
+              <Route path="/confiables/:id" element={<TrustProfile />} />
               <Route path="/empresas" element={<Companies />} />
               <Route path="/servicios" element={<Services />} />
               <Route path="/rentas" element={<Rentals />} />

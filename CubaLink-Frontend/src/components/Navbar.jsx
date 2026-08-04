@@ -19,7 +19,7 @@ export const EXPLORE_LINKS = [
   { to: '/remesas', label: 'Remesas', icon: 'currency_exchange', desc: 'Envíos de dinero' },
   { to: '/empresas', label: 'Empresas', icon: 'apartment', desc: 'Aliados y vacantes' },
   { to: '/servicios', label: 'Servicios', icon: 'handyman', desc: 'Profesionales de la red' },
-  { to: '/ranking', label: 'Ranking', icon: 'emoji_events', desc: 'Top de la comunidad' },
+  { to: '/confiables', label: 'Confiables', icon: 'shield', desc: 'Gente de confianza' },
 ]
 
 export default function Navbar() {
