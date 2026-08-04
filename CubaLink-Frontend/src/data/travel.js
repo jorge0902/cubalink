@@ -1,5 +1,6 @@
-// Viajes Cuba ⇄ Rusia — paquetes, acompañantes y espacio en equipaje (demo navegable)
+// Viajes Cuba ⇄ Rusia — agencias con pasajes, paquetes, acompañantes y espacio en equipaje (demo navegable)
 export const travelTypes = [
+  { id: 'agencia_pasajes', label: 'Agencia: vendo pasajes', icon: 'airline_seat_recline_normal' },
   { id: 'rus_a_cuba', label: 'Viajo de Rusia a Cuba', icon: 'flight' },
   { id: 'cuba_a_rus', label: 'Viajo de Cuba a Rusia', icon: 'flight_land' },
   { id: 'busco_paquete', label: 'Busco quien lleve un paquete', icon: 'inventory_2' },
@@ -24,6 +25,70 @@ export const travelCities = [
 export const travels = [
   {
     id: 1,
+    type: 'agencia_pasajes',
+    from: 'Moscú',
+    to: 'La Habana',
+    date: 'Directo / Todos los jueves',
+    weight: 0,
+    price: 0,
+    fare: 'Desde 62,000₽',
+    compagny: 'Agencia Caribe Tours Moscú',
+    description:
+      'Agencia de viajes con oficina en Moscú. Vendemos pasajes a Cuba (La Habana, Varadero, Santiago) con Aeroflot y Nordwind. También Damas de Blanco y La Habana-Moscú. Asesoría en tu idioma, precios en rublos y cubanos, todo legal. Envíanos tu fecha y te buscamos lo mejor.',
+    contact: '+7 926 100-20-30',
+    posted: 'Agencia verificado',
+    agency: true,
+  },
+  {
+    id: 2,
+    type: 'agencia_pasajes',
+    from: 'Moscú',
+    to: 'Dubái',
+    date: 'Salidas todo el mes',
+    weight: 0,
+    price: 0,
+    fare: 'Desde 38,000₽',
+    compagny: 'Agencia OrientEscape',
+    description:
+      'Vendemos pasajes Moscú-Dubái ida y vuelta. También hoteles y escala en Estambul. Barato y seguro, con recepción en el aeropuerto. Escríbenos al WhatsApp con tus fechas.',
+    contact: '+7 985 111-45-67',
+    posted: 'Agencia verificado',
+    agency: true,
+  },
+  {
+    id: 3,
+    type: 'agencia_pasajes',
+    from: 'Moscú',
+    to: 'Georgetown · Guyana',
+    date: 'Salidas quincenales',
+    weight: 0,
+    price: 0,
+    fare: 'Desde 115,000₽',
+    compagny: 'Agencia Ruta del Sur',
+    description:
+      'Ruta Moscú-Georgetown (Guyana) los días indicados. Gestionamos toda la parte de visado y loítico. Un servicio para cubanos que buscan conectar con familia en Guyana/USA. Consulta por privado para próximas salidas.',
+    contact: '+7 903 889-11-22',
+    posted: 'Agencia verificado',
+    agency: true,
+  },
+  {
+    id: 4,
+    type: 'agencia_pasajes',
+    from: 'San Petersburgo',
+    to: 'La Habana',
+    date: 'Dos veces por semana',
+    weight: 0,
+    price: 0,
+    fare: 'Desde 65,000₽',
+    compagny: 'Viajes RusCuba',
+    description:
+      'Pasajes San Petersburgo-La Habana con escala en Moscú. Venta de boletos, y mil pasaje. Si lo que quieres es volver a Cuba, aquí te ayudamos con lo que necesites. También aceptamos encargos $ ofrecen el servicio de carguío.',
+    contact: '+7 921 664-33-00',
+    posted: 'Agencia verificado',
+    agency: true,
+  },
+  {
+    id: 5,
     type: 'rus_a_cuba',
     from: 'Moscú',
     to: 'La Habana',
@@ -36,7 +101,7 @@ export const travels = [
     posted: 'Hace 2 horas',
   },
   {
-    id: 2,
+    id: 6,
     type: 'cuba_a_rus',
     from: 'La Habana',
     to: 'Moscú',
@@ -49,7 +114,7 @@ export const travels = [
     posted: 'Hace 5 horas',
   },
   {
-    id: 3,
+    id: 7,
     type: 'busco_paquete',
     from: 'Moscú',
     to: 'La Habana',
@@ -62,7 +127,7 @@ export const travels = [
     posted: 'Hace 1 día',
   },
   {
-    id: 4,
+    id: 8,
     type: 'llevo_paquetes',
     from: 'Moscú',
     to: 'Santiago de Cuba',
@@ -75,7 +140,7 @@ export const travels = [
     posted: 'Hace 1 día',
   },
   {
-    id: 5,
+    id: 9,
     type: 'busco_acompanante',
     from: 'Moscú',
     to: 'La Habana',
@@ -88,7 +153,7 @@ export const travels = [
     posted: 'Hace 2 días',
   },
   {
-    id: 6,
+    id: 10,
     type: 'espacio_equipaje',
     from: 'San Petersburgo',
     to: 'La Habana',
@@ -101,7 +166,7 @@ export const travels = [
     posted: 'Hace 2 días',
   },
   {
-    id: 7,
+    id: 11,
     type: 'cuba_a_rus',
     from: 'Varadero',
     to: 'Moscú',
@@ -114,7 +179,7 @@ export const travels = [
     posted: 'Hace 3 días',
   },
   {
-    id: 8,
+    id: 12,
     type: 'busco_paquete',
     from: 'Moscú',
     to: 'Santa Clara',
@@ -127,7 +192,7 @@ export const travels = [
     posted: 'Hace 3 días',
   },
   {
-    id: 9,
+    id: 13,
     type: 'rus_a_cuba',
     from: 'Moscú',
     to: 'Camagüey',
@@ -140,7 +205,7 @@ export const travels = [
     posted: 'Hace 4 días',
   },
   {
-    id: 10,
+    id: 14,
     type: 'espacio_equipaje',
     from: 'Moscú',
     to: 'Holguín',

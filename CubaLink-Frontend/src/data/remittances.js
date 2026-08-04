@@ -1,5 +1,8 @@
 // Remesas Cuba ⇄ Rusia — contacto entre personas que envían dinero (demo navegable)
 // IMPORTANTE: CubaLink solo conecta personas. No participa en transacciones ni las garantiza.
+// Referencia de cambio (moneda nacional): 1 RUB = 10.30 CUP
+
+export const REFERENCE_RATE = '1 RUB = 10.30 CUP (peso cubano)'
 
 export const remittanceTypes = [
   { id: 'rub_cup', label: 'Envío RUB → CUP', icon: 'currency_ruble', direction: 'send' },
@@ -25,7 +28,7 @@ export const remittances = [
   {
     id: 1,
     type: 'rub_cup',
-    rate: '1 RUB = 3.2 CUP',
+    rate: '1 RUB = 10.30 CUP',
     commission: 'Sin comisión',
     method: 'Transferencia SBP',
     city: 'Moscú',
@@ -109,7 +112,7 @@ export const remittances = [
   {
     id: 7,
     type: 'rub_cup',
-    rate: '1 RUB = 3.15 CUP',
+    rate: '1 RUB = 10.30 CUP',
     commission: 'Sin comisión',
     method: 'Transferencia SBP',
     city: 'Moscú',

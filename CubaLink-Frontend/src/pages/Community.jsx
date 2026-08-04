@@ -120,6 +120,17 @@ export default function Community() {
 
               <p className="font-body-md text-body-md text-on-surface mb-3 whitespace-pre-line">{post.content}</p>
 
+              {post.image && (
+                <div className="rounded-xl overflow-hidden mb-3 border border-outline-variant group cursor-pointer">
+                  <img
+                    src={post.image}
+                    alt="Publicación de la comunidad"
+                    className="w-full max-h-96 object-cover transition-transform duration-500 group-hover:scale-[1.02]"
+                    loading="lazy"
+                  />
+                </div>
+              )}
+
               {post.ubicacion && (
                 <div className="flex items-center gap-2 text-label-sm text-on-surface-variant mb-3">
                   <MaterialIcon name="location_on" className="text-brand-blue-deep" />

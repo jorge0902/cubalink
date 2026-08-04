@@ -15,6 +15,7 @@ export const jobs = [
     posted: 'Hace 2 horas',
     featured: true,
     description: 'Necesito 1 cargador para tienda Perekrestok. Horario de 8am a 8pm. Pago 2500 al terminar la jornada. Verdaderos interesados al privado.',
+    image: 'https://images.unsplash.com/photo-1553413077-190dd305871c?auto=format&fit=crop&q=80&w=600',
   },
   {
     id: 2,
@@ -31,6 +32,7 @@ export const jobs = [
     posted: 'Hace 5 horas',
     featured: true,
     description: 'Necesito 4 hombres para trabajo en construcción. Pago seguro al terminar el día. Pasaportes al privado.',
+    image: 'https://images.unsplash.com/photo-1504307651254-35680f356dfd?auto=format&fit=crop&q=80&w=600',
   },
   {
     id: 3,
@@ -47,6 +49,7 @@ export const jobs = [
     posted: 'Hace 8 horas',
     featured: false,
     description: 'Se busca personal de limpieza para turno nocturno en Diksi. Gente seria y de trabajo. Contactar al privado.',
+    image: 'https://images.unsplash.com/photo-1581578731548-c64695cc6952?auto=format&fit=crop&q=80&w=600',
   },
   {
     id: 4,
@@ -63,6 +66,7 @@ export const jobs = [
     posted: 'Hace 1 día',
     featured: false,
     description: 'Venta de SIMs registradas (Beerline, Megafon, Yota, MTS). Se llevan hasta su metro y se activan al momento.',
+    image: 'https://images.unsplash.com/photo-1535223289827-42f1e9919769?auto=format&fit=crop&q=80&w=600',
   },
   {
     id: 5,
@@ -71,7 +75,7 @@ export const jobs = [
     location: 'Metro Bulvar Dmitriya Donskogo',
     salary: '2,400₽',
     salaryNote: '/ día',
-    type: 'Full Time',
+    type: 'Tiempo completo',
     category: 'Hostelería',
     tags: ['Hostelería', 'Cocina'],
     icon: 'restaurant',
@@ -79,6 +83,7 @@ export const jobs = [
     posted: 'Hace 1 día',
     featured: false,
     description: 'Ayudante de cocina para restaurante con buen ambiente. Se pide puntualidad y ganas de trabajar.',
+    image: 'https://images.unsplash.com/photo-1556910103-1c02745aae4d?auto=format&fit=crop&q=80&w=600',
   },
   {
     id: 6,
@@ -96,9 +101,26 @@ export const jobs = [
     featured: false,
     description: 'Se rentan 3 cuartos o cama disponible para cubanos. Ambiente tranquilo, gente seria.',
   },
+  {
+    id: 7,
+    title: 'Redactor pa\' la comunidad',
+    company: 'Revista Cubanos en Rusia',
+    location: 'Remoto / Moscú',
+    salary: 'Desde 3,000₽',
+    salaryNote: '/ publicación',
+    type: 'Creative',
+    category: 'Magazine',
+    tags: ['Magazine', 'Redacción'],
+    icon: 'edit_note',
+    logo: null,
+    posted: 'Hace 3 días',
+    featured: false,
+    description: 'Buscamos cubanos con buena pluma para escribir artículos, crónicas y guías sobre la vida en Rusia. Cuenta tus historias y paga por publicación.',
+    image: 'https://images.unsplash.com/photo-1488190211105-8b0e65b80b4e?auto=format&fit=crop&q=80&w=600',
+  },
 ]
 
-export const jobFilters = ['Todas las Chambas', 'Carga', 'Construcción', 'Limpieza', 'Hostelería', 'Trámites', 'Vivienda']
+export const jobFilters = ['Todas las Chambas', 'Carga', 'Construcción', 'Limpieza', 'Hostelería', 'Trámites', 'Vivienda', 'Magazine']
 
 export const topLocations = [
   { city: 'Moscú (Krylatskoe)', roles: 12 },

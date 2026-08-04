@@ -6,7 +6,13 @@ import { RANKING_TABS, RANKINGS } from '../data/rankings'
 // Ranking de la Comunidad CubaLink — Top por actividad.
 export default function Ranking() {
   const [tab, setTab] = useState('trabajadores')
+  const [visibleCount, setVisibleCount] = useState(6)
   const topList = RANKINGS[tab] || []
+
+  const changeTab = (id) => {
+    setTab(id)
+    setVisibleCount(6)
+  }
 
   return (
     <main className="pt-16 pb-24 bg-surface">
@@ -31,7 +37,7 @@ export default function Ranking() {
           {RANKING_TABS.map((t) => (
             <button
               key={t.id}
-              onClick={() => setTab(t.id)}
+              onClick={() => changeTab(t.id)}
               className={`px-4 py-2 rounded-full font-label-sm text-label-sm whitespace-nowrap transition-all ${
                 tab === t.id
                   ? 'bg-brand-blue-deep text-white shadow-md'
@@ -45,7 +51,7 @@ export default function Ranking() {
 
         {/* Tarjetas del ranking */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-gutter">
-          {topList.map((persona, idx) => (
+          {topList.slice(0, visibleCount).map((persona, idx) => (
             <article
               key={persona.nombre}
               className="bg-surface-container-lowest rounded-xl premium-shadow border border-outline-variant p-6 hover:border-brand-blue-deep transition-all"
@@ -65,7 +71,7 @@ export default function Ranking() {
                   <h3 className="font-title-md text-title-md text-primary truncate">{persona.nombre}</h3>
                   <div className="flex flex-wrap gap-1 mt-1.5">
                     {persona.roles.map((r) => (
-                      <span key={r} className="px-2 py-0.5 rounded-full bg-surface-container-low text-primary font-label-sm text-label-sm text-[10px] border border-surface-variant">
+                      <span key={`${persona.nombre}-${r}`} className="px-2 py-0.5 rounded-full bg-surface-container-low text-primary font-label-sm text-label-sm text-[10px] border border-surface-variant">
                         {r}
                       </span>
                     ))}
@@ -82,7 +88,7 @@ export default function Ranking() {
 
               <div className="mt-3 flex flex-wrap gap-1.5">
                 {persona.badges.map((b) => (
-                  <span key={b} className="px-2 py-0.5 rounded-full bg-brand-gold/10 text-on-surface font-label-sm text-label-sm text-[10px] border border-brand-gold/30">
+                  <span key={`${persona.nombre}-${b}`} className="px-2 py-0.5 rounded-full bg-brand-gold/10 text-on-surface font-label-sm text-label-sm text-[10px] border border-brand-gold/30">
                     {b}
                   </span>
                 ))}
@@ -90,6 +96,15 @@ export default function Ranking() {
             </article>
           ))}
         </div>
+
+        {visibleCount < topList.length && (
+          <button
+            onClick={() => setVisibleCount((c) => c + 6)}
+            className="mt-8 w-full py-4 border-2 border-dashed border-outline-variant text-outline rounded-xl hover:bg-surface-container-low hover:text-primary hover:border-primary transition-all font-label-sm text-label-sm"
+          >
+            Ver más de la comunidad ({topList.length - visibleCount} más)
+          </button>
+        )}
       </div>
     </main>
   )

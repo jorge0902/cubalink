@@ -84,6 +84,24 @@ export default function Remittances() {
             </p>
           </div>
         </div>
+
+        {/* Referencia de cambio — moneda nacional */}
+        <div className="mt-4 bg-surface-container-lowest border border-outline-variant rounded-xl p-4 flex flex-wrap items-center gap-3">
+          <span className="w-10 h-10 rounded-xl bg-brand-blue-deep/10 text-brand-blue-deep flex items-center justify-center">
+            <MaterialIcon name="currency_ruble" className="text-[20px]" />
+          </span>
+          <div className="flex-1 min-w-[200px]">
+            <p className="font-label-sm text-label-sm text-primary font-bold">
+              Tasa de referencia (moneda nacional)
+            </p>
+            <p className="text-label-sm font-label-sm text-on-surface-variant">
+              1 RUB = 10.30 CUP (peso cubano) — orientativa, cada quien publica su tasa del día.
+            </p>
+          </div>
+          <span className="px-3 py-1.5 rounded-full bg-brand-gold/10 text-brand-gold font-label-sm text-label-sm font-bold">
+            1 ₽ → 10.30 CUP
+          </span>
+        </div>
       </section>
 
       {/* Filtros */}

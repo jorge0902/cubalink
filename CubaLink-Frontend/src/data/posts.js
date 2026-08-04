@@ -7,7 +7,7 @@ export const posts = [
     time: 'Hace 40 minutos',
     content:
       '¿Quién conoce un electricista por Lyublino? 🔌\nSe me dañó la cocina y el dueño del piso me dijo que la arregle yo. Gente seria, pago bien y rápido. Que me escriba al privado con su experiencia por favor.',
-    image: null,
+    image: '/images/renta-casa.jpg',
     avatar: 'https://lh3.googleusercontent.com/aida-public/AB6AXuDudekq8Iy_61oh0s9s3NhSsuq2HosrLzhI2XzqSdGmwlWcazyzQ9YODt4Nsmev4PdhKqLRZBblqmdsQfFhJo2JEd_dJYmxNXu-dC3I0Jv3yrGE0CrnfDBolgB2wQ7aWuL8mFYgEbFPLAAgi-JBiBluN70nA4i0nOZxE9t4__oSJuU_U2UVg4fCYw1GRSoaIvPR3R9hzwXvpUaTINqM-wTY0L07drPvg_rNgAqsgNWPlqNHnvMBVQlQQA',
     likes: 7,
     comments: 9,
@@ -24,7 +24,7 @@ export const posts = [
     time: 'Hace 1 hora',
     content:
       'Necesito cuarto urgente 🏃‍♂️\nLlego el viernes a Moscú y no tengo dónde caer. Zona sur o suroeste, hasta 20 mil con servicios. Soy gente de trabajo, constructor. Cualquier dato al privado, se agradece de corazón 🙏',
-    image: null,
+    image: '/images/renta-2hab.jpg',
     avatar: 'https://lh3.googleusercontent.com/aida-public/AB6AXuDiZn8qPu5cwrblFvQBhtrH1bx8Nzyc6Kuer7XhPD7SZUKcpdkCtXQDZ08drhFXpkBVmV5U9wpTugL32yOUA-JLC6jp0oMDTL4K9GJvIqD2EZqgVozkyDFIIctLyTzi07deQxciFIo2Nr-wobwWQUr6uBmvkH9jCZUv7qWX7OwB5K--2vw0cT3q71RxeNYsziFLDiJbRp5xmjDhUGBCrWBmPcIVEzxbxK7UAcLfveHv_TYqmRwwFjNvNg',
     likes: 14,
     comments: 12,
@@ -41,7 +41,7 @@ export const posts = [
     time: 'Hace 2 horas',
     content:
       '¿Dónde venden comida cubana por esta zona? 🍛\nLlevo 3 meses en Moscú y ya extraño un buen congrí y el puerco asado. Si conocen un lugar o alguien que cocine, díganme. Pa\'lante que esto se resuelve entre cubanos 🇨🇺',
-    image: null,
+    image: '/images/renta-casa.jpg',
     avatar: 'https://lh3.googleusercontent.com/aida-public/AB6AXuAHbn1TheVxOEH_bw5sGaklWKAPg9jv92utel-7rbLzFwy5QpOIZ7MRQlxTMmivevjgeSb7t-rGEzoPHh_iUB3K4PdPRYPIUS5DVADVFBR9fonSgQIErt2PtrYKWKdUTl7NaOnMkC293LMe7W-EukyEpkXVDeqBT56xbZuU7XZaExtDr-rjYJlvNVq5nLyFFr0hShAZUDRDTFr3ygjaazp_i5gmyH5DP8JaZDg-wxozdDm9HkiTcxW9Ow',
     likes: 21,
     comments: 17,
@@ -58,7 +58,7 @@ export const posts = [
     time: 'Hace 3 horas',
     content:
       '¿Quién viaja para Cuba este mes? ✈️\nSalgo el 22 para La Habana. Llevo encargos pequeños y cartas. Si alguien necesita mandar algo pa\' la familia, escríbanme. Todo con respeto y confianza, como debe ser.',
-    image: null,
+    image: '/images/seccion-viajes.jpg',
     avatar: 'https://lh3.googleusercontent.com/aida-public/AB6AXuC48OZxttJw7c4vFPy5n8n4jmY1pz9vBg6Ky4rN7xXQ3zM0AB4sR2vB8u5u9vN1a0iE7gH3wL4oW6sJ0oV3rK8mH0dG4fC7lN1mB2vR5j0tK6wM1pY8dD3iN0sB9fV2tQ0kN9cE7xS0kW4tG1oH3cZ6rI9jN0yB4zX1kV3hL2qX6nF8tW1sD0kE2wG8bR4nC9jV0yM3rS6sN0vB7dH2kQ4kN1iR0cM2zO7wT4uN0xJ8eB3tV2yF2oT6cTn0sY1bJ8hD4zR7uW3kH0mX9nC0PY2lB',
     likes: 33,
     comments: 25,
@@ -75,7 +75,7 @@ export const posts = [
     time: 'Hace 2 horas',
     content:
       'PARA MAÑANA 🚨\nPAGO: 2800\nSOLO HOMBRES 👷‍♂️\nEstación de metro Salaryevo 🔴\nNecesito 4 hombres para trabajo en construccion, fijo o por dia. Pago seguro al terminar.\nPasaportes al privado. Recojo a las 8 en el metro.\nNo escriban por gusto que después dicen que no hay trabajo! ‼️',
-    image: null,
+    image: '/images/renta-estudio.jpg',
     avatar: 'https://lh3.googleusercontent.com/aida-public/AB6AXuDudekq8Iy_61oh0s9s3NhSsuq2HosrLzhI2XzqSdGmwlWcazyzQ9YODt4Nsmev4PdhKqLRZBblqmdsQfFhJo2JEd_dJYmxNXu-dC3I0Jv3yrGE0CrnfDBolgB2wQ7aWuL8mFYgEbFPLAAgi-JBiBluN70nA4i0nOZxE9t4__oSJuU_U2UVg4fCYw1GRSoaIvPR3R9hzwXvpUaTINqM-wTY0L07drPvg_rNgAqsgNWPlqNHnvMBVQlQQA',
     likes: 24,
     comments: 8,
@@ -92,7 +92,7 @@ export const posts = [
     time: 'Hace 3 horas',
     content:
       '‼️ Algo urgente para hoy serca de metro Krylatskoe ‼️\nNecesito 1 cargador para tienda Perekrestok. Horario de 8am a 8pm. Pago 2500 al terminar la jornada 💸.\nVerdaderos interesados al privado 👈',
-    image: null,
+    image: '/images/producto-lavadora.jpg',
     avatar: 'https://lh3.googleusercontent.com/aida-public/AB6AXuDiZn8qPu5cwrblFvQBhtrH1bx8Nzyc6Kuer7XhPD7SZUKcpdkCtXQDZ08drhFXpkBVmV5U9wpTugL32yOUA-JLC6jp0oMDTL4K9GJvIqD2EZqgVozkyDFIIctLyTzi07deQxciFIo2Nr-wobwWQUr6uBmvkH9jCZUv7qWX7OwB5K--2vw0cT3q71RxeNYsziFLDiJbRp5xmjDhUGBCrWBmPcIVEzxbxK7UAcLfveHv_TYqmRwwFjNvNg',
     likes: 18,
     comments: 5,
@@ -109,7 +109,7 @@ export const posts = [
     time: 'Hace 5 horas',
     content:
       'Se busca persona para limpieza de noche en Diksi, zona Kotelniki 🧹.\nHorario de 10pm a 6am. Pago 2200 al terminar.\nGente seria y de trabajo por favor.\nEscriban al PV si estan interesados 👈',
-    image: null,
+    image: '/images/renta-habitacion.jpg',
     avatar: 'https://lh3.googleusercontent.com/aida-public/AB6AXuC48OZxttJwl6AvSNFXkZ6cb4wnvamF3QQIRgJSRB-3OlWI0AC0DqoRY9z_1PExPdE-M-fnRMgK1qxCZvi03Ux-vJd0hyA5zjf5xOIPrBljdjwXcDAPTHI2XIRDgm41AUURdFRejSpT-NqqCBmJyJ3ADVaS6-OisFjzpUy_hViL86eDVQU9eiPlIuPEMyNp8TH7Zej2752s8fV26XQG-YS0_-gJpkjQQkcNhiGNmBrm2P1ISzzGKtHMig',
     likes: 12,
     comments: 3,
@@ -126,7 +126,7 @@ export const posts = [
     time: 'Hace 6 horas',
     content:
       '👄 HOLA HAY VENTAS DE SIM CARD DE TODO TIPO 🔔\nBEERLINE 📱 MEGAFON 🌐 YOTA 📱 BEZLIMIT 📱 MTC\nEstán registradas en el sistema 🙋‍♀️\nSe las llevamos hasta su metro y se la activamos en su teléfono móvil 💯\nGarantía exacta, no se bloquean nunca 💥\nEscriban al PV por favor 📲',
-    image: null,
+    image: '/images/producto-telefono.jpg',
     avatar: 'https://lh3.googleusercontent.com/aida-public/AB6AXuDCAx5lqPlHybzJRQWRigJExoB6TfF2CJbCxga7lr0DFMV9WdT9S-HdCJvklvSpvgPws9b-4mzGblhoC1Lu59z6VzUUnJzMe_lv1g1t8q7gvAVR3nPofzCpzOzz4V0gB_mAwxGGsRMdhTWVof5W8VgOQ4ndFkc9rvaSHB-WXVQbGZudyIP4XV_N3A9DW1jr8qdKPZ94llEfz9uevCae1Mfv3ojrBfaYpC1p_fBIY7omqdnDjRZUDaHqTg',
     likes: 31,
     comments: 14,
@@ -143,7 +143,7 @@ export const posts = [
     time: 'Hace 8 horas',
     content:
       'Recárgue a su familia en Cuba 🇨🇺\n300₽ x 360 de saldo\n500₽ x 720 de saldo\nSin pagos por adelantado, luego que su familiar reciba la recarga usted paga.\nNo hay mejor oferta que esta 😋\nEscriba al PV para mas detalles 👈',
-    image: null,
+    image: '/images/seccion-remesas.jpg',
     avatar: 'https://lh3.googleusercontent.com/aida-public/AB6AXuAO4nyTJlOKlUzAc8IptJ5uZa9-AqD0yR709kXJ-QwWkCyffcgLLfQTI9KT7RSMJqOq4Cp24xn2vzt_BpZBJ_zGWfKOGxqmmibsqrwY1FaWp1YIUtF-pZkhVeD8GFMEV_zLXwSX1VqPirUFQ5A72uR8xfppq9DsLAy6B4ie92KOwkmMt5RTyLKKlhLyyP1-uQZYK-n-rMaxEqWqkO6ucVvgHubZfieVPfO0lSiDrmp2D61rnRxGXDOORQ',
     likes: 56,
     comments: 22,
@@ -160,7 +160,7 @@ export const posts = [
     time: 'Hace 1 día',
     content:
       'Se rentan 3 cuartos o cama disponible para cubanos en zona Kotelniki 🏠.\nAmbiente tranquilo, gente de trabajo.\nEscribir al privado para fotos y precio.\nNo escriban si no son serios 🙏',
-    image: null,
+    image: '/images/renta-2hab.jpg',
     avatar: 'https://lh3.googleusercontent.com/aida-public/AB6AXuAdCL8RYAEXUrL3msh7RHoUxoEnuBNVgCuELtd_VmeKiffMIELVINW7o4K3nRUtpL0VuFOZrj95d6D4sF1QkK0y2UCdfHkNEwa0PwKejaE8imK8_YRdSpDxohz6tMvOeD4GO_af5F9QsCV079jPrUMU7yG4OITFmDQUhnkWLa_JrNE_toLo63zdpAm7jLW7_EZUInvh26YSLHcmSFGeJhPoswP3DZKAlyfVM9XkyKbq2E9dJQMHI6CQDQ',
     likes: 9,
     comments: 4,
@@ -177,7 +177,7 @@ export const posts = [
     time: 'Hace 1 día',
     content:
       'SE BUSCA AYUDANTE DE ALBAÑIL 🔧\nObra en Moscow, cerca de Bulvar Dmitriya Donskogo.\nHorario de 9am a 6pm.\nPago 3000 al terminar el dia.\nTraer herramientas y pasaporte.\nSolo verdaderos interesados, no perdiendo el tiempo ‼️',
-    image: null,
+    image: '/images/renta-estudio.jpg',
     avatar: 'https://lh3.googleusercontent.com/aida-public/AB6AXuBk13pBPOus6w5gmtuz1L3332IEH1BpOIZkzWihQFaPpU4pWQqyNmaHx64jATVnm-8__dAxNILz-hOAfy3e6gS7Oq7d82fdQwL48nr0s5mpDUXfWH4VeYEV6m05APX24GGj2hc0PWt60Tr6wbU4ZC-_nsKRTipUgDf3tI13h6dEjD6K1Zx4txXjYJu0tFsoZ9Nwf8H541aYFflfKSc9Y-qCJagCS3ErCBgG31v-9k4XOeF4nyjHn8nfKg',
     likes: 15,
     comments: 6,
@@ -194,7 +194,7 @@ export const posts = [
     time: 'Hace 2 días',
     content:
       'SIM CARD BEELINE ACTIVADA 📱\nLista para usar, ya registrada.\nLa entrego en su metro y la activo en su celular.\n450 rublos por la SIM.\nNo se bloquea nunca, garantia total 💯\nEscribir al PV 👈',
-    image: null,
+    image: '/images/producto-telefono.jpg',
     avatar: 'https://lh3.googleusercontent.com/aida-public/AB6AXuCFH-MtCsAbA3IeWzSZtVhdMtaVjE7c32PXEx0M_tBpzznVOLayKOGsCBmDvPiQ6aZXEQKV_qtINi-Juccmg3M0q1itzutISI5LJ5K_71SpbrnjIHcmN4qzlHvkOjltj86r6JZdjHPqSVbLMZFz0xCeVOH2yLHGL5klVkT2hTdyxkNjKUt-DrnLNh-raCMWQDGlni8LUGDcKIgkZsHTrfyRrTApo44YfHJuwNGBiaeSGaJRH7gBDk11wQ',
     likes: 20,
     comments: 7,
@@ -211,7 +211,7 @@ export const posts = [
     time: 'Hace 2 días',
     content:
       'CAMBIO DE DOLARES 💰\nDolares a rublos al mejor precio del momento.\nSolo efectivo, transacción segura y rapida.\nEscribir al PV para cotizar.\nConfianza total, llevamos años en esto 🔥',
-    image: null,
+    image: '/images/seccion-remesas.jpg',
     avatar: 'https://lh3.googleusercontent.com/aida-public/AB6AXuAje7kv8VPRC5khwN5Fkmrc93HdgQs2YqLBDiL4x6pUHQeN2MNk5mmm99Kj8GvEKP3qmFDlKY_7tRisC0Zz1l0S3N82_qTMYOpBKFopl-8PU0qH0iEeQ4yFoLWp5K64v8phCwPOGbJlf_kcuXGNcRLxTV4OZJv5fXMdZJUHWvjUr_V3TYGXXgk6oXs7PLhSEeybW3S4DVU_lrmrMncXgI34mKn_eoD06SIfGryGXnZOV36zZ2a_VNTaBg',
     likes: 33,
     comments: 11,
@@ -228,7 +228,7 @@ export const posts = [
     time: 'Hace 3 días',
     content:
       'HAY UNA CAMA DISPONIBLE 🛏️\nZona Tekhnopark, metro cerca.\n12000 rublos al mes, todo incluido.\nAmbiente de familia cubana.\nEscribir al PV para fotos y ver el lugar.\nSero serio interesado por favor 🙏',
-    image: null,
+    image: '/images/renta-2hab.jpg',
     avatar: 'https://lh3.googleusercontent.com/aida-public/AB6AXuAHbn1TheVxOEH_bw5sGaklWKAPg9jv92utel-7rbLzFwy5QpOIZ7MRQlxTMmivevjgeSb7t-rGEzoPHh_iUB3K4PdPRYPIUS5DVADVFBR9fonSgQIErt2PtrYKWKdUTl7NaOnMkC293LMe7W-EukyEpkXVDeqBT56xbZuU7XZaExtDr-rjYJlvNVq5nLyFFr0hShAZUDRDTFr3ygjaazp_i5gmyH5DP8JaZDg-wxozdDm9HkiTcxW9Ow',
     likes: 7,
     comments: 2,
@@ -245,7 +245,7 @@ export const posts = [
     time: 'Hace 3 días',
     content:
       'Se hace de todo 🔧🚚\nMudanzas, reparaciones, montaje de muebles, pintura.\nPresupuesto sin compromiso.\nLlamar o escribir al WhatsApp.\nGente seria por favor, no perdiendo el tiempo 👈',
-    image: null,
+    image: '/images/renta-casa.jpg',
     avatar: 'https://lh3.googleusercontent.com/aida-public/AB6AXuDudekq8Iy_61oh0s9s3NhSsuq2HosrLzhI2XzqSdGmwlWcazyzQ9YODt4Nsmev4PdhKqLRZBblqmdsQfFhJo2JEd_dJYmxNXu-dC3I0Jv3yrGE0CrnfDBolgB2wQ7aWuL8mFYgEbFPLAAgi-JBiBluN70nA4i0nOZxE9t4__oSJuU_U2UVg4fCYw1GRSoaIvPR3R9hzwXvpUaTINqM-wTY0L07drPvg_rNgAqsgNWPlqNHnvMBVQlQQA',
     likes: 19,
     comments: 8,
@@ -262,7 +262,7 @@ export const posts = [
     time: 'Hace 4 días',
     content:
       'Necesito 3 hombres para trabajo de plomeria 🔧\nZona Kotelniki, metro cerca.\nHorario de 8am a 6pm.\nPago 3500 al terminar.\nTraer herramientas propias.\nSolo los que saben de plomeria, por favor ‼️',
-    image: null,
+    image: '/images/renta-estudio.jpg',
     avatar: 'https://lh3.googleusercontent.com/aida-public/AB6AXuC48OZxttJwl6AvSNFXkZ6cb4wnvamF3QQIRgJSRB-3OlWI0AC0DqoRY9z_1PExPdE-M-fnRMgK1qxCZvi03Ux-vJd0hyA5zjf5xOIPrBljdjwXcDAPTHI2XIRDgm41AUURdFRejSpT-NqqCBmJyJ3ADVaS6-OisFjzpUy_hViL86eDVQU9eiPlIuPEMyNp8TH7Zej2752s8fV26XQG-YS0_-gJpkjQQkcNhiGNmBrm2P1ISzzGKtHMig',
     likes: 11,
     comments: 4,
@@ -279,7 +279,7 @@ export const posts = [
     time: 'Hace 4 días',
     content:
       'Recargas a Cuba EXPRESS 🇨🇺\n300₽ x 360 de saldo\n500₽ x 720 de saldo\n1000₽ x 1440 de saldo\nSu familiar recibe al instante.\nUsted paga cuando reciba la confirmacion.\nEscriba al PV para enviar 📲',
-    image: null,
+    image: '/images/seccion-remesas.jpg',
     avatar: 'https://lh3.googleusercontent.com/aida-public/AB6AXuAHbn1TheVxOEH_bw5sGaklWKAPg9jv92utel-7rbLzFwy5QpOIZ7MRQlxTMmivevjgeSb7t-rGEzoPHh_iUB3K4PdPRYPIUS5DVADVFBR9fonSgQIErt2PtrYKWKdUTl7NaOnMkC293LMe7W-EukyEpkXVDeqBT56xbZuU7XZaExtDr-rjYJlvNVq5nLyFFr0hShAZUDRDTFr3ygjaazp_i5gmyH5DP8JaZDg-wxozdDm9HkiTcxW9Ow',
     likes: 44,
     comments: 16,
@@ -296,7 +296,7 @@ export const posts = [
     time: 'Hace 5 días',
     content:
       'Se busca personal para turno de noche en Perekrestok 🌙\nMetro Krylatskoe.\nHorario de 10pm a 6am.\nPago 2800 al terminar.\nGente seria y responsable.\nEscribir al PV si le interesa 👈',
-    image: null,
+    image: '/images/producto-lavadora.jpg',
     avatar: 'https://lh3.googleusercontent.com/aida-public/AB6AXuAdCL8RYAEXUrL3msh7RHoUxoEnuBNVgCuELtd_VmeKiffMIELVINW7o4K3nRUtpL0VuFOZrj95d6D4sF1QkK0y2UCdfHkNEwa0PwKejaE8imK8_YRdSpDxohz6tMvOeD4GO_af5F9QsCV079jPrUMU7yG4OITFmDQUhnkWLa_JrNE_toLo63zdpAm7jLW7_EZUInvh26YSLHcmSFGeJhPoswP3DZKAlyfVM9XkyKbq2E9dJQMHI6CQDQ',
     likes: 14,
     comments: 5,
@@ -313,7 +313,7 @@ export const posts = [
     time: 'Hace 5 días',
     content:
       'SE NECESITA 2 hombres para descarga 🚛\nDiksi, metro Kotelniki.\nHorario de 6am a 4pm.\nPago 3200 al terminar.\nTraer guantes y ropa comoda.\nNo escriban si no pueden, por favor 🙏',
-    image: null,
+    image: '/images/producto-taladro.jpg',
     avatar: 'https://lh3.googleusercontent.com/aida-public/AB6AXuC48OZxttJwl6AvSNFXkZ6cb4wnvamF3QQIRgJSRB-3OlWI0AC0DqoRY9z_1PExPdE-M-fnRMgK1qxCZvi03Ux-vJd0hyA5zjf5xOIPrBljdjwXcDAPTHI2XIRDgm41AUURdFRejSpT-NqqCBmJyJ3ADVaS6-OisFjzpUy_hViL86eDVQU9eiPlIuPEMyNp8TH7Zej2752s8fV26XQG-YS0_-gJpkjQQkcNhiGNmBrm2P1ISzzGKtHMig',
     likes: 16,
     comments: 6,

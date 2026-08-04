@@ -22,6 +22,7 @@ const features = [
     text: 'Mientras más completo esté tu perfil, más fácil le pones a los empleadores encontrarte. No cojas lucha, es rápido.',
     link: 'Comenzar',
     to: '/registro',
+    image: 'https://images.unsplash.com/photo-1522202176988-66273c2fd55f?auto=format&fit=crop&q=80&w=400',
   },
   {
     icon: 'hub',
@@ -29,13 +30,15 @@ const features = [
     text: 'Asere, aquí estamos para ayudarnos. Conecta con otros cubanos que ya saben cómo funciona el trámite en Rusia.',
     link: 'Explorar red',
     to: '/comunidad',
+    image: 'https://images.unsplash.com/photo-1529156069898-49953e39b3ac?auto=format&fit=crop&q=80&w=400',
   },
   {
     icon: 'rocket_launch',
-    title: 'Busca brete sin cuento',
+    title: 'Busca trabajo sin cuento',
     text: 'Ofertas frescas todos los días. Sin rodeos y de gente de confianza para que no te pase nada raro.',
     link: 'Ver empleos',
     to: '/empleos',
+    image: 'https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&q=80&w=400',
   },
 ]
 
@@ -96,16 +99,25 @@ export default function Home() {
             {features.map((f) => (
               <div
                 key={f.title}
-                className="p-8 rounded-xl border border-outline-variant hover:shadow-xl transition-shadow bg-surface-bright flex flex-col justify-between h-full"
+                className="rounded-xl border border-outline-variant hover:shadow-xl transition-shadow bg-surface-bright flex flex-col justify-between h-full overflow-hidden group"
               >
-                <div>
-                  <MaterialIcon name={f.icon} className="text-brand-blue-deep text-4xl mb-6" />
-                  <h3 className="font-title-md text-title-md text-primary mb-4">{f.title}</h3>
+                <div className="relative h-44 overflow-hidden">
+                  <img
+                    src={f.image}
+                    alt={f.title}
+                    className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+                  />
+                  <span className="absolute top-3 left-3 w-10 h-10 rounded-xl bg-white/90 backdrop-blur flex items-center justify-center text-brand-blue-deep shadow">
+                    <MaterialIcon name={f.icon} className="text-xl" />
+                  </span>
+                </div>
+                <div className="p-6">
+                  <h3 className="font-title-md text-title-md text-primary mb-3 group-hover:text-brand-blue-deep transition-colors">{f.title}</h3>
                   <p className="font-body-md text-body-md text-on-surface-variant">{f.text}</p>
                 </div>
-                <Link to={f.to} className="mt-6 text-brand-gold font-bold flex items-center gap-2 cursor-pointer">
+                <Link to={f.to} className="mx-6 mb-6 text-brand-gold font-bold flex items-center gap-2 cursor-pointer">
                   {f.link}
-                  <MaterialIcon name="arrow_forward" className="text-sm" />
+                  <MaterialIcon name="arrow_forward" className="text-sm group-hover:translate-x-1 transition-transform" />
                 </Link>
               </div>
             ))}
@@ -131,7 +143,7 @@ export default function Home() {
                 title: 'Rentas Moscú',
                 text: 'Cuartos, estudios y apartamentos con todo claro: precio, depósito y metro.',
                 cta: 'Buscar alquiler',
-                emoji: '🏠',
+                image: '/images/renta-casa.jpg',
               },
               {
                 to: '/marketplace',
@@ -139,44 +151,51 @@ export default function Home() {
                 title: 'Marketplace',
                 text: 'Compra y vende entre cubanos: teléfonos, ropa, vehículos y más.',
                 cta: 'Ver anuncios',
-                emoji: '🛒',
+                image: '/images/producto-sofa.jpg',
               },
               {
                 to: '/viajes',
                 icon: 'flight_takeoff',
                 title: 'Viajes',
-                text: 'Paquetes y encargos entre Cuba y Rusia. Gente de confianza que viaja.',
-                cta: 'Conectar viajeros',
-                emoji: '✈️',
+                text: 'Agencias y viajeros con pasajes a Cuba, Dubai, Guyana y más. Lleva tus encargos.',
+                cta: 'Ver viajes',
+                image: '/images/seccion-viajes.jpg',
               },
               {
                 to: '/remesas',
                 icon: 'currency_exchange',
                 title: 'Remesas',
-                text: 'Envía dinero a tu familia con tasas claras y gente verificada.',
+                text: 'Envía dinero a tu familia con tasas claras en rublos y gente verificada.',
                 cta: 'Comparar tasas',
-                emoji: '💸',
+                image: '/images/seccion-remesas.jpg',
               },
             ].map((sec) => (
               <Link
                 key={sec.to}
                 to={sec.to}
-                className="bg-surface-container-lowest p-6 rounded-xl border border-outline-variant premium-shadow hover:border-brand-blue-deep hover:shadow-xl transition-all group flex flex-col"
+                className="bg-surface-container-lowest rounded-xl border border-outline-variant premium-shadow hover:border-brand-blue-deep hover:shadow-xl transition-all group flex flex-col overflow-hidden"
               >
-                <div className="flex items-center justify-between mb-6">
-                  <span className="w-12 h-12 rounded-xl bg-brand-blue-deep/10 flex items-center justify-center text-brand-blue-deep group-hover:bg-brand-blue-deep group-hover:text-white transition-colors">
-                    <MaterialIcon name={sec.icon} className="text-2xl" />
+                <div className="relative h-40 overflow-hidden">
+                  <img
+                    src={sec.image}
+                    alt={sec.title}
+                    className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent"></div>
+                  <span className="absolute top-3 left-3 w-10 h-10 rounded-xl bg-white/90 backdrop-blur flex items-center justify-center text-brand-blue-deep shadow">
+                    <MaterialIcon name={sec.icon} className="text-xl" />
                   </span>
-                  <span className="text-2xl">{sec.emoji}</span>
                 </div>
-                <h3 className="font-title-md text-title-md text-primary mb-2 group-hover:text-brand-blue-deep transition-colors">
-                  {sec.title}
-                </h3>
-                <p className="font-body-md text-body-md text-on-surface-variant mb-6 flex-grow">{sec.text}</p>
-                <span className="text-brand-gold font-bold flex items-center gap-2 text-label-sm">
-                  {sec.cta}
-                  <MaterialIcon name="arrow_forward" className="text-sm group-hover:translate-x-1 transition-transform" />
-                </span>
+                <div className="p-6 flex flex-col flex-grow">
+                  <h3 className="font-title-md text-title-md text-primary mb-2 group-hover:text-brand-blue-deep transition-colors">
+                    {sec.title}
+                  </h3>
+                  <p className="font-body-md text-body-md text-on-surface-variant mb-6 flex-grow">{sec.text}</p>
+                  <span className="text-brand-gold font-bold flex items-center gap-2 text-label-sm">
+                    {sec.cta}
+                    <MaterialIcon name="arrow_forward" className="text-sm group-hover:translate-x-1 transition-transform" />
+                  </span>
+                </div>
               </Link>
             ))}
           </div>
@@ -214,8 +233,8 @@ export default function Home() {
               <span className="text-brand-gold font-bold uppercase tracking-widest text-label-sm">Comunidad</span>
               <h2 className="font-headline-lg text-headline-lg text-primary mt-2 mb-6">Casos de Éxito</h2>
               <p className="font-body-lg text-body-lg text-on-surface-variant mb-8">
-                Nuestra misión es empoderar al profesional cubano dondequiera que se encuentre. Descubre cómo nuestra
-                red ha transformado carreras reales.
+                Nuestra misión es impulsar al cubano dondequiera que se encuentre. Descubre cómo nuestra red ha
+                transformado vidas reales, de la calle al contrato.
               </p>
               <div className="space-y-6">
                 <blockquote className="border-l-4 border-brand-gold pl-6 py-2">
@@ -254,10 +273,10 @@ export default function Home() {
       <section className="py-20 px-margin-mobile md:px-margin-desktop">
         <div className="max-w-4xl mx-auto glass-card p-12 rounded-2xl text-center shadow-2xl relative overflow-hidden">
           <div className="absolute inset-0 bg-primary opacity-[0.02] pointer-events-none"></div>
-          <h2 className="font-headline-lg text-headline-lg text-primary mb-6">Lleva tu carrera al siguiente nivel</h2>
+          <h2 className="font-headline-lg text-headline-lg text-primary mb-6">Lleva tu futuro al siguiente nivel</h2>
           <p className="font-body-lg text-body-lg text-on-surface-variant mb-10 max-w-2xl mx-auto">
-            Únete a la red más exclusiva de profesionales cubanos y accede a un mundo de posibilidades sin límites
-            geográficos.
+            Únete a la red más grande de cubanos en Rusia y accede a trabajo, rentas, remesas y esa mano que hace
+            falta cuando estás lejos de casa.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Link
