@@ -10,8 +10,38 @@ const conditionStyles = {
   'Para reparar': 'bg-error-container/40 text-on-error-container',
 }
 
-export default function ProductCard({ product, isFavorite, onToggleFavorite, onShare }) {
+export default function ProductCard({ product, isFavorite, onToggleFavorite, onShare, variant = 'full' }) {
   const cat = marketCategories.find((c) => c.id === product.category)
+
+  // Variante compacta estilo Dubizzle: foto limpia + precio + título + ubicación
+  if (variant === 'compact') {
+    return (
+      <article className="group cursor-pointer">
+        <div className="relative aspect-[4/3] rounded-xl overflow-hidden bg-surface-container">
+          <img
+            src={product.photos[0]}
+            alt={product.title}
+            className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+            loading="lazy"
+          />
+          <button
+            onClick={() => onToggleFavorite(product.id)}
+            aria-label="Guardar en favoritos"
+            className={`absolute top-2 right-2 w-8 h-8 rounded-full flex items-center justify-center shadow-sm transition-all active:scale-90 ${
+              isFavorite ? 'bg-brand-gold text-white' : 'bg-white/90 text-on-surface-variant hover:text-brand-gold'
+            }`}
+          >
+            <MaterialIcon name={isFavorite ? 'favorite' : 'favorite_border'} className="text-[16px]" />
+          </button>
+        </div>
+        <div className="pt-2">
+          <p className="font-bold text-[15px] text-primary leading-tight">{fmtPrice(product.price)}₽</p>
+          <h3 className="text-sm font-normal text-gray-800 line-clamp-2 leading-snug mt-0.5">{product.title}</h3>
+          <p className="text-xs text-gray-500 truncate mt-0.5">{product.location}</p>
+        </div>
+      </article>
+    )
+  }
 
   return (
     <article className="bg-surface-container-lowest rounded-xl overflow-hidden border border-outline-variant custom-shadow hover:border-primary hover:shadow-lg transition-all group flex flex-col">

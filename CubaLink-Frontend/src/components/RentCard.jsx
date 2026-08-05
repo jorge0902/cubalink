@@ -3,9 +3,41 @@ import { rentTypes } from '../data/rentals'
 
 const fmtPrice = (n) => n.toLocaleString('ru-RU').replace(/\u00a0/g, ' ')
 
-export default function RentCard({ rent }) {
+export default function RentCard({ rent, variant = 'full' }) {
   const typeInfo = rentTypes.find((t) => t.id === rent.type)
   const isAvailable = rent.available === 'inmediato'
+
+  // Variante compacta estilo Dubizzle: foto limpia + precio + título + ubicación
+  if (variant === 'compact') {
+    return (
+      <article className="group cursor-pointer">
+        <div className="relative aspect-[4/3] rounded-xl overflow-hidden bg-surface-container">
+          <img
+            src={rent.photos[0]}
+            alt={rent.title}
+            className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+            loading="lazy"
+          />
+          {isAvailable && (
+            <span className="absolute bottom-2 left-2 px-2 py-0.5 rounded-full bg-white/95 text-primary text-[10px] font-semibold shadow-sm">
+              Disponible
+            </span>
+          )}
+          <button
+            aria-label="Guardar en favoritos"
+            className="absolute top-2 right-2 w-8 h-8 rounded-full bg-white/90 text-on-surface-variant hover:text-brand-gold flex items-center justify-center shadow-sm transition-all active:scale-90"
+          >
+            <MaterialIcon name="favorite_border" className="text-[16px]" />
+          </button>
+        </div>
+        <div className="pt-2">
+          <p className="font-bold text-[15px] text-primary leading-tight">{fmtPrice(rent.price)}₽</p>
+          <h3 className="text-sm font-normal text-gray-800 line-clamp-2 leading-snug mt-0.5">{rent.title}</h3>
+          <p className="text-xs text-gray-500 truncate mt-0.5">{rent.metro}</p>
+        </div>
+      </article>
+    )
+  }
 
   return (
     <article className="bg-surface-container-lowest rounded-xl overflow-hidden border border-outline-variant custom-shadow hover:border-primary hover:shadow-lg transition-all group flex flex-col">

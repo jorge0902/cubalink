@@ -3,6 +3,39 @@ import MaterialIcon from './MaterialIcon'
 // Tarjeta de empleo viva: imagen de cabecera con gradiente, etiquetas de color,
 // hover con elevación. Dos variantes: "featured" (landing) y "list" (mercado).
 export default function JobCard({ job, variant = 'list' }) {
+  // Variante compacta estilo Dubizzle: foto limpia + salario + título + ubicación
+  if (variant === 'compact') {
+    return (
+      <article className="group cursor-pointer">
+        <div className="relative aspect-[4/3] rounded-xl overflow-hidden bg-surface-container">
+          {job.image ? (
+            <img
+              src={job.image}
+              alt={job.title}
+              className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+              loading="lazy"
+            />
+          ) : (
+            <div className="w-full h-full bg-gradient-to-br from-brand-blue-deep to-primary flex items-center justify-center">
+              <MaterialIcon name={job.icon || 'work'} className="text-white/80 text-4xl" />
+            </div>
+          )}
+          <button
+            aria-label="Guardar en favoritos"
+            className="absolute top-2 right-2 w-8 h-8 rounded-full bg-white/90 text-on-surface-variant hover:text-brand-gold flex items-center justify-center shadow-sm transition-all active:scale-90"
+          >
+            <MaterialIcon name="favorite_border" className="text-[16px]" />
+          </button>
+        </div>
+        <div className="pt-2">
+          <p className="font-bold text-[15px] text-primary leading-tight">{job.salary}</p>
+          <h3 className="text-sm font-normal text-gray-800 line-clamp-2 leading-snug mt-0.5">{job.title}</h3>
+          <p className="text-xs text-gray-500 truncate mt-0.5">{job.company} · {job.location}</p>
+        </div>
+      </article>
+    )
+  }
+
   if (variant === 'featured') {
     return (
       <div className="bg-white rounded-xl overflow-hidden shadow-sm border border-slate-100 hover:shadow-xl hover:-translate-y-1 transition-all duration-300 group flex flex-col">

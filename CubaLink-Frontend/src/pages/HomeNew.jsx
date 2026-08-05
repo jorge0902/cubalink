@@ -286,9 +286,9 @@ export default function HomeNew() {
             Ver todos <MaterialIcon name="arrow_forward" className="text-sm" />
           </Link>
         </div>
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
+        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-3 md:gap-4">
           {popularRentals.map((r) => (
-            <RentCard key={r.id} rent={r} />
+            <RentCard key={r.id} rent={r} variant="compact" />
           ))}
         </div>
       </section>
@@ -303,9 +303,9 @@ export default function HomeNew() {
             Ver todos <MaterialIcon name="arrow_forward" className="text-sm" />
           </Link>
         </div>
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
+        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-3 md:gap-4">
           {popularProducts.map((p) => (
-            <ProductCard key={p.id} product={p} isFavorite={false} onToggleFavorite={() => {}} onShare={() => {}} />
+            <ProductCard key={p.id} product={p} isFavorite={false} onToggleFavorite={() => {}} onShare={() => {}} variant="compact" />
           ))}
         </div>
       </section>
@@ -320,9 +320,9 @@ export default function HomeNew() {
             Ver todos <MaterialIcon name="arrow_forward" className="text-sm" />
           </Link>
         </div>
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
+        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-3 md:gap-4">
           {popularJobs.map((j) => (
-            <JobCard key={j.id} job={j} variant="featured" />
+            <JobCard key={j.id} job={j} variant="compact" />
           ))}
         </div>
       </section>

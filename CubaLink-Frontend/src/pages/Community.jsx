@@ -84,9 +84,9 @@ export default function Community() {
         </div>
 
         {/* ===== Layout 3 columnas (max 1200px centrado) ===== */}
-        <div className="grid grid-cols-1 lg:grid-cols-[240px_minmax(0,1fr)_260px] gap-6 lg:gap-8">
-          {/* ========== COLUMNA IZQUIERDA — Navegación ========== */}
-          <aside className="hidden lg:block space-y-5">
+        <div className="grid grid-cols-1 lg:grid-cols-[240px_minmax(0,1fr)_260px] gap-6 lg:gap-8 items-start">
+          {/* ========== COLUMNA IZQUIERDA — Navegación (sticky) ========== */}
+          <aside className="hidden lg:block space-y-5 lg:sticky lg:top-20 lg:max-h-[calc(100vh-100px)] lg:overflow-y-auto lg:pr-1">
             {/* Botón destacado Crear Publicación */}
             <button
               onClick={() => setShowFABPost(true)}
@@ -298,8 +298,8 @@ export default function Community() {
             })}
           </div>
 
-          {/* ========== COLUMNA DERECHA — Tendencias / Herramientas ========== */}
-          <aside className="hidden lg:block space-y-5">
+          {/* ========== COLUMNA DERECHA — Tendencias / Herramientas (sticky) ========== */}
+          <aside className="hidden lg:block space-y-5 lg:sticky lg:top-20 lg:max-h-[calc(100vh-100px)] lg:overflow-y-auto lg:pr-1">
             {/* Gente de confianza — miembros activos en Moscú */}
             <div className="bg-surface-container-lowest rounded-xl border border-outline-variant p-4">
               <h3 className="font-semibold text-[13px] text-primary mb-3 flex items-center gap-2">
