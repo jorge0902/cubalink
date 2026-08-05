@@ -12,42 +12,42 @@ import { jobs } from '../data/jobs'
 const CATEGORIES = [
   {
     to: '/empleos', icon: 'work', title: 'Empleos', desc: 'Vacantes verificadas',
-    color: 'bg-blue-50 text-blue-600',
+    borderAccent: 'border-blue-600', bgSoft: 'bg-blue-50', textAccent: 'text-blue-600', dotColor: 'bg-blue-600',
     subs: ['Construcción', 'Carga', 'Limpieza', 'Oficina'],
   },
   {
     to: '/rentas', icon: 'home_work', title: 'Rentas Moscú', desc: 'Cuartos y apartamentos',
-    color: 'bg-teal-50 text-teal-600',
+    borderAccent: 'border-emerald-600', bgSoft: 'bg-emerald-50', textAccent: 'text-emerald-600', dotColor: 'bg-emerald-600',
     subs: ['Habitaciones', 'Estudios', '1 Habitación', 'Casas'],
   },
   {
     to: '/marketplace', icon: 'storefront', title: 'Marketplace', desc: 'Compra y venta',
-    color: 'bg-amber-50 text-amber-600',
+    borderAccent: 'border-amber-500', bgSoft: 'bg-amber-50', textAccent: 'text-amber-600', dotColor: 'bg-amber-500',
     subs: ['Teléfonos', 'Computadoras', 'Ropa', 'Vehículos'],
   },
   {
     to: '/viajes', icon: 'flight_takeoff', title: 'Viajes', desc: 'Paquetes Cuba ⇄ Rusia',
-    color: 'bg-sky-50 text-sky-600',
+    borderAccent: 'border-sky-500', bgSoft: 'bg-sky-50', textAccent: 'text-sky-600', dotColor: 'bg-sky-500',
     subs: ['Agencias', 'Carga de viaje', 'Pasajes'],
   },
   {
     to: '/remesas', icon: 'currency_exchange', title: 'Remesas', desc: 'Envío seguro a Cuba',
-    color: 'bg-violet-50 text-violet-600',
+    borderAccent: 'border-violet-500', bgSoft: 'bg-violet-50', textAccent: 'text-violet-600', dotColor: 'bg-violet-500',
     subs: ['Dinero', 'Recargas', 'Tasas del día'],
   },
   {
     to: '/confiables', icon: 'shield', title: 'Confiables', desc: 'Gente de confianza',
-    color: 'bg-emerald-50 text-emerald-600',
+    borderAccent: 'border-teal-600', bgSoft: 'bg-teal-50', textAccent: 'text-teal-600', dotColor: 'bg-teal-600',
     subs: ['Contratistas', 'Rentas', 'Remesas', 'Empresas'],
   },
   {
     to: '/empresas', icon: 'apartment', title: 'Empresas', desc: 'Aliados y vacantes',
-    color: 'bg-indigo-50 text-indigo-600',
+    borderAccent: 'border-indigo-500', bgSoft: 'bg-indigo-50', textAccent: 'text-indigo-600', dotColor: 'bg-indigo-500',
     subs: ['Aliados', 'Ofertas', 'Colaboración'],
   },
   {
     to: '/servicios', icon: 'handyman', title: 'Servicios', desc: 'Profesionales de la red',
-    color: 'bg-rose-50 text-rose-600',
+    borderAccent: 'border-rose-500', bgSoft: 'bg-rose-50', textAccent: 'text-rose-600', dotColor: 'bg-rose-500',
     subs: ['Reparaciones', 'Diseño', 'Trámites', 'Clases'],
   },
 ]
@@ -149,6 +149,9 @@ export default function HomeNew() {
 
       {/* ===== CATEGORÍAS con subcategorías (estilo Dubizzle) ===== */}
       <section className="max-w-6xl mx-auto px-6 py-16">
+        {/* Franja de encabezado — cabecera visual del área */}
+        <div className="h-1.5 w-full bg-gradient-to-r from-teal-400 via-cyan-400 to-lime-400 rounded-full mb-8 animate-fade-in-up"></div>
+
         <div className="flex items-center justify-between mb-8 animate-fade-in-up">
           <div>
             <h2 className="font-headline-lg text-headline-lg text-primary">Categorías populares</h2>
@@ -158,44 +161,122 @@ export default function HomeNew() {
             Ver todo <MaterialIcon name="arrow_forward" className="text-sm" />
           </Link>
         </div>
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
-          {CATEGORIES.map((c, i) => (
-            <div
-              key={c.to}
-              className={`bg-surface-container-lowest rounded-2xl border border-outline-variant p-5 premium-hover animate-fade-in-up delay-${Math.min((i % 4) * 100 + 100, 500)}`}
-            >
-              <div className="flex items-center gap-3 mb-3">
-                <span className={`w-11 h-11 rounded-xl flex items-center justify-center ${c.color}`}>
-                  <MaterialIcon name={c.icon} className="text-[22px]" />
-                </span>
-                <div>
-                  <Link to={c.to} className="font-title-md text-title-md text-primary hover:text-brand-blue-deep transition-colors">
+
+        {/* Contenedor con fondo dinámico: turquesa → lima + textura palmas/metro */}
+        <div className="relative rounded-3xl overflow-hidden bg-gradient-to-r from-teal-400/25 via-cyan-300/10 to-lime-300/25 border border-teal-200/60 p-5 md:p-8 animate-fade-in-up delay-100">
+          {/* Patrón de textura sutil: palmas + líneas de metro de Moscú */}
+          <svg
+            className="absolute inset-0 w-full h-full opacity-[0.07] pointer-events-none"
+            viewBox="0 0 1200 500"
+            preserveAspectRatio="xMidYMid slice"
+            aria-hidden="true"
+          >
+            <g fill="none" stroke="#0f766e" strokeWidth="2">
+              {/* Línea circular del metro de Moscú */}
+              <circle cx="1010" cy="110" r="70" />
+              <circle cx="1010" cy="110" r="52" strokeDasharray="6 8" />
+              {/* Radiales del metro */}
+              <path d="M1010 40 L1010 -20 M1010 180 L1010 230 M940 110 L890 90 M1080 110 L1130 90 M955 55 L915 25 M1065 55 L1105 25 M955 165 L915 195 M1065 165 L1105 195" />
+              {/* Línea curva estilo ramal */}
+              <path d="M120 420 C 260 380 340 260 480 240 C 620 220 700 120 830 90" strokeWidth="3" />
+              <path d="M200 430 C 320 400 380 300 500 280" strokeWidth="1.5" />
+            </g>
+            {/* Hojas de palma estilizadas */}
+            <g fill="#0f766e">
+              <path d="M1050 330 C 1030 290 1060 260 1100 250 C 1105 285 1085 315 1050 330 Z" />
+              <path d="M1120 350 C 1110 320 1130 300 1160 295 C 1162 325 1145 345 1120 350 Z" />
+              <path d="M140 150 C 120 120 140 95 175 88 C 178 120 160 142 140 150 Z" />
+              <path d="M200 165 C 190 140 205 125 232 120 C 234 146 220 160 200 165 Z" />
+              {/* Pequeñas hojas dispersas */}
+              <path d="M60 320 C 50 300 60 285 82 280 C 84 305 72 315 60 320 Z" />
+              <path d="M700 380 C 692 365 700 352 718 348 C 720 368 710 376 700 380 Z" />
+            </g>
+          </svg>
+
+          {/* Decoraciones culturales minimalistas (desktop) */}
+          {/* Almendrón — coche clásico cubano, cerca de Viajes */}
+          <svg
+            className="hidden lg:block absolute top-1/3 right-1 w-24 opacity-25 text-rose-500 pointer-events-none"
+            viewBox="0 0 120 60"
+            aria-hidden="true"
+          >
+            <path d="M6 42 C6 36 12 32 20 30 C30 20 48 16 62 16 L78 16 C92 18 104 26 110 34 C116 38 118 44 118 48 C118 52 114 54 108 54 L16 54 C10 54 6 50 6 42 Z" fill="currentColor" />
+            <circle cx="30" cy="52" r="9" fill="currentColor" />
+            <circle cx="30" cy="52" r="4" fill="#fff" opacity="0.7" />
+            <circle cx="94" cy="52" r="9" fill="currentColor" />
+            <circle cx="94" cy="52" r="4" fill="#fff" opacity="0.7" />
+            <rect x="20" y="22" width="38" height="6" rx="3" fill="#fff" opacity="0.55" />
+          </svg>
+          {/* Samovar — cerca de Rentas Moscú */}
+          <svg
+            className="hidden lg:block absolute top-0 left-1/4 -translate-y-1/3 w-14 opacity-25 text-amber-600 pointer-events-none"
+            viewBox="0 0 60 80"
+            aria-hidden="true"
+          >
+            <path d="M10 20 L50 20 L44 62 C42 70 18 70 16 62 Z" fill="currentColor" />
+            <path d="M14 62 L46 62 L46 68 L14 68 Z" fill="currentColor" />
+            <rect x="20" y="8" width="20" height="12" rx="4" fill="currentColor" />
+            <circle cx="30" cy="6" r="4" fill="currentColor" />
+            <path d="M22 14 C 18 14 14 12 12 8 M38 14 C 42 14 46 12 48 8" stroke="currentColor" strokeWidth="3" fill="none" />
+            <path d="M18 32 L42 32" stroke="#fff" strokeWidth="3" opacity="0.5" />
+          </svg>
+          {/* Maracas — cerca de Marketplace */}
+          <svg
+            className="hidden lg:block absolute bottom-0 right-1/3 translate-y-1/3 w-16 opacity-25 text-violet-500 pointer-events-none"
+            viewBox="0 0 80 60"
+            aria-hidden="true"
+          >
+            <path d="M14 4 C22 -4 34 -4 38 6 L34 40 C33 46 26 50 20 50 C14 50 9 46 8 40 Z" fill="currentColor" />
+            <rect x="14" y="48" width="8" height="12" rx="3" fill="currentColor" />
+            <path d="M48 0 C56 -8 68 -8 72 2 L68 36 C67 42 60 46 54 46 C48 46 43 42 42 36 Z" fill="currentColor" />
+            <rect x="48" y="44" width="8" height="12" rx="3" fill="currentColor" />
+            <path d="M18 14 L32 14 M17 22 L31 22" stroke="#fff" strokeWidth="2" opacity="0.5" />
+            <path d="M52 10 L66 10 M51 18 L65 18" stroke="#fff" strokeWidth="2" opacity="0.5" />
+          </svg>
+
+          <div className="relative grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+            {CATEGORIES.map((c, i) => (
+              <div
+                key={c.to}
+                className={`group relative bg-white rounded-2xl border border-outline-variant border-b-4 ${c.borderAccent} overflow-hidden premium-hover animate-fade-in-up delay-${Math.min((i % 4) * 100 + 100, 500)} transition-all duration-300 hover:-translate-y-1.5 hover:shadow-2xl`}
+              >
+                {/* Franja de color que se expande hacia arriba al hover */}
+                <div className={`absolute inset-x-0 bottom-0 h-0 group-hover:h-1/3 ${c.bgSoft} transition-all duration-300 pointer-events-none`}></div>
+
+                <div className="relative p-6 flex flex-col items-center text-center">
+                  {/* Icono grande y centrado — foco visual principal */}
+                  <span className={`w-20 h-20 rounded-2xl flex items-center justify-center ${c.bgSoft} group-hover:rotate-6 group-hover:scale-110 transition-all duration-300 mb-4`}>
+                    <MaterialIcon name={c.icon} fill className={`text-4xl ${c.textAccent}`} />
+                  </span>
+
+                  <Link to={c.to} className={`font-title-md text-title-md ${c.textAccent} hover:opacity-80 transition-opacity`}>
                     {c.title}
                   </Link>
-                  <p className="text-[11px] text-on-surface-variant">{c.desc}</p>
+                  <p className="text-[11px] text-on-surface-variant mt-1">{c.desc}</p>
+
+                  <ul className="grid grid-cols-2 gap-x-2 gap-y-1 mt-4 mb-4 text-left w-full">
+                    {c.subs.map((s) => (
+                      <li key={s}>
+                        <Link
+                          to={c.to}
+                          className="text-label-sm text-on-surface-variant hover:text-brand-blue-deep transition-colors flex items-center gap-1.5 group/sub"
+                        >
+                          <span className={`w-1 h-1 rounded-full ${c.dotColor} group-hover/sub:bg-brand-gold transition-colors`}></span>
+                          {s}
+                        </Link>
+                      </li>
+                    ))}
+                  </ul>
+                  <Link
+                    to={c.to}
+                    className="inline-flex items-center gap-1 text-[12px] font-semibold text-brand-blue-deep hover:text-brand-gold transition-colors"
+                  >
+                    Ver todo en {c.title} <MaterialIcon name="arrow_forward" className="text-[14px]" />
+                  </Link>
                 </div>
               </div>
-              <ul className="grid grid-cols-2 gap-x-2 gap-y-1 mb-3">
-                {c.subs.map((s) => (
-                  <li key={s}>
-                    <Link
-                      to={c.to}
-                      className="text-label-sm text-on-surface-variant hover:text-brand-blue-deep transition-colors flex items-center gap-1.5 group/sub"
-                    >
-                      <span className="w-1 h-1 rounded-full bg-outline group-hover/sub:bg-brand-gold transition-colors"></span>
-                      {s}
-                    </Link>
-                  </li>
-                ))}
-              </ul>
-              <Link
-                to={c.to}
-                className="inline-flex items-center gap-1 text-[12px] font-semibold text-brand-blue-deep hover:text-brand-gold transition-colors"
-              >
-                Ver todo en {c.title} <MaterialIcon name="arrow_forward" className="text-[14px]" />
-              </Link>
-            </div>
-          ))}
+            ))}
+          </div>
         </div>
       </section>
 
