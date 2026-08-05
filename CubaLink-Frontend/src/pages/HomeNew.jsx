@@ -150,7 +150,7 @@ export default function HomeNew() {
       {/* ===== CATEGORÍAS con subcategorías (estilo Dubizzle) ===== */}
       <section className="max-w-6xl mx-auto px-6 py-16">
         {/* Franja de encabezado — cabecera visual del área */}
-        <div className="h-1.5 w-full bg-gradient-to-r from-teal-400 via-cyan-400 to-lime-400 rounded-full mb-8 animate-fade-in-up"></div>
+        <div className="h-1.5 w-full bg-gradient-to-r from-sky-300 via-teal-300 to-emerald-300 rounded-full mb-8 animate-fade-in-up"></div>
 
         <div className="flex items-center justify-between mb-8 animate-fade-in-up">
           <div>
@@ -162,11 +162,11 @@ export default function HomeNew() {
           </Link>
         </div>
 
-        {/* Contenedor con fondo dinámico: turquesa → lima + textura palmas/metro */}
-        <div className="relative rounded-3xl overflow-hidden bg-gradient-to-r from-teal-400/25 via-cyan-300/10 to-lime-300/25 border border-teal-200/60 p-5 md:p-8 animate-fade-in-up delay-100">
+        {/* Contenedor con fondo dinámico: azul pastel → verde menta + textura palmas/metro */}
+        <div className="relative rounded-3xl overflow-hidden bg-gradient-to-r from-sky-100 via-teal-50 to-emerald-100 border border-sky-200/50 p-4 md:p-6 animate-fade-in-up delay-100">
           {/* Patrón de textura sutil: palmas + líneas de metro de Moscú */}
           <svg
-            className="absolute inset-0 w-full h-full opacity-[0.07] pointer-events-none"
+            className="absolute inset-0 w-full h-full opacity-[0.05] pointer-events-none"
             viewBox="0 0 1200 500"
             preserveAspectRatio="xMidYMid slice"
             aria-hidden="true"
@@ -187,7 +187,6 @@ export default function HomeNew() {
               <path d="M1120 350 C 1110 320 1130 300 1160 295 C 1162 325 1145 345 1120 350 Z" />
               <path d="M140 150 C 120 120 140 95 175 88 C 178 120 160 142 140 150 Z" />
               <path d="M200 165 C 190 140 205 125 232 120 C 234 146 220 160 200 165 Z" />
-              {/* Pequeñas hojas dispersas */}
               <path d="M60 320 C 50 300 60 285 82 280 C 84 305 72 315 60 320 Z" />
               <path d="M700 380 C 692 365 700 352 718 348 C 720 368 710 376 700 380 Z" />
             </g>
@@ -196,7 +195,7 @@ export default function HomeNew() {
           {/* Decoraciones culturales minimalistas (desktop) */}
           {/* Almendrón — coche clásico cubano, cerca de Viajes */}
           <svg
-            className="hidden lg:block absolute top-1/3 right-1 w-24 opacity-25 text-rose-500 pointer-events-none"
+            className="hidden lg:block absolute top-1/3 right-1 w-20 opacity-20 text-rose-400 pointer-events-none"
             viewBox="0 0 120 60"
             aria-hidden="true"
           >
@@ -209,7 +208,7 @@ export default function HomeNew() {
           </svg>
           {/* Samovar — cerca de Rentas Moscú */}
           <svg
-            className="hidden lg:block absolute top-0 left-1/4 -translate-y-1/3 w-14 opacity-25 text-amber-600 pointer-events-none"
+            className="hidden lg:block absolute top-0 left-1/4 -translate-y-1/3 w-12 opacity-20 text-amber-500 pointer-events-none"
             viewBox="0 0 60 80"
             aria-hidden="true"
           >
@@ -222,7 +221,7 @@ export default function HomeNew() {
           </svg>
           {/* Maracas — cerca de Marketplace */}
           <svg
-            className="hidden lg:block absolute bottom-0 right-1/3 translate-y-1/3 w-16 opacity-25 text-violet-500 pointer-events-none"
+            className="hidden lg:block absolute bottom-0 right-1/3 translate-y-1/3 w-14 opacity-20 text-violet-400 pointer-events-none"
             viewBox="0 0 80 60"
             aria-hidden="true"
           >
@@ -234,47 +233,44 @@ export default function HomeNew() {
             <path d="M52 10 L66 10 M51 18 L65 18" stroke="#fff" strokeWidth="2" opacity="0.5" />
           </svg>
 
-          <div className="relative grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+          {/* Grid compacto: 2 cols móvil, 4 cols desktop */}
+          <div className="relative grid grid-cols-2 lg:grid-cols-4 gap-2.5 md:gap-3">
             {CATEGORIES.map((c, i) => (
-              <div
+              <Link
                 key={c.to}
-                className={`group relative bg-white rounded-2xl border border-outline-variant border-b-4 ${c.borderAccent} overflow-hidden premium-hover animate-fade-in-up delay-${Math.min((i % 4) * 100 + 100, 500)} transition-all duration-300 hover:-translate-y-1.5 hover:shadow-2xl`}
+                to={c.to}
+                className={`group relative bg-white rounded-xl border border-outline-variant/60 border-b-2 ${c.borderAccent} shadow-[0_4px_12px_rgba(0,0,0,0.04)] overflow-hidden animate-fade-in-up delay-${Math.min((i % 4) * 100 + 100, 500)} transition-all duration-200 hover:-translate-y-[3px] hover:shadow-[0_8px_20px_rgba(0,0,0,0.08)]`}
               >
                 {/* Franja de color que se expande hacia arriba al hover */}
-                <div className={`absolute inset-x-0 bottom-0 h-0 group-hover:h-1/3 ${c.bgSoft} transition-all duration-300 pointer-events-none`}></div>
+                <div className={`absolute inset-x-0 bottom-0 h-0 group-hover:h-full ${c.bgSoft} transition-all duration-300 pointer-events-none opacity-60`}></div>
 
-                <div className="relative p-6 flex flex-col items-center text-center">
-                  {/* Icono grande y centrado — foco visual principal */}
-                  <span className={`w-20 h-20 rounded-2xl flex items-center justify-center ${c.bgSoft} group-hover:rotate-6 group-hover:scale-110 transition-all duration-300 mb-4`}>
-                    <MaterialIcon name={c.icon} fill className={`text-4xl ${c.textAccent}`} />
-                  </span>
+                <div className="relative px-3 py-3 md:px-4 md:py-3.5">
+                  {/* Fila superior: círculo con icono + título */}
+                  <div className="flex items-center gap-2.5">
+                    <span className={`w-9 h-9 md:w-10 md:h-10 rounded-full flex items-center justify-center ${c.bgSoft} group-hover:rotate-6 group-hover:scale-110 transition-all duration-300 flex-shrink-0`}>
+                      <MaterialIcon name={c.icon} fill className={`text-[20px] md:text-[22px] ${c.textAccent}`} />
+                    </span>
+                    <div className="min-w-0">
+                      <span className={`block font-semibold text-sm leading-tight truncate ${c.textAccent}`}>
+                        {c.title}
+                      </span>
+                      <span className="block text-[10px] text-on-surface-variant truncate">{c.desc}</span>
+                    </div>
+                  </div>
 
-                  <Link to={c.to} className={`font-title-md text-title-md ${c.textAccent} hover:opacity-80 transition-opacity`}>
-                    {c.title}
-                  </Link>
-                  <p className="text-[11px] text-on-surface-variant mt-1">{c.desc}</p>
-
-                  <ul className="grid grid-cols-2 gap-x-2 gap-y-1 mt-4 mb-4 text-left w-full">
-                    {c.subs.map((s) => (
-                      <li key={s}>
-                        <Link
-                          to={c.to}
-                          className="text-label-sm text-on-surface-variant hover:text-brand-blue-deep transition-colors flex items-center gap-1.5 group/sub"
-                        >
-                          <span className={`w-1 h-1 rounded-full ${c.dotColor} group-hover/sub:bg-brand-gold transition-colors`}></span>
-                          {s}
-                        </Link>
-                      </li>
+                  {/* Píldoras de subcategorías — una línea */}
+                  <div className="mt-2.5 flex flex-wrap gap-1">
+                    {c.subs.slice(0, 3).map((s) => (
+                      <span
+                        key={s}
+                        className={`px-1.5 py-0.5 rounded-full text-[9px] md:text-[10px] font-medium ${c.bgSoft} ${c.textAccent} whitespace-nowrap`}
+                      >
+                        {s}
+                      </span>
                     ))}
-                  </ul>
-                  <Link
-                    to={c.to}
-                    className="inline-flex items-center gap-1 text-[12px] font-semibold text-brand-blue-deep hover:text-brand-gold transition-colors"
-                  >
-                    Ver todo en {c.title} <MaterialIcon name="arrow_forward" className="text-[14px]" />
-                  </Link>
+                  </div>
                 </div>
-              </div>
+              </Link>
             ))}
           </div>
         </div>
