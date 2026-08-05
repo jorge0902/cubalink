@@ -19,6 +19,37 @@ export default function Register() {
   return (
     <main className="pt-16 pb-24 min-h-screen bg-surface">
       <div className="max-w-4xl mx-auto px-margin-mobile md:px-margin-desktop py-10">
+        {/* Descargar App */}
+        <div className="mb-8 flex flex-col sm:flex-row items-center justify-between gap-4 bg-surface-container-lowest rounded-xl premium-shadow border border-outline-variant p-5">
+          <div className="flex items-center gap-4">
+            <span className="w-12 h-12 rounded-xl bg-brand-blue-deep/10 flex items-center justify-center text-brand-blue-deep">
+              <MaterialIcon name="download" className="text-2xl" />
+            </span>
+            <div>
+              <p className="font-title-md text-title-md text-primary">Descarga la app de CubaLink</p>
+              <p className="text-label-sm text-on-surface-variant">Lleva la red profesional en tu bolsillo</p>
+            </div>
+          </div>
+          <div className="flex gap-3">
+            <a
+              href="/manifest.json"
+              download
+              className="flex items-center gap-2 bg-brand-blue-deep text-white px-5 py-2.5 rounded-lg font-label-sm text-label-sm hover:shadow-lg active:scale-95 transition-all"
+            >
+              <MaterialIcon name="android" className="text-[18px]" />
+              Google Play
+            </a>
+            <a
+              href="/manifest.json"
+              download
+              className="flex items-center gap-2 border border-outline-variant text-primary px-5 py-2.5 rounded-lg font-label-sm text-label-sm hover:bg-surface-container-low active:scale-95 transition-all"
+            >
+              <MaterialIcon name="apple" className="text-[18px]" />
+              App Store
+            </a>
+          </div>
+        </div>
+
         {/* Stepper */}
         <div className="flex items-center gap-3 mb-10">
           <span className={`w-8 h-8 rounded-full flex items-center justify-center font-label-sm text-label-sm ${paso === 1 ? 'bg-brand-blue-deep text-white' : 'bg-surface-container text-primary'}`}>

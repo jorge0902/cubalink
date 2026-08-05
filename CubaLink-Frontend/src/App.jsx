@@ -5,7 +5,7 @@ import BottomNav from './components/BottomNav'
 import ScrollToTop from './components/ScrollToTop'
 import { ActivityProvider } from './context/ActivityContext'
 
-import Home from './pages/Home'
+import HomeNew from './pages/HomeNew'
 import Jobs from './pages/Jobs'
 import Community from './pages/Community'
 import Profile from './pages/Profile'
@@ -30,7 +30,7 @@ export default function App() {
 
           <div className="flex-grow">
             <Routes>
-              <Route path="/" element={<Home />} />
+              <Route path="/" element={<HomeNew />} />
               <Route path="/empleos" element={<Jobs />} />
               <Route path="/comunidad" element={<Community />} />
               <Route path="/perfil" element={<Profile />} />
