@@ -1,7 +1,15 @@
 import { useEffect, useState } from 'react'
 import { Link, NavLink, useLocation } from 'react-router-dom'
 import MaterialIcon from './MaterialIcon'
+import PublishModal from './PublishModal'
 import logoCubaLink from '../assets/cubalink-logo.png'
+
+// Campos genéricos del modal de publicación (demo)
+const PUBLISH_FIELDS = [
+  { key: 'titulo', label: 'Título del anuncio', placeholder: 'Ej: Cuarto en Kotelniki, iPhone 12, busco albañil...', required: true },
+  { key: 'detalle', label: 'Detalle', placeholder: 'Describe lo que publicas: precio, zona, condiciones...', required: true },
+  { key: 'contacto', label: 'Contacto (teléfono o Telegram)', placeholder: '+7 ...', required: true },
+]
 
 // Navegación principal de CubaLink (diseño del TopAppBar original de la landing)
 export const NAV_LINKS = [
@@ -26,6 +34,8 @@ export default function Navbar() {
   const [scrolled, setScrolled] = useState(false)
   const [menuOpen, setMenuOpen] = useState(false)
   const [exploreOpen, setExploreOpen] = useState(false)
+  const [publishOpen, setPublishOpen] = useState(false)
+  const [toast, setToast] = useState('')
   const location = useLocation()
 
   useEffect(() => {
@@ -116,6 +126,14 @@ export default function Navbar() {
 
         <div className="flex items-center gap-4">
           <MaterialIcon name="notifications" className="text-on-surface-variant cursor-pointer active:scale-95 transition-transform" />
+          {/* Botón Publicar anuncio — destacado, estilo Dubizzle "Place Your Ad" */}
+          <button
+            onClick={() => setPublishOpen(true)}
+            className="hidden md:inline-flex items-center gap-2 bg-brand-gold text-primary px-5 py-2.5 rounded-xl font-label-sm text-label-sm font-bold hover:shadow-lg hover:bg-brand-gold/90 active:scale-95 transition-all btn-shine"
+          >
+            <MaterialIcon name="add_circle" className="text-[18px]" />
+            Publicar anuncio
+          </button>
           <Link
             to="/registro"
             className="hidden sm:inline-block bg-primary text-on-primary px-4 py-2 rounded-lg font-label-sm text-label-sm hover:opacity-90 transition-all"
@@ -181,6 +199,24 @@ export default function Navbar() {
               Unirte a CubaLink
             </Link>
           </nav>
+        </div>
+      )}
+
+      {/* Modal Publicar anuncio (demo) */}
+      <PublishModal
+        open={publishOpen}
+        onClose={() => setPublishOpen(false)}
+        onPublish={() => {
+          setPublishOpen(false)
+          setToast('¡Anuncio publicado! Es una demo — pronto conectarás con la comunidad.')
+        }}
+        title="Publica tu anuncio"
+        subtitle="En menos de 2 minutos tu anuncio está visible para toda la comunidad."
+        fields={PUBLISH_FIELDS}
+      />
+      {toast && (
+        <div className="fixed bottom-24 left-1/2 -translate-x-1/2 z-50 bg-brand-blue-deep text-white px-6 py-3 rounded-full shadow-2xl font-label-sm text-label-sm md:bottom-8 whitespace-nowrap animate-fade-in-up">
+          {toast}
         </div>
       )}
     </>
