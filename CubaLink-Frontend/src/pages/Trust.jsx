@@ -35,7 +35,7 @@ export default function Trust() {
             <MaterialIcon name="verified_user" className="text-[16px]" />
             Sistema de Confianza
           </div>
-          <h1 className="font-display-lg text-display-lg text-primary mb-3">
+          <h1 className="font-display-lg text-[28px] leading-tight sm:text-display-lg text-primary mb-3">
             Personas y negocios de confianza
           </h1>
           <p className="font-body-md text-body-md text-on-surface-variant max-w-2xl mx-auto">

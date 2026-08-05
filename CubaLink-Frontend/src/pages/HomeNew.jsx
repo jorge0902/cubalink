@@ -92,10 +92,10 @@ export default function HomeNew() {
             <span className="w-2 h-2 rounded-full bg-brand-gold animate-soft-pulse"></span>
             La red de los cubanos en Moscú
           </span>
-          <h1 className="font-display-lg text-display-lg mb-4 leading-tight animate-fade-in-up delay-100">
+          <h1 className="font-display-lg text-[30px] leading-[1.15] sm:text-4xl md:text-display-lg mb-4 animate-fade-in-up delay-100">
             Trabajo, renta, remesa y esa mano que hace falta
           </h1>
-          <p className="font-body-lg text-body-lg mb-8 opacity-90 max-w-xl mx-auto animate-fade-in-up delay-200">
+          <p className="font-body-lg text-[15px] sm:text-body-lg mb-8 opacity-90 max-w-xl mx-auto animate-fade-in-up delay-200">
             Conectamos a la comunidad cubana en Rusia con oportunidades reales y gente de confianza.
           </p>
 
@@ -105,13 +105,13 @@ export default function HomeNew() {
             className="max-w-2xl mx-auto bg-white rounded-2xl shadow-2xl p-2 text-left animate-fade-in-up delay-300"
           >
             {/* Pestañas de sección */}
-            <div className="flex flex-wrap gap-1 px-2 pt-2 pb-3 border-b border-slate-100">
+            <div className="flex flex-wrap gap-1 px-2 pt-2 pb-3 border-b border-slate-100 justify-center sm:justify-start">
               {SEARCH_TABS.map((t) => (
                 <button
                   key={t.id}
                   type="button"
                   onClick={() => setTab(t.id)}
-                  className={`px-3.5 py-1.5 rounded-full text-label-sm font-label-sm transition-all ${
+                  className={`px-2.5 sm:px-3.5 py-1.5 rounded-full text-[11px] sm:text-label-sm font-label-sm transition-all ${
                     tab === t.id
                       ? 'bg-primary text-white shadow-sm'
                       : 'text-on-surface-variant hover:bg-surface-container-low'
@@ -123,17 +123,17 @@ export default function HomeNew() {
             </div>
             {/* Campo + botón */}
             <div className="flex items-center gap-2 p-2">
-              <MaterialIcon name="search" className="text-on-surface-variant ml-2" />
+              <MaterialIcon name="search" className="text-on-surface-variant ml-2 flex-shrink-0" />
               <input
                 type="text"
                 value={query}
                 onChange={(e) => setQuery(e.target.value)}
                 placeholder="¿Qué estás buscando? Ej: albañil, cuarto, remesa..."
-                className="flex-1 py-2.5 text-primary placeholder:text-on-surface-variant/60 focus:outline-none"
+                className="flex-1 min-w-0 py-2.5 text-[14px] sm:text-primary placeholder:text-on-surface-variant/60 focus:outline-none"
               />
               <button
                 type="submit"
-                className="bg-brand-gold text-primary w-11 h-11 rounded-xl flex items-center justify-center hover:shadow-lg hover:bg-brand-gold/90 active:scale-95 transition-all btn-shine"
+                className="bg-brand-gold text-primary w-10 h-10 sm:w-11 sm:h-11 rounded-xl flex items-center justify-center hover:shadow-lg hover:bg-brand-gold/90 active:scale-95 transition-all btn-shine flex-shrink-0"
                 aria-label="Buscar"
               >
                 <MaterialIcon name="arrow_forward" />
@@ -158,7 +158,7 @@ export default function HomeNew() {
             Ver todo <MaterialIcon name="arrow_forward" className="text-sm" />
           </Link>
         </div>
-        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
           {CATEGORIES.map((c, i) => (
             <div
               key={c.to}
@@ -175,7 +175,7 @@ export default function HomeNew() {
                   <p className="text-[11px] text-on-surface-variant">{c.desc}</p>
                 </div>
               </div>
-              <ul className="space-y-1 mb-3">
+              <ul className="grid grid-cols-2 gap-x-2 gap-y-1 mb-3">
                 {c.subs.map((s) => (
                   <li key={s}>
                     <Link
@@ -202,10 +202,10 @@ export default function HomeNew() {
       {/* ===== POPULARES EN RENTAS ===== */}
       <section className="max-w-6xl mx-auto px-6 pb-16">
         <div className="flex items-center justify-between mb-6">
-          <h2 className="font-headline-md text-headline-md text-primary flex items-center gap-2">
+          <h2 className="font-headline-md text-[19px] sm:text-headline-md text-primary flex items-center gap-2">
             <MaterialIcon name="home_work" className="text-teal-600 text-2xl" /> Populares en Rentas
           </h2>
-          <Link to="/rentas" className="text-brand-blue-deep font-bold flex items-center gap-1 hover:text-brand-gold transition-colors text-label-sm">
+          <Link to="/rentas" className="text-brand-blue-deep font-bold flex items-center gap-1 hover:text-brand-gold transition-colors text-label-sm whitespace-nowrap">
             Ver todos <MaterialIcon name="arrow_forward" className="text-sm" />
           </Link>
         </div>
@@ -219,10 +219,10 @@ export default function HomeNew() {
       {/* ===== POPULARES EN MARKETPLACE ===== */}
       <section className="max-w-6xl mx-auto px-6 pb-16">
         <div className="flex items-center justify-between mb-6">
-          <h2 className="font-headline-md text-headline-md text-primary flex items-center gap-2">
+          <h2 className="font-headline-md text-[19px] sm:text-headline-md text-primary flex items-center gap-2">
             <MaterialIcon name="storefront" className="text-amber-600 text-2xl" /> Populares en Marketplace
           </h2>
-          <Link to="/marketplace" className="text-brand-blue-deep font-bold flex items-center gap-1 hover:text-brand-gold transition-colors text-label-sm">
+          <Link to="/marketplace" className="text-brand-blue-deep font-bold flex items-center gap-1 hover:text-brand-gold transition-colors text-label-sm whitespace-nowrap">
             Ver todos <MaterialIcon name="arrow_forward" className="text-sm" />
           </Link>
         </div>
@@ -236,10 +236,10 @@ export default function HomeNew() {
       {/* ===== POPULARES EN EMPLEOS ===== */}
       <section className="max-w-6xl mx-auto px-6 pb-16">
         <div className="flex items-center justify-between mb-6">
-          <h2 className="font-headline-md text-headline-md text-primary flex items-center gap-2">
+          <h2 className="font-headline-md text-[19px] sm:text-headline-md text-primary flex items-center gap-2">
             <MaterialIcon name="work" className="text-blue-600 text-2xl" /> Populares en Empleos
           </h2>
-          <Link to="/empleos" className="text-brand-blue-deep font-bold flex items-center gap-1 hover:text-brand-gold transition-colors text-label-sm">
+          <Link to="/empleos" className="text-brand-blue-deep font-bold flex items-center gap-1 hover:text-brand-gold transition-colors text-label-sm whitespace-nowrap">
             Ver todos <MaterialIcon name="arrow_forward" className="text-sm" />
           </Link>
         </div>
@@ -261,16 +261,16 @@ export default function HomeNew() {
             <div className="absolute bottom-0 left-1/3 w-40 h-40 rounded-full bg-white/20 blur-2xl"></div>
           </div>
           <div className="relative flex flex-col md:flex-row items-start md:items-center justify-between gap-6">
-            <div className="flex items-center gap-4">
-              <span className="w-14 h-14 rounded-2xl bg-white/20 backdrop-blur flex items-center justify-center group-hover:scale-110 transition-transform">
+            <div className="flex items-start sm:items-center gap-4">
+              <span className="w-14 h-14 rounded-2xl bg-white/20 backdrop-blur flex items-center justify-center group-hover:scale-110 transition-transform flex-shrink-0">
                 <MaterialIcon name="verified" className="text-3xl" />
               </span>
               <div>
-                <h3 className="font-headline-lg text-headline-lg">Sistema de Confianza</h3>
-                <p className="opacity-90">Personas y negocios verificados por la comunidad. ¿Con quién haces negocios sin preocuparte?</p>
+                <h3 className="font-headline-md text-headline-md">Sistema de Confianza</h3>
+                <p className="opacity-90 text-[13px] sm:text-body-md">Personas y negocios verificados por la comunidad. ¿Con quién haces negocios sin preocuparte?</p>
               </div>
             </div>
-            <span className="bg-white text-emerald-700 px-6 py-3 rounded-xl font-title-md hover:bg-emerald-50 transition-colors whitespace-nowrap">
+            <span className="bg-white text-emerald-700 px-6 py-3 rounded-xl font-title-md hover:bg-emerald-50 transition-colors whitespace-nowrap w-full sm:w-auto text-center">
               Ver Confiables →
             </span>
           </div>
@@ -284,16 +284,16 @@ export default function HomeNew() {
             <div className="absolute top-0 right-1/4 w-56 h-56 rounded-full bg-brand-gold/40 blur-3xl"></div>
           </div>
           <div className="relative flex flex-col md:flex-row items-center justify-between gap-6">
-            <div className="flex items-center gap-4">
-              <span className="w-14 h-14 rounded-2xl bg-white/15 backdrop-blur flex items-center justify-center">
+            <div className="flex items-start sm:items-center gap-4">
+              <span className="w-14 h-14 rounded-2xl bg-white/15 backdrop-blur flex items-center justify-center flex-shrink-0">
                 <MaterialIcon name="smartphone" className="text-3xl" />
               </span>
               <div>
-                <h3 className="font-headline-lg text-headline-lg">CubaLink en tu bolsillo</h3>
-                <p className="opacity-90">Descarga la app y lleva la red profesional contigo a donde vayas.</p>
+                <h3 className="font-headline-md text-headline-md">CubaLink en tu bolsillo</h3>
+                <p className="opacity-90 text-[13px] sm:text-body-md">Descarga la app y lleva la red profesional contigo a donde vayas.</p>
               </div>
             </div>
-            <div className="flex gap-3">
+            <div className="flex flex-wrap justify-center gap-3">
               <a
                 href="/manifest.json"
                 download
@@ -314,7 +314,7 @@ export default function HomeNew() {
       </section>
 
       {/* ===== STATS ===== */}
-      <section className="max-w-6xl mx-auto px-6 pb-20">
+      <section className="max-w-6xl mx-auto px-6 pb-28 sm:pb-20">
         <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
           {[
             { num: '+10,000', label: 'Profesionales', icon: 'groups' },

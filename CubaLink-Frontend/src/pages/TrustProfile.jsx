@@ -59,7 +59,7 @@ export default function TrustProfile() {
             <div className="flex-1 min-w-0">
               <div className="flex flex-wrap items-center gap-2 mb-2">
                 <span className="text-2xl">{emoji}</span>
-                <h1 className="font-display-lg text-display-lg text-primary truncate">{nombre}</h1>
+                <h1 className="font-display-lg text-[26px] leading-tight sm:text-display-lg text-primary">{nombre}</h1>
               </div>
               <p className="font-label-sm text-label-sm text-on-surface-variant mb-3">
                 {tipoLabel} · Miembro desde {miembro} ({años} años en CubaLink)

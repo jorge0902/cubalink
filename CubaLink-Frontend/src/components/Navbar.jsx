@@ -124,8 +124,8 @@ export default function Navbar() {
           </div>
         </nav>
 
-        <div className="flex items-center gap-4">
-          <MaterialIcon name="notifications" className="text-on-surface-variant cursor-pointer active:scale-95 transition-transform" />
+        <div className="flex items-center gap-2 sm:gap-4">
+          <MaterialIcon name="notifications" className="text-on-surface-variant cursor-pointer active:scale-95 transition-transform hidden sm:block" />
           {/* Botón Publicar anuncio — destacado, estilo Dubizzle "Place Your Ad" */}
           <button
             onClick={() => setPublishOpen(true)}

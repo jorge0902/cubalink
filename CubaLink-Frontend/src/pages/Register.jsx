@@ -22,7 +22,7 @@ export default function Register() {
         {/* Descargar App */}
         <div className="mb-8 flex flex-col sm:flex-row items-center justify-between gap-4 bg-surface-container-lowest rounded-xl premium-shadow border border-outline-variant p-5">
           <div className="flex items-center gap-4">
-            <span className="w-12 h-12 rounded-xl bg-brand-blue-deep/10 flex items-center justify-center text-brand-blue-deep">
+            <span className="w-12 h-12 rounded-xl bg-brand-blue-deep/10 flex items-center justify-center text-brand-blue-deep flex-shrink-0">
               <MaterialIcon name="download" className="text-2xl" />
             </span>
             <div>
@@ -30,7 +30,7 @@ export default function Register() {
               <p className="text-label-sm text-on-surface-variant">Lleva la red profesional en tu bolsillo</p>
             </div>
           </div>
-          <div className="flex gap-3">
+          <div className="flex flex-wrap justify-center gap-3">
             <a
               href="/manifest.json"
               download

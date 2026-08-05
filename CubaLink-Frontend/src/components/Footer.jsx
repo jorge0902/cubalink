@@ -36,7 +36,7 @@ const FOOTER_HELP = [
 
 export default function Footer() {
   return (
-    <footer className="w-full bg-primary text-on-primary pt-14 pb-10 px-margin-mobile md:px-margin-desktop">
+    <footer className="w-full bg-primary text-on-primary pt-14 pb-28 md:pb-10 px-margin-mobile md:px-margin-desktop">
       <div className="max-w-container-max mx-auto">
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-10">
           {/* Marca */}
@@ -115,8 +115,8 @@ export default function Footer() {
 
         {/* Barra inferior */}
         <div className="mt-12 pt-8 border-t border-white/10 flex flex-col md:flex-row justify-between items-center gap-4">
-          <p className="font-label-sm text-label-sm opacity-60">© 2026 CubaLink Professional · Hecho con ❤ para la comunidad cubana en Rusia</p>
-          <div className="flex gap-2">
+          <p className="font-label-sm text-label-sm opacity-60 text-center md:text-left">© 2026 CubaLink Professional · Hecho con ❤ para la comunidad cubana en Rusia</p>
+          <div className="flex flex-wrap justify-center gap-2">
             {[
               { icon: 'shield', label: 'Comunidad verificada' },
               { icon: 'verified', label: 'Gente de confianza' },
