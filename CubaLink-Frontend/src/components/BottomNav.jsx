@@ -1,10 +1,18 @@
 import { useState } from 'react'
-import { NavLink, useLocation } from 'react-router-dom'
+import { NavLink, useLocation, useNavigate } from 'react-router-dom'
 import MaterialIcon from './MaterialIcon'
-import PublishModal from './PublishModal'
-import { EXPLORE_LINKS, PUBLISH_FIELDS } from './Navbar'
+import { EXPLORE_LINKS } from './Navbar'
 
-// Barra de navegación inferior (móvil) — 5 ítems con botón central + Publicar (CTA)
+// Opciones del menú de publicación — cada una lleva a su formulario específico
+const PUBLISH_OPTIONS = [
+  { to: '/publicar/empleo', icon: 'work', label: 'Empleo', desc: 'Oferta o búsqueda de trabajo', accent: 'bg-blue-50 text-blue-700' },
+  { to: '/publicar/renta', icon: 'home_work', label: 'Renta', desc: 'Habitación o propiedad', accent: 'bg-emerald-50 text-emerald-700' },
+  { to: '/publicar/viajes', icon: 'flight_takeoff', label: 'Vuelos / Viajes', desc: 'Cupo de viaje o pasaje', accent: 'bg-sky-50 text-sky-700' },
+  { to: '/publicar/marketplace', icon: 'storefront', label: 'Marketplace / Venta', desc: 'Vender un artículo o servicio', accent: 'bg-amber-50 text-amber-700' },
+  { to: '/publicar/remesas', icon: 'currency_exchange', label: 'Remesas / Servicios', desc: 'Otro tipo de anuncio', accent: 'bg-rose-50 text-rose-700' },
+]
+
+// Barra de navegación inferior (móvil) — 5 ítems, el "+" Publicar exactamente al centro
 const items = [
   { to: '/', label: 'Inicio', icon: 'home', end: true },
   { to: '/empleos', label: 'Empleos', icon: 'work' },
@@ -14,14 +22,20 @@ const items = [
 export default function BottomNav() {
   const [exploreOpen, setExploreOpen] = useState(false)
   const [publishOpen, setPublishOpen] = useState(false)
-  const [toast, setToast] = useState('')
   const location = useLocation()
+  const navigate = useNavigate()
+
+  // Al elegir un tipo, navega al formulario y cierra el menú
+  const chooseType = (to) => {
+    setPublishOpen(false)
+    navigate(to)
+  }
 
   return (
     <>
-      <nav className="md:hidden fixed bottom-0 left-0 w-full z-50 flex justify-around items-center h-16 bg-surface-container-lowest pb-safe border-t border-outline-variant shadow-lg">
-        {/* Inicio, Empleos, Comunidad */}
-        {items.map((item) => (
+      <nav className="md:hidden fixed bottom-0 left-0 w-full z-50 flex justify-around items-stretch h-16 bg-surface-container-lowest pb-safe border-t border-outline-variant shadow-lg">
+        {/* Inicio, Empleos — a la izquierda del botón central */}
+        {items.slice(0, 2).map((item) => (
           <NavLink
             key={item.to}
             to={item.to}
@@ -37,7 +51,7 @@ export default function BottomNav() {
           </NavLink>
         ))}
 
-        {/* Botón central Publicar — CTA principal (FAB elevado) */}
+        {/* Botón central + Publicar — 3ra posición exacta (FAB elevado) */}
         <button
           onClick={() => setPublishOpen(true)}
           aria-label="Publicar"
@@ -49,7 +63,24 @@ export default function BottomNav() {
           <span className="font-label-sm text-label-sm font-semibold text-primary">Publicar</span>
         </button>
 
-        {/* Explorar — botón central derecho */}
+        {/* Comunidad — a la derecha del botón central */}
+        {items.slice(2).map((item) => (
+          <NavLink
+            key={item.to}
+            to={item.to}
+            end={item.end}
+            className={({ isActive }) =>
+              `flex flex-col items-center justify-center gap-0.5 px-1 flex-1 active:scale-90 transition-all duration-150 ${
+                isActive ? 'text-primary font-bold' : 'text-on-surface-variant opacity-70 hover:text-primary'
+              }`
+            }
+          >
+            <MaterialIcon name={item.icon} className="text-[24px]" />
+            <span className="font-label-sm text-label-sm">{item.label}</span>
+          </NavLink>
+        ))}
+
+        {/* Explorar — última posición */}
         <button
           onClick={() => setExploreOpen((v) => !v)}
           className={`flex flex-col items-center justify-center gap-0.5 px-1 flex-1 active:scale-90 transition-all duration-150 ${
@@ -61,6 +92,61 @@ export default function BottomNav() {
           <span className="font-label-sm text-label-sm">{exploreOpen ? 'Cerrar' : 'Explorar'}</span>
         </button>
       </nav>
+
+      {/* Menú Publicar (bottom sheet) — elige qué tipo de contenido publicar */}
+      {publishOpen && (
+        <>
+          <div
+            className="md:hidden fixed inset-0 z-[45] bg-black/50 animate-fade-in"
+            onClick={() => setPublishOpen(false)}
+            aria-label="Cerrar menú de publicación"
+          />
+          <div className="md:hidden fixed bottom-0 left-0 right-0 z-50 bg-surface-container-lowest border-t border-outline-variant shadow-2xl rounded-t-2xl animate-fade-in-up">
+            <div className="w-10 h-1 bg-outline-variant rounded-full mx-auto mt-3" />
+            <div className="p-5 pb-6">
+              <div className="flex items-center justify-between mb-4">
+                <div>
+                  <h3 className="font-title-md text-title-md text-primary">¿Qué quieres publicar?</h3>
+                  <p className="text-label-sm text-on-surface-variant font-label-sm mt-0.5">
+                    Elige el tipo de anuncio y completa el formulario
+                  </p>
+                </div>
+                <button
+                  onClick={() => setPublishOpen(false)}
+                  aria-label="Cerrar"
+                  className="w-9 h-9 rounded-full hover:bg-surface-container-low flex items-center justify-center text-on-surface-variant transition-colors"
+                >
+                  <MaterialIcon name="close" />
+                </button>
+              </div>
+              <div className="space-y-2">
+                {PUBLISH_OPTIONS.map((opt) => (
+                  <button
+                    key={opt.to}
+                    onClick={() => chooseType(opt.to)}
+                    className="w-full flex items-center gap-3 p-3 rounded-xl border border-outline-variant hover:border-brand-blue-deep hover:bg-surface-container-low transition-all active:scale-[0.98] text-left"
+                  >
+                    <span className={`w-10 h-10 rounded-xl flex items-center justify-center flex-shrink-0 ${opt.accent}`}>
+                      <MaterialIcon name={opt.icon} className="text-[20px]" />
+                    </span>
+                    <span className="min-w-0 flex-1">
+                      <span className="block font-label-sm text-label-sm font-semibold text-primary">{opt.label}</span>
+                      <span className="block text-[11px] text-on-surface-variant">{opt.desc}</span>
+                    </span>
+                    <MaterialIcon name="chevron_right" className="text-on-surface-variant flex-shrink-0" />
+                  </button>
+                ))}
+              </div>
+              <button
+                onClick={() => setPublishOpen(false)}
+                className="mt-4 w-full py-3 border border-outline-variant text-on-surface-variant rounded-xl font-label-sm text-label-sm hover:bg-surface-container-low transition-colors"
+              >
+                Cancelar
+              </button>
+            </div>
+          </div>
+        </>
+      )}
 
       {/* Panel Explorar (sheet desde abajo) */}
       {exploreOpen && (
@@ -97,24 +183,6 @@ export default function BottomNav() {
               })}
             </div>
           </div>
-        </div>
-      )}
-
-      {/* Modal Publicar (demo) — mismo flujo que el navbar desktop */}
-      <PublishModal
-        open={publishOpen}
-        onClose={() => setPublishOpen(false)}
-        onPublish={() => {
-          setPublishOpen(false)
-          setToast('¡Anuncio publicado! Es una demo — pronto conectarás con la comunidad.')
-        }}
-        title="Publica tu anuncio"
-        subtitle="En menos de 2 minutos tu anuncio está visible para toda la comunidad."
-        fields={PUBLISH_FIELDS}
-      />
-      {toast && (
-        <div className="fixed bottom-24 left-1/2 -translate-x-1/2 z-50 bg-brand-blue-deep text-white px-6 py-3 rounded-full shadow-2xl font-label-sm text-label-sm whitespace-nowrap animate-fade-in-up">
-          {toast}
         </div>
       )}
     </>

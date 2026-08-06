@@ -15,6 +15,7 @@ import Rentals from './pages/Rentals'
 import Marketplace from './pages/Marketplace'
 import Travel from './pages/Travel'
 import Remittances from './pages/Remittances'
+import Publicar from './pages/Publicar'
 import Register from './pages/Register'
 import Ranking from './pages/Ranking'
 import Trust from './pages/Trust'
@@ -44,6 +45,7 @@ export default function App() {
               <Route path="/marketplace" element={<Marketplace />} />
               <Route path="/viajes" element={<Travel />} />
               <Route path="/remesas" element={<Remittances />} />
+              <Route path="/publicar/:tipo" element={<Publicar />} />
               <Route
                 path="*"
                 element={
