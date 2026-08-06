@@ -1,17 +1,52 @@
 import { useEffect, useRef } from 'react'
 
-// Fondo animado de nubes con Canvas — integrado para la sección de Vuelos.
-// Dos capas: nubes base + capa atmosférica borrosa (efecto profundidad).
+// Fondo animado de nubes con Canvas — dos variantes:
+//  - 'day'   (default): cielo azul claro con nubes blancas (sección Vuelos)
+//  - 'night': cielo azul noche con nubes de algodón azuladas (hero principal)
 // El tamaño se adapta al contenedor padre (no a la ventana) y responde a resize.
-export default function SkyClouds({ className = '' }) {
+
+const THEMES = {
+  day: {
+    background: 'linear-gradient(180deg, #3a8cd1 0%, #2a6595 40%, #68cbe3 75%, #ffffff 100%)',
+    blur: 'blur(20px)',
+    atmosOpacity: 0.4,
+    cloud: {
+      speedMin: 0.15, speedRange: 0.2,
+      opacityMin: 0.18, opacityRange: 0.22,
+      stop0: (o) => `rgba(255, 255, 255, ${o})`,
+      stop1: (o) => `rgba(255, 255, 255, ${o * 0.7})`,
+      stop2: (o) => `rgba(240, 245, 255, ${o * 0.25})`,
+      stop3: 'rgba(255, 255, 255, 0)',
+    },
+    atmos: { speedMin: 0.35, speedRange: 0.4, opacityMin: 0.08, opacityRange: 0.12 },
+  },
+  night: {
+    background: 'linear-gradient(180deg, #0b1e3a 0%, #16294d 45%, #1d3a63 75%, #274b7d 100%)',
+    blur: 'blur(22px)',
+    atmosOpacity: 0.35,
+    cloud: {
+      speedMin: 0.12, speedRange: 0.18,
+      opacityMin: 0.12, opacityRange: 0.18,
+      stop0: (o) => `rgba(180, 205, 235, ${o})`,
+      stop1: (o) => `rgba(100, 130, 175, ${o * 0.6})`,
+      stop2: (o) => `rgba(30, 50, 80, ${o * 0.2})`,
+      stop3: 'rgba(10, 20, 35, 0)',
+    },
+    atmos: { speedMin: 0.3, speedRange: 0.35, opacityMin: 0.05, opacityRange: 0.08 },
+  },
+}
+
+export default function SkyClouds({ variant = 'day', className = '' }) {
   const containerRef = useRef(null)
+  const theme = THEMES[variant] || THEMES.day
+  const idSuffix = variant === 'night' ? 'Night' : ''
 
   useEffect(() => {
     const container = containerRef.current
     if (!container) return
 
-    const canvas = container.querySelector('#cloudCanvas')
-    const atmosphericCanvas = container.querySelector('#atmosphericCloudCanvas')
+    const canvas = container.querySelector('#cloudCanvas' + idSuffix)
+    const atmosphericCanvas = container.querySelector('#atmosphericCloudCanvas' + idSuffix)
     if (!canvas || !atmosphericCanvas) return
 
     const ctx = canvas.getContext('2d')
@@ -20,7 +55,7 @@ export default function SkyClouds({ className = '' }) {
     let width, height
     let rafId
 
-    // Ajusta el canvas al tamaño del contenedor de vuelos (no a la ventana)
+    // Ajusta el canvas al tamaño del contenedor padre (no a la ventana)
     function resizeCanvas() {
       width = canvas.width = atmosphericCanvas.width = container.clientWidth
       height = canvas.height = atmosphericCanvas.height = container.clientHeight
@@ -35,9 +70,9 @@ export default function SkyClouds({ className = '' }) {
       reset(initial = false) {
         this.x = initial ? Math.random() * width : -450
         this.y = Math.random() * (height * 0.55)
-        this.speed = 0.15 + Math.random() * 0.2
+        this.speed = theme.cloud.speedMin + Math.random() * theme.cloud.speedRange
         this.scale = 0.9 + Math.random() * 1.2
-        this.opacity = 0.18 + Math.random() * 0.22
+        this.opacity = theme.cloud.opacityMin + Math.random() * theme.cloud.opacityRange
 
         this.puffs = []
         const numPuffs = 18 + Math.floor(Math.random() * 12)
@@ -67,10 +102,10 @@ export default function SkyClouds({ className = '' }) {
 
           const radGrad = currentCtx.createRadialGradient(puffX, puffY, 0, puffX, puffY, r)
 
-          radGrad.addColorStop(0, `rgba(255, 255, 255, ${this.opacity})`)
-          radGrad.addColorStop(0.4, `rgba(255, 255, 255, ${this.opacity * 0.7})`)
-          radGrad.addColorStop(0.85, `rgba(240, 245, 255, ${this.opacity * 0.25})`)
-          radGrad.addColorStop(1, 'rgba(255, 255, 255, 0)')
+          radGrad.addColorStop(0, theme.cloud.stop0(this.opacity))
+          radGrad.addColorStop(0.4, theme.cloud.stop1(this.opacity))
+          radGrad.addColorStop(0.85, theme.cloud.stop2(this.opacity))
+          radGrad.addColorStop(1, theme.cloud.stop3)
 
           currentCtx.fillStyle = radGrad
           currentCtx.beginPath()
@@ -85,9 +120,9 @@ export default function SkyClouds({ className = '' }) {
     class AtmosphericCloud extends Cloud {
       reset(initial = false) {
         super.reset(initial)
-        this.speed = 0.35 + Math.random() * 0.4
+        this.speed = theme.atmos.speedMin + Math.random() * theme.atmos.speedRange
         this.scale = 2.2 + Math.random() * 2.0
-        this.opacity = 0.08 + Math.random() * 0.12
+        this.opacity = theme.atmos.opacityMin + Math.random() * theme.atmos.opacityRange
         this.y = Math.random() * (height * 0.45)
       }
     }
@@ -122,20 +157,20 @@ export default function SkyClouds({ className = '' }) {
       cancelAnimationFrame(rafId)
       window.removeEventListener('resize', onResize)
     }
-  }, [])
+  }, [idSuffix, theme])
 
   return (
     <div
       ref={containerRef}
       className={`sky-container absolute inset-0 w-full h-full overflow-hidden pointer-events-none ${className}`}
-      style={{ background: 'linear-gradient(180deg, #3a8cd1 0%, #2a6595 40%, #68cbe3 75%, #ffffff 100%)' }}
+      style={{ background: theme.background }}
       aria-hidden="true"
     >
-      <canvas id="cloudCanvas" className="absolute inset-0 w-full h-full z-[1]" />
+      <canvas id={'cloudCanvas' + idSuffix} className="absolute inset-0 w-full h-full z-[1]" />
       <canvas
-        id="atmosphericCloudCanvas"
-        className="absolute inset-0 w-full h-full z-[2] opacity-40"
-        style={{ filter: 'blur(20px)' }}
+        id={'atmosphericCloudCanvas' + idSuffix}
+        className="absolute inset-0 w-full h-full z-[2]"
+        style={{ filter: theme.blur, opacity: theme.atmosOpacity }}
       />
     </div>
   )

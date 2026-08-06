@@ -1,6 +1,7 @@
 import { useState } from 'react'
-import { Link, useNavigate } from 'react-router-dom'
+import { useNavigate, Link } from 'react-router-dom'
 import MaterialIcon from '../components/MaterialIcon'
+import SkyClouds from '../components/SkyClouds'
 import RentCard from '../components/RentCard'
 import ProductCard from '../components/ProductCard'
 import JobCard from '../components/JobCard'
@@ -80,14 +81,20 @@ export default function HomeNew() {
 
   return (
     <main className="min-h-screen bg-surface">
-      {/* ===== HERO con buscador gigante (estilo Dubizzle) ===== */}
-      <section className="relative bg-gradient-to-br from-brand-blue-deep via-primary to-brand-blue-deep text-white pt-24 pb-20 px-6 overflow-hidden">
-        <div className="absolute inset-0 opacity-10">
-          <div className="absolute top-10 left-10 w-40 h-40 rounded-full bg-white/20 blur-3xl"></div>
-          <div className="absolute bottom-0 right-20 w-60 h-60 rounded-full bg-brand-gold/30 blur-3xl"></div>
-          <div className="absolute top-1/3 left-1/2 w-72 h-72 rounded-full bg-white/10 blur-3xl"></div>
+      {/* ===== HERO con cielo nocturno animado (nubes de algodón) + buscador gigante ===== */}
+      <section className="relative text-white pt-24 pb-20 px-6 overflow-hidden">
+        {/* Fondo animado: cielo nocturno + nubes en 2 capas canvas */}
+        <SkyClouds variant="night" />
+
+        {/* Brillo sutil sobre el cielo nocturno */}
+        <div className="absolute inset-0 z-[3] pointer-events-none">
+          <div className="absolute top-10 left-10 w-40 h-40 rounded-full bg-white/10 blur-3xl"></div>
+          <div className="absolute bottom-0 right-20 w-60 h-60 rounded-full bg-sky-400/10 blur-3xl"></div>
+          <div className="absolute top-1/3 left-1/2 w-72 h-72 rounded-full bg-white/5 blur-3xl"></div>
         </div>
-        <div className="relative max-w-4xl mx-auto text-center">
+
+        {/* Contenido por encima del lienzo */}
+        <div className="relative z-10 max-w-4xl mx-auto text-center">
           <span className="inline-flex items-center gap-2 bg-white/15 backdrop-blur px-4 py-1.5 rounded-full text-label-sm font-label-sm mb-5 animate-fade-in-up">
             <span className="w-2 h-2 rounded-full bg-brand-gold animate-soft-pulse"></span>
             La red de los cubanos en Moscú
