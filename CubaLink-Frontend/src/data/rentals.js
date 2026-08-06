@@ -124,7 +124,7 @@ export const rentals = [
     phone: '+7 903 445-12-90',
     photos: ['/images/renta-2hab.jpg'],
     posted: 'Hace 1 día',
-    featured: false,
+    featured: true,
   },
   {
     id: 5,

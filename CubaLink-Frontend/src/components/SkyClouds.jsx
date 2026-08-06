@@ -12,15 +12,19 @@ const THEMES = {
     stars: false,
     blur: 'blur(20px)',
     atmosOpacity: 0.4,
+    // Velocidad +40% sobre el valor original (0.15→0.21, rango 0.2→0.28)
     cloud: {
-      speedMin: 0.15, speedRange: 0.2,
+      speedMin: 0.21, speedRange: 0.28,
       opacityMin: 0.18, opacityRange: 0.22,
       stop0: (o) => `rgba(255, 255, 255, ${o})`,
       stop1: (o) => `rgba(255, 255, 255, ${o * 0.7})`,
       stop2: (o) => `rgba(240, 245, 255, ${o * 0.25})`,
       stop3: 'rgba(255, 255, 255, 0)',
     },
-    atmos: { speedMin: 0.35, speedRange: 0.4, opacityMin: 0.08, opacityRange: 0.12 },
+    // Densidad −30%: menos puffs por nube (13-20 en vez de 18-29)
+    puffDensity: 0.7,
+    // Atmosféricas +40% (0.35→0.49, rango 0.4→0.56)
+    atmos: { speedMin: 0.49, speedRange: 0.56, opacityMin: 0.08, opacityRange: 0.12 },
   },
   night: {
     // Gradiente nocturno profundo
@@ -28,15 +32,18 @@ const THEMES = {
     stars: true,
     blur: 'blur(22px)',
     atmosOpacity: 0.35,
+    // Velocidad +40% sobre el valor original (0.12→0.17, rango 0.18→0.25)
     cloud: {
-      speedMin: 0.12, speedRange: 0.18,
+      speedMin: 0.17, speedRange: 0.25,
       opacityMin: 0.12, opacityRange: 0.18,
       stop0: (o) => `rgba(180, 205, 235, ${o})`,
       stop1: (o) => `rgba(100, 130, 175, ${o * 0.6})`,
       stop2: (o) => `rgba(30, 50, 80, ${o * 0.2})`,
       stop3: 'rgba(10, 20, 35, 0)',
     },
-    atmos: { speedMin: 0.3, speedRange: 0.35, opacityMin: 0.05, opacityRange: 0.08 },
+    puffDensity: 1,
+    // Atmosféricas +40% (0.3→0.42, rango 0.35→0.49)
+    atmos: { speedMin: 0.42, speedRange: 0.49, opacityMin: 0.05, opacityRange: 0.08 },
   },
 }
 
@@ -129,7 +136,8 @@ export default function SkyClouds({ variant = 'day', className = '' }) {
         this.opacity = theme.cloud.opacityMin + Math.random() * theme.cloud.opacityRange
 
         this.puffs = []
-        const numPuffs = 18 + Math.floor(Math.random() * 12)
+        // Densidad ajustable por tema (day: 0.7 = −30% de puffs; night: 1 = completo)
+        const numPuffs = Math.floor((18 + Math.random() * 12) * (theme.puffDensity ?? 1))
         for (let i = 0; i < numPuffs; i++) {
           this.puffs.push({
             dx: (Math.random() * 220 - 110) * this.scale,
@@ -182,7 +190,9 @@ export default function SkyClouds({ variant = 'day', className = '' }) {
     }
 
     resizeCanvas()
-    const baseClouds = Array.from({ length: 4 }, () => new Cloud())
+    // Array de nubes: day con densidad reducida (−30%), night completo
+    const baseCloudCount = variant === 'day' ? 3 : 4
+    const baseClouds = Array.from({ length: baseCloudCount }, () => new Cloud())
     const atmosphericClouds = Array.from({ length: 2 }, () => new AtmosphericCloud())
 
     function animate() {

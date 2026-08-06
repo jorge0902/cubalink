@@ -69,9 +69,9 @@ export default function HomeNew() {
   const [tab, setTab] = useState('todo')
   const [query, setQuery] = useState('')
 
-  const popularRentals = rentals.filter((r) => r.featured).slice(0, 4)
+  const popularRentals = rentals.filter((r) => r.featured).slice(0, 5)
   const popularProducts = marketProducts.filter((p) => p.featured).slice(0, 4)
-  const popularJobs = jobs.filter((j) => j.featured).slice(0, 4)
+  const popularJobs = jobs.filter((j) => j.featured).slice(0, 5)
 
   const submitSearch = (e) => {
     e?.preventDefault()
