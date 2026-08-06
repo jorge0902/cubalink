@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import MaterialIcon from '../components/MaterialIcon'
+import SkyClouds from '../components/SkyClouds'
 import TravelCard from '../components/TravelCard'
 import PublishModal from '../components/PublishModal'
 import { travels, travelTypes, travelCities } from '../data/travel'
@@ -59,20 +60,24 @@ export default function Travel() {
 
   return (
     <main className="pt-20 pb-24 min-h-screen max-w-container-max mx-auto px-margin-mobile md:px-margin-desktop">
-      {/* Header */}
-      <section className="mb-8">
-        <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-8">
+      {/* Header — hero con fondo de nubes animadas */}
+      <section className="relative overflow-hidden rounded-3xl mb-8 min-h-[260px] shadow-lg border border-outline-variant/40">
+        {/* Fondo animado: dos capas de canvas (nubes base + capa atmosférica) */}
+        <SkyClouds />
+
+        {/* Contenido por encima del canvas */}
+        <div className="relative z-10 flex flex-col md:flex-row md:items-end justify-between gap-6 p-6 md:p-10">
           <div className="max-w-2xl">
-            <h1 className="font-headline-lg text-headline-lg text-primary mb-2">
+            <h1 className="font-headline-lg text-headline-lg text-white mb-2 drop-shadow-md">
               Viajes Cuba ⇄ Rusia <span className="align-middle">✈️</span>
             </h1>
-            <p className="text-on-surface-variant font-body-md text-body-md">
+            <p className="text-white/95 font-body-md text-body-md drop-shadow-sm">
               Paquetes, encargos y acompañantes entre Cuba y Rusia. Conecta con la gente que viaja y lleva tus cosas seguras.
             </p>
           </div>
           <button
             onClick={() => setModalOpen(true)}
-            className="bg-brand-blue-deep text-white px-6 py-3 rounded-xl font-label-sm text-label-sm shadow-md hover:shadow-lg transition-all active:scale-95 flex items-center gap-2 self-start md:self-auto"
+            className="bg-white text-brand-blue-deep px-6 py-3 rounded-xl font-label-sm text-label-sm shadow-lg hover:shadow-xl transition-all active:scale-95 flex items-center gap-2 self-start md:self-auto"
           >
             <MaterialIcon name="flight_takeoff" className="text-[18px]" />
             Publicar viaje
