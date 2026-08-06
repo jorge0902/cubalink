@@ -79,7 +79,7 @@ export const marketProducts = [
     phone: '+7 909 889-01-23',
     photos: ['/images/producto-lavadora.jpg'],
     favorites: 3,
-    featured: false,
+    featured: true,
   },
   {
     id: 5,

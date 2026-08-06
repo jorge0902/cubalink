@@ -70,7 +70,7 @@ export default function HomeNew() {
   const [query, setQuery] = useState('')
 
   const popularRentals = rentals.filter((r) => r.featured).slice(0, 5)
-  const popularProducts = marketProducts.filter((p) => p.featured).slice(0, 4)
+  const popularProducts = marketProducts.filter((p) => p.featured).slice(0, 5)
   const popularJobs = jobs.filter((j) => j.featured).slice(0, 5)
 
   const submitSearch = (e) => {
