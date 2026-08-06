@@ -2,12 +2,14 @@ import { useEffect, useRef } from 'react'
 
 // Fondo animado de nubes con Canvas — dos variantes:
 //  - 'day'   (default): cielo azul claro con nubes blancas (sección Vuelos)
-//  - 'night': cielo azul noche con nubes de algodón azuladas (hero principal)
+//  - 'night': cielo nocturno profundo con ESTRELLAS parpadeantes + nubes de algodón azuladas
+//             (3 canvas: estrellas z-0, nubes base z-1, capa atmosférica borrosa z-2)
 // El tamaño se adapta al contenedor padre (no a la ventana) y responde a resize.
 
 const THEMES = {
   day: {
     background: 'linear-gradient(180deg, #3a8cd1 0%, #2a6595 40%, #68cbe3 75%, #ffffff 100%)',
+    stars: false,
     blur: 'blur(20px)',
     atmosOpacity: 0.4,
     cloud: {
@@ -21,7 +23,9 @@ const THEMES = {
     atmos: { speedMin: 0.35, speedRange: 0.4, opacityMin: 0.08, opacityRange: 0.12 },
   },
   night: {
-    background: 'linear-gradient(180deg, #0b1e3a 0%, #16294d 45%, #1d3a63 75%, #274b7d 100%)',
+    // Gradiente nocturno profundo
+    background: 'linear-gradient(180deg, #050b14 0%, #0a192f 45%, #112240 80%, #1a365d 100%)',
+    stars: true,
     blur: 'blur(22px)',
     atmosOpacity: 0.35,
     cloud: {
@@ -52,13 +56,63 @@ export default function SkyClouds({ variant = 'day', className = '' }) {
     const ctx = canvas.getContext('2d')
     const atmosphericCtx = atmosphericCanvas.getContext('2d')
 
+    // Capa de estrellas (solo variante night)
+    const starCanvas = theme.stars ? container.querySelector('#starCanvas') : null
+    const starCtx = starCanvas ? starCanvas.getContext('2d') : null
+
     let width, height
     let rafId
+    let stars = []
 
-    // Ajusta el canvas al tamaño del contenedor padre (no a la ventana)
+    // Ajusta los canvas al tamaño del contenedor padre (no a la ventana)
     function resizeCanvas() {
       width = canvas.width = atmosphericCanvas.width = container.clientWidth
       height = canvas.height = atmosphericCanvas.height = container.clientHeight
+      if (starCanvas) {
+        starCanvas.width = width
+        starCanvas.height = height
+      }
+      if (theme.stars) initStars()
+    }
+
+    // Clase Estrella con parpadeo suave
+    class Star {
+      constructor() {
+        this.reset()
+      }
+
+      reset() {
+        this.x = Math.random() * width
+        this.y = Math.random() * (height * 0.7) // Principalmente en la parte superior del cielo
+        this.size = Math.random() * 1.5 + 0.5
+        this.baseOpacity = Math.random() * 0.5 + 0.3
+        this.opacity = this.baseOpacity
+        this.twinkleSpeed = Math.random() * 0.02 + 0.005
+        this.angle = Math.random() * Math.PI * 2
+      }
+
+      update() {
+        this.angle += this.twinkleSpeed
+        this.opacity = this.baseOpacity + Math.sin(this.angle) * 0.25
+      }
+
+      draw(currentCtx) {
+        currentCtx.save()
+        currentCtx.fillStyle = `rgba(255, 255, 255, ${Math.max(0, this.opacity)})`
+        currentCtx.beginPath()
+        currentCtx.arc(this.x, this.y, this.size, 0, Math.PI * 2)
+        currentCtx.fill()
+        currentCtx.restore()
+      }
+    }
+
+    // Cantidad de estrellas proporcional al área del contenedor
+    function initStars() {
+      stars = []
+      const numStars = Math.floor((width * height) / 3000)
+      for (let i = 0; i < numStars; i++) {
+        stars.push(new Star())
+      }
     }
 
     // Clase Nube con Gradientes Radiales (Efecto Algodón)
@@ -132,9 +186,19 @@ export default function SkyClouds({ variant = 'day', className = '' }) {
     const atmosphericClouds = Array.from({ length: 2 }, () => new AtmosphericCloud())
 
     function animate() {
+      if (starCtx) starCtx.clearRect(0, 0, width, height)
       ctx.clearRect(0, 0, width, height)
       atmosphericCtx.clearRect(0, 0, width, height)
 
+      // Renderizar estrellas (parpadeo suave)
+      if (starCtx) {
+        stars.forEach((star) => {
+          star.update()
+          star.draw(starCtx)
+        })
+      }
+
+      // Renderizar nubes
       baseClouds.forEach((cloud) => {
         cloud.update()
         cloud.draw(ctx)
@@ -166,6 +230,9 @@ export default function SkyClouds({ variant = 'day', className = '' }) {
       style={{ background: theme.background }}
       aria-hidden="true"
     >
+      {theme.stars && (
+        <canvas id="starCanvas" className="absolute inset-0 w-full h-full z-0" />
+      )}
       <canvas id={'cloudCanvas' + idSuffix} className="absolute inset-0 w-full h-full z-[1]" />
       <canvas
         id={'atmosphericCloudCanvas' + idSuffix}
