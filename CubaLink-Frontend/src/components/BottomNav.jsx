@@ -1,30 +1,33 @@
 import { useState } from 'react'
 import { NavLink, useLocation } from 'react-router-dom'
 import MaterialIcon from './MaterialIcon'
-import { EXPLORE_LINKS } from './Navbar'
+import PublishModal from './PublishModal'
+import { EXPLORE_LINKS, PUBLISH_FIELDS } from './Navbar'
 
-// Barra de navegación inferior (móvil) — diseño original de las páginas Stitch
+// Barra de navegación inferior (móvil) — 5 ítems con botón central + Publicar (CTA)
 const items = [
   { to: '/', label: 'Inicio', icon: 'home', end: true },
   { to: '/empleos', label: 'Empleos', icon: 'work' },
   { to: '/comunidad', label: 'Comunidad', icon: 'groups' },
-  { to: '/perfil', label: 'Perfil', icon: 'person' },
 ]
 
 export default function BottomNav() {
   const [exploreOpen, setExploreOpen] = useState(false)
+  const [publishOpen, setPublishOpen] = useState(false)
+  const [toast, setToast] = useState('')
   const location = useLocation()
 
   return (
     <>
       <nav className="md:hidden fixed bottom-0 left-0 w-full z-50 flex justify-around items-center h-16 bg-surface-container-lowest pb-safe border-t border-outline-variant shadow-lg">
+        {/* Inicio, Empleos, Comunidad */}
         {items.map((item) => (
           <NavLink
             key={item.to}
             to={item.to}
             end={item.end}
             className={({ isActive }) =>
-              `flex flex-col items-center justify-center gap-0.5 px-2 active:scale-90 transition-all duration-150 ${
+              `flex flex-col items-center justify-center gap-0.5 px-1 flex-1 active:scale-90 transition-all duration-150 ${
                 isActive ? 'text-primary font-bold' : 'text-on-surface-variant opacity-70 hover:text-primary'
               }`
             }
@@ -34,10 +37,22 @@ export default function BottomNav() {
           </NavLink>
         ))}
 
-        {/* Botón central Explorar */}
+        {/* Botón central Publicar — CTA principal (FAB elevado) */}
+        <button
+          onClick={() => setPublishOpen(true)}
+          aria-label="Publicar"
+          className="flex flex-col items-center justify-center gap-0.5 px-1 flex-1 active:scale-90 transition-all duration-150 group"
+        >
+          <span className="-mt-7 w-14 h-14 rounded-2xl bg-brand-gold text-primary shadow-lg shadow-brand-gold/40 flex items-center justify-center transition-all duration-150 group-hover:bg-brand-gold/90 group-hover:shadow-xl group-active:scale-95 btn-shine">
+            <MaterialIcon name="add" className="text-[32px] font-bold" />
+          </span>
+          <span className="font-label-sm text-label-sm font-semibold text-primary">Publicar</span>
+        </button>
+
+        {/* Explorar — botón central derecho */}
         <button
           onClick={() => setExploreOpen((v) => !v)}
-          className={`flex flex-col items-center justify-center gap-0.5 px-2 active:scale-90 transition-all duration-150 ${
+          className={`flex flex-col items-center justify-center gap-0.5 px-1 flex-1 active:scale-90 transition-all duration-150 ${
             exploreOpen ? 'text-primary font-bold' : 'text-on-surface-variant opacity-70 hover:text-primary'
           }`}
           aria-label="Abrir explorar"
@@ -82,6 +97,24 @@ export default function BottomNav() {
               })}
             </div>
           </div>
+        </div>
+      )}
+
+      {/* Modal Publicar (demo) — mismo flujo que el navbar desktop */}
+      <PublishModal
+        open={publishOpen}
+        onClose={() => setPublishOpen(false)}
+        onPublish={() => {
+          setPublishOpen(false)
+          setToast('¡Anuncio publicado! Es una demo — pronto conectarás con la comunidad.')
+        }}
+        title="Publica tu anuncio"
+        subtitle="En menos de 2 minutos tu anuncio está visible para toda la comunidad."
+        fields={PUBLISH_FIELDS}
+      />
+      {toast && (
+        <div className="fixed bottom-24 left-1/2 -translate-x-1/2 z-50 bg-brand-blue-deep text-white px-6 py-3 rounded-full shadow-2xl font-label-sm text-label-sm whitespace-nowrap animate-fade-in-up">
+          {toast}
         </div>
       )}
     </>

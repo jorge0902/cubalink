@@ -5,19 +5,23 @@ import PublishModal from './PublishModal'
 import logoCubaLink from '../assets/cubalink-logo.png'
 
 // Campos genéricos del modal de publicación (demo)
-const PUBLISH_FIELDS = [
+export const PUBLISH_FIELDS = [
   { key: 'titulo', label: 'Título del anuncio', placeholder: 'Ej: Cuarto en Kotelniki, iPhone 12, busco albañil...', required: true },
   { key: 'detalle', label: 'Detalle', placeholder: 'Describe lo que publicas: precio, zona, condiciones...', required: true },
   { key: 'contacto', label: 'Contacto (teléfono o Telegram)', placeholder: '+7 ...', required: true },
 ]
 
-// Navegación principal de CubaLink (diseño del TopAppBar original de la landing)
+// Navegación principal de CubaLink (design del TopAppBar original de la landing)
+// Desktop: Inicio | Empleos | Rentas | Comunidad | Explorar (dropdown)
 export const NAV_LINKS = [
   { to: '/', label: 'Inicio', icon: 'home' },
   { to: '/empleos', label: 'Empleos', icon: 'work' },
+  { to: '/rentas', label: 'Rentas', icon: 'home_work' },
   { to: '/comunidad', label: 'Comunidad', icon: 'groups' },
-  { to: '/perfil', label: 'Perfil', icon: 'person' },
 ]
+
+// Perfil vive solo en el menú hamburguesa móvil (acceso secundario)
+const PROFILE_LINK = { to: '/perfil', label: 'Perfil', icon: 'person' }
 
 // Secciones agrupadas en el menú "Explorar"
 export const EXPLORE_LINKS = [
@@ -171,6 +175,21 @@ export default function Navbar() {
                 {link.label}
               </NavLink>
             ))}
+
+            {/* Perfil — acceso secundario solo en móvil (hamburguesa) */}
+            <NavLink
+              key={PROFILE_LINK.to}
+              to={PROFILE_LINK.to}
+              onClick={() => setMenuOpen(false)}
+              className={({ isActive }) =>
+                `flex items-center gap-3 px-4 py-3 rounded-lg font-label-sm text-label-sm transition-colors ${
+                  isActive ? 'bg-surface-container-low text-primary font-semibold' : 'text-on-surface-variant hover:bg-surface-container-low'
+                }`
+              }
+            >
+              <MaterialIcon name={PROFILE_LINK.icon} className="text-[20px]" />
+              {PROFILE_LINK.label}
+            </NavLink>
 
             <p className="px-4 pt-3 pb-1 text-[11px] uppercase tracking-widest text-outline font-semibold">
               Explorar
