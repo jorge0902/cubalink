@@ -9,7 +9,7 @@ import { useEffect, useRef } from 'react'
 const THEMES = {
   day: {
     background: 'linear-gradient(180deg, #3a8cd1 0%, #2a6595 40%, #68cbe3 75%, #ffffff 100%)',
-    stars: false,
+    snow: false,
     blur: 'blur(20px)',
     atmosOpacity: 0.4,
     // Velocidad +40% sobre el valor original (0.15→0.21, rango 0.2→0.28)
@@ -29,7 +29,7 @@ const THEMES = {
   night: {
     // Gradiente nocturno profundo
     background: 'linear-gradient(180deg, #050b14 0%, #0a192f 45%, #112240 80%, #1a365d 100%)',
-    stars: true,
+    snow: true,
     blur: 'blur(22px)',
     atmosOpacity: 0.35,
     // Velocidad +40% sobre el valor original (0.12→0.17, rango 0.18→0.25)
@@ -63,49 +63,62 @@ export default function SkyClouds({ variant = 'day', className = '' }) {
     const ctx = canvas.getContext('2d')
     const atmosphericCtx = atmosphericCanvas.getContext('2d')
 
-    // Capa de estrellas (solo variante night)
-    const starCanvas = theme.stars ? container.querySelector('#starCanvas') : null
-    const starCtx = starCanvas ? starCanvas.getContext('2d') : null
+    // Capa de nieve (solo variante night) — copos cayendo con viento sutil
+    const snowCanvas = theme.snow ? container.querySelector('#snowCanvas') : null
+    const snowCtx = snowCanvas ? snowCanvas.getContext('2d') : null
 
     let width, height
     let rafId
-    let stars = []
+    let snowflakes = []
 
     // Ajusta los canvas al tamaño del contenedor padre (no a la ventana)
     function resizeCanvas() {
       width = canvas.width = atmosphericCanvas.width = container.clientWidth
       height = canvas.height = atmosphericCanvas.height = container.clientHeight
-      if (starCanvas) {
-        starCanvas.width = width
-        starCanvas.height = height
+      if (snowCanvas) {
+        snowCanvas.width = width
+        snowCanvas.height = height
       }
-      if (theme.stars) initStars()
+      if (theme.snow) initSnow()
     }
 
-    // Clase Estrella con parpadeo suave
-    class Star {
+    // Clase Copo de Nieve — cae hacia abajo con velocidad suave y oscila con el viento
+    class Snowflake {
       constructor() {
         this.reset()
       }
 
       reset() {
-        this.x = Math.random() * width
-        this.y = Math.random() * (height * 0.7) // Principalmente en la parte superior del cielo
-        this.size = Math.random() * 1.5 + 0.5
-        this.baseOpacity = Math.random() * 0.5 + 0.3
-        this.opacity = this.baseOpacity
-        this.twinkleSpeed = Math.random() * 0.02 + 0.005
-        this.angle = Math.random() * Math.PI * 2
+        this.baseX = Math.random() * width
+        // Aparecen sobre la parte superior (algunos ya a media altura para llenar la escena al inicio)
+        this.y = -Math.random() * height
+        // Tamaños variados entre 0.8px y 2.5px para sensación de profundidad
+        this.size = Math.random() * 1.7 + 0.8
+        // Opacidad entre 0.3 y 0.8 (copos lejanos tenues, cercanos brillantes)
+        this.opacity = Math.random() * 0.5 + 0.3
+        // Velocidad de caída suave y variada
+        this.fallSpeed = Math.random() * 0.55 + 0.25
+        // Viento: fase, frecuencia y amplitud propias por copo
+        this.windPhase = Math.random() * Math.PI * 2
+        this.windFreq = Math.random() * 0.008 + 0.004
+        this.windAmp = Math.random() * 14 + 6
       }
 
       update() {
-        this.angle += this.twinkleSpeed
-        this.opacity = this.baseOpacity + Math.sin(this.angle) * 0.25
+        this.windPhase += this.windFreq
+        this.y += this.fallSpeed
+        // Oscilación lateral con seno: viento sutil
+        this.x = this.baseX + Math.sin(this.windPhase) * this.windAmp
+        // Reciclaje: al salir por abajo reaparece arriba (sin crear partículas nuevas)
+        if (this.y > height + 4) {
+          this.baseX = Math.random() * width
+          this.y = -4 - Math.random() * 10
+        }
       }
 
       draw(currentCtx) {
         currentCtx.save()
-        currentCtx.fillStyle = `rgba(255, 255, 255, ${Math.max(0, this.opacity)})`
+        currentCtx.fillStyle = `rgba(255, 255, 255, ${this.opacity})`
         currentCtx.beginPath()
         currentCtx.arc(this.x, this.y, this.size, 0, Math.PI * 2)
         currentCtx.fill()
@@ -113,12 +126,12 @@ export default function SkyClouds({ variant = 'day', className = '' }) {
       }
     }
 
-    // Cantidad de estrellas proporcional al área del contenedor
-    function initStars() {
-      stars = []
-      const numStars = Math.floor((width * height) / 3000)
-      for (let i = 0; i < numStars; i++) {
-        stars.push(new Star())
+    // Cantidad de copos proporcional al área del contenedor (rendimiento: se reciclan, no crecen)
+    function initSnow() {
+      snowflakes = []
+      const numFlakes = Math.floor((width * height) / 3000)
+      for (let i = 0; i < numFlakes; i++) {
+        snowflakes.push(new Snowflake())
       }
     }
 
@@ -196,15 +209,15 @@ export default function SkyClouds({ variant = 'day', className = '' }) {
     const atmosphericClouds = Array.from({ length: 2 }, () => new AtmosphericCloud())
 
     function animate() {
-      if (starCtx) starCtx.clearRect(0, 0, width, height)
+      if (snowCtx) snowCtx.clearRect(0, 0, width, height)
       ctx.clearRect(0, 0, width, height)
       atmosphericCtx.clearRect(0, 0, width, height)
 
-      // Renderizar estrellas (parpadeo suave)
-      if (starCtx) {
-        stars.forEach((star) => {
-          star.update()
-          star.draw(starCtx)
+      // Renderizar nieve (copos cayendo)
+      if (snowCtx) {
+        snowflakes.forEach((flake) => {
+          flake.update()
+          flake.draw(snowCtx)
         })
       }
 
@@ -240,8 +253,8 @@ export default function SkyClouds({ variant = 'day', className = '' }) {
       style={{ background: theme.background }}
       aria-hidden="true"
     >
-      {theme.stars && (
-        <canvas id="starCanvas" className="absolute inset-0 w-full h-full z-0" />
+      {theme.snow && (
+        <canvas id="snowCanvas" className="absolute inset-0 w-full h-full z-0" />
       )}
       <canvas id={'cloudCanvas' + idSuffix} className="absolute inset-0 w-full h-full z-[1]" />
       <canvas
