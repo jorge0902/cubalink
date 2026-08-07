@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react'
 import { Link, NavLink, useLocation } from 'react-router-dom'
 import MaterialIcon from './MaterialIcon'
 import PublishModal from './PublishModal'
+import { useFavorites } from '../context/FavoritesContext'
 import logoCubaLink from '../assets/cubalink-logo.png'
 
 // Campos genéricos del modal de publicación (demo)
@@ -41,6 +42,7 @@ export default function Navbar() {
   const [publishOpen, setPublishOpen] = useState(false)
   const [toast, setToast] = useState('')
   const location = useLocation()
+  const { favorites } = useFavorites()
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 20)
@@ -143,6 +145,19 @@ export default function Navbar() {
             className="hidden sm:inline-block bg-primary text-on-primary px-4 py-2 rounded-lg font-label-sm text-label-sm hover:opacity-90 transition-all"
           >
             Unirte
+          </Link>
+          {/* Favoritos / Guardados — justo a la izquierda del hamburguesa */}
+          <Link
+            to="/guardados"
+            aria-label="Mis guardados"
+            className="relative flex items-center justify-center w-10 h-10 rounded-lg hover:bg-surface-container-low transition-colors text-on-surface-variant hover:text-brand-gold"
+          >
+            <MaterialIcon name={favorites.length > 0 ? 'favorite' : 'favorite_border'} fill={favorites.length > 0} className="text-[22px]" />
+            {favorites.length > 0 && (
+              <span className="absolute -top-0.5 -right-0.5 min-w-[18px] h-[18px] px-1 rounded-full bg-brand-gold text-white text-[10px] font-bold flex items-center justify-center shadow-sm">
+                {favorites.length > 9 ? '9+' : favorites.length}
+              </span>
+            )}
           </Link>
           {/* Hamburger móvil */}
           <button

@@ -4,6 +4,7 @@ import Footer from './components/Footer'
 import BottomNav from './components/BottomNav'
 import ScrollToTop from './components/ScrollToTop'
 import { ActivityProvider } from './context/ActivityContext'
+import { FavoritesProvider } from './context/FavoritesContext'
 
 import HomeNew from './pages/HomeNew'
 import Jobs from './pages/Jobs'
@@ -20,11 +21,13 @@ import Register from './pages/Register'
 import Ranking from './pages/Ranking'
 import Trust from './pages/Trust'
 import TrustProfile from './pages/TrustProfile'
+import SavedListings from './pages/SavedListings'
 
 export default function App() {
   return (
-    <ActivityProvider>
-      <Router>
+    <FavoritesProvider>
+      <ActivityProvider>
+        <Router>
         <div className="min-h-screen flex flex-col bg-surface text-on-surface antialiased">
           <ScrollToTop />
           <Navbar />
@@ -46,6 +49,7 @@ export default function App() {
               <Route path="/viajes" element={<Travel />} />
               <Route path="/remesas" element={<Remittances />} />
               <Route path="/publicar/:tipo" element={<Publicar />} />
+              <Route path="/guardados" element={<SavedListings />} />
               <Route
                 path="*"
                 element={
@@ -68,7 +72,8 @@ export default function App() {
           <Footer />
           <BottomNav />
         </div>
-      </Router>
-    </ActivityProvider>
+        </Router>
+      </ActivityProvider>
+    </FavoritesProvider>
   )
 }
