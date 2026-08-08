@@ -33,6 +33,7 @@ export const EXPLORE_LINKS = [
   { to: '/empresas', label: 'Empresas', icon: 'apartment', desc: 'Aliados y vacantes' },
   { to: '/servicios', label: 'Servicios', icon: 'handyman', desc: 'Profesionales de la red' },
   { to: '/confiables', label: 'Confiables', icon: 'shield', desc: 'Gente de confianza' },
+  { to: '/lineas', label: 'Líneas', icon: 'sim_card', desc: 'Chips y telefonía' },
 ]
 
 export default function Navbar() {

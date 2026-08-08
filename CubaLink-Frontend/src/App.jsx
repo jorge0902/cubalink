@@ -22,6 +22,7 @@ import Ranking from './pages/Ranking'
 import Trust from './pages/Trust'
 import TrustProfile from './pages/TrustProfile'
 import SavedListings from './pages/SavedListings'
+import Lines from './pages/Lines'
 
 export default function App() {
   return (
@@ -50,6 +51,7 @@ export default function App() {
               <Route path="/remesas" element={<Remittances />} />
               <Route path="/publicar/:tipo" element={<Publicar />} />
               <Route path="/guardados" element={<SavedListings />} />
+              <Route path="/lineas" element={<Lines />} />
               <Route
                 path="*"
                 element={

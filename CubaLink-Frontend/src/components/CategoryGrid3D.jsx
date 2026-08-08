@@ -318,6 +318,52 @@ const ICON_3D = {
       </svg>
     ),
   },
+  lineas: {
+    // Tarjeta SIM / chip móvil brillante 3D
+    to: '/lineas',
+    title: 'Líneas',
+    colors: ['#0ea5e9', '#0369a1', '#38bdf8'],
+    svg: (
+      <svg viewBox="0 0 48 48" className="w-full h-full" aria-hidden="true">
+        <defs>
+          <linearGradient id="g-lin-1" x1="0" y1="0" x2="1" y2="1">
+            <stop offset="0" stopColor="#38bdf8" />
+            <stop offset="1" stopColor="#075985" />
+          </linearGradient>
+          <radialGradient id="g-lin-2" cx="0.35" cy="0.28" r="0.85">
+            <stop offset="0" stopColor="#bae6fd" stopOpacity="0.95" />
+            <stop offset="0.55" stopColor="#38bdf8" stopOpacity="0.18" />
+            <stop offset="1" stopColor="#0369a1" stopOpacity="0" />
+          </radialGradient>
+        </defs>
+        {/* Sombra */}
+        <ellipse cx="24" cy="42" rx="13" ry="2" fill="#0f172a" opacity="0.15" />
+        {/* Cuerpo de la SIM (ligeramente inclinada) */}
+        <g transform="rotate(-6 24 24)">
+          <rect x="13" y="10" width="22" height="28" rx="4" fill="url(#g-lin-1)" />
+          {/* Chip dorado */}
+          <rect x="18.5" y="16" width="11" height="9" rx="2" fill="#fcd34d" />
+          <rect x="18.5" y="16" width="11" height="9" rx="2" fill="#ffffff" opacity="0.18" />
+          {/* Contactos del chip */}
+          <g stroke="#b45309" strokeWidth="0.9" opacity="0.85">
+            <path d="M24 17.6 v5.8 M20.4 20.5 h7.2 M21.2 18.4 h5.6 M21.2 22.6 h5.6" />
+          </g>
+          {/* Número de serie estilizado */}
+          <g fill="#7dd3fc" opacity="0.85">
+            <rect x="19" y="28.5" width="10" height="1.8" rx="0.9" />
+            <rect x="19" y="31.8" width="7" height="1.8" rx="0.9" />
+          </g>
+          {/* Esquina recortada (SIM) */}
+          <path d="M35 22 v6 l-2 2 h-2 v-8 h4 z" fill="#0284c7" opacity="0.55" />
+          {/* Brillo especular */}
+          <rect x="13" y="10" width="22" height="28" rx="4" fill="url(#g-lin-2)" />
+          {/* Antenas de señal (ondas) */}
+          <path d="M7 17 a6 6 0 0 1 0 10" fill="none" stroke="#38bdf8" strokeWidth="1.8" strokeLinecap="round" />
+          <path d="M4.5 13.5 a10 10 0 0 1 0 17" fill="none" stroke="#7dd3fc" strokeWidth="1.5" strokeLinecap="round" opacity="0.7" />
+        </g>
+      </svg>
+    ),
+  },
 }
 
 // Grid de accesos directos estilo Dubizzle: 3 columnas, tarjetas cuadradas, sombra sutil
