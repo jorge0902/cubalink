@@ -141,14 +141,14 @@ const ICON_3D = {
     ),
   },
   viajes: {
-    // Jetliner comercial blanco 3/4 en ascenso (despegue), turbinas y cola estilizada
+    // Airbus/Boeing blanco en vuelo 45° arriba-derecha: alas simétricas, 2 turbinas, cola clara
     to: '/viajes',
     title: 'Viajes',
     colors: ['#0284c7', '#0369a1', '#38bdf8'],
     svg: (
       <svg viewBox="0 0 48 48" className="w-full h-full" aria-hidden="true">
         <defs>
-          {/* Fuselaje blanco reluciente */}
+          {/* Fuselaje blanco satinado */}
           <linearGradient id="g-via-w" x1="0" y1="0" x2="0" y2="1">
             <stop offset="0" stopColor="#ffffff" />
             <stop offset="0.55" stopColor="#f1f5f9" />
@@ -166,72 +166,68 @@ const ICON_3D = {
             <stop offset="1" stopColor="#94a3b8" />
           </linearGradient>
         </defs>
-        {/* Sombra en el suelo */}
-        <ellipse cx="21" cy="42" rx="13" ry="2.2" fill="#0f172a" opacity="0.16" />
-        {/* Estela / contrail de despegue */}
-        <g transform="translate(1.5 0)">
-          <path d="M3 33.5 q8 -1 12 -5.5" stroke="#e0f2fe" strokeWidth="2" strokeLinecap="round" fill="none" opacity="0.75" />
-          <path d="M3 37.5 q9 -1.5 13 -6.5" stroke="#bae6fd" strokeWidth="1.4" strokeLinecap="round" fill="none" opacity="0.5" />
-        </g>
-        {/* Avión jetliner en diagonal ascendente */}
-        <g transform="translate(2.8 4.1) rotate(-18 24 24)">
-          {/* Ala lejana (detrás del fuselaje, sombreada) */}
-          <path d="M24 17 L35.5 21.5 L38.5 19 L30.5 14.8 Z" fill="#cbd5e1" opacity="0.75" />
-          {/* Estabilizador horizontal */}
-          <path d="M10 16 L3.8 19 L3.8 22 L12 19 Z" fill="url(#g-via-b)" />
-          {/* Deriva (cola vertical) */}
-          <path d="M15 13.2 L11.5 4.6 L22 8.6 Z" fill="url(#g-via-w)" />
-          <path d="M15 13.2 L17 9 L19.4 9.9 Z" fill="#0284c7" opacity="0.6" />
+        {/* Avión en pleno vuelo: ángulo 45° hacia arriba-derecha, sin sombra de suelo ni estela */}
+        <g transform="rotate(-45 24 24) translate(1.8 3.7) translate(24 24) scale(0.88) translate(-24 -24)">
+          {/* Estabilizador horizontal (detrás) */}
+          <path d="M10 18.5 L4.2 21.5 L4.2 24.2 L12 21.5 Z" fill="url(#g-via-b)" />
+          {/* Ala lejana (detrás del fuselaje, arriba) */}
+          <path d="M26 13.8 L35.8 10.2 L38.4 12.2 L31.8 15.8 Z" fill="#cbd5e1" opacity="0.8" />
+          {/* Turbina 2 (ala lejana, asomando tras el fuselaje) */}
+          <rect x="33" y="12.8" width="3.8" height="5.4" rx="1.9" fill="url(#g-via-a)" />
+          <rect x="34" y="13.7" width="1.8" height="3.6" rx="0.9" fill="#0f172a" />
+          {/* Deriva (cola vertical clara) */}
+          <path d="M15 14.5 L11.4 5.8 L21 9.8 Z" fill="url(#g-via-w)" />
+          <path d="M15 14.5 L16.6 10 L18.9 10.9 Z" fill="#0284c7" opacity="0.55" />
           {/* Fuselaje blanco (nariz cónica) */}
           <path
-            d="M12 19 Q12 13 20 13 H31 Q38.5 13 41.5 19 Q38 25 30 25 H21 Q12 25 12 19 Z"
+            d="M11 20.5 Q11 14.5 18 14.5 H30 Q38.5 14.5 40.2 20.5 Q38.5 26.5 30 26.5 H18 Q11 26.5 11 20.5 Z"
             fill="url(#g-via-w)"
           />
           {/* Vientre sombreado */}
           <path
-            d="M12 19 Q12 25 21 25 H30 Q38 25 41.5 19 L41.5 22 Q38 25 30 25 H21 Q12 25 12 22 Z"
-            fill="#94a3b8" opacity="0.45"
+            d="M11 20.5 Q11 26.5 18 26.5 H30 Q38.5 26.5 40.2 20.5 L40.2 23.5 Q38.5 26.5 30 26.5 H18 Q11 26.5 11 23.5 Z"
+            fill="#94a3b8" opacity="0.4"
           />
           {/* Líneas azules de la aerolínea */}
-          <path d="M14.5 19.7 H33.5" stroke="#0284c7" strokeWidth="1.1" strokeLinecap="round" />
-          <path d="M15 21.1 H31" stroke="#0ea5e9" strokeWidth="0.7" strokeLinecap="round" opacity="0.7" />
-          {/* Ventanillas */}
-          <g fill="#0f172a">
-            <circle cx="15.8" cy="17.2" r="0.85" />
-            <circle cx="19.8" cy="17.2" r="0.85" />
-            <circle cx="23.8" cy="17.2" r="0.85" />
-            <circle cx="27.8" cy="17.2" r="0.85" />
-            <circle cx="31.8" cy="17.2" r="0.85" />
+          <path d="M14 21.4 H33" stroke="#0284c7" strokeWidth="1.05" strokeLinecap="round" />
+          <path d="M14.5 22.8 H30.5" stroke="#0ea5e9" strokeWidth="0.65" strokeLinecap="round" opacity="0.7" />
+          {/* Ventanillas azules */}
+          <g fill="#0369a1">
+            <circle cx="15.2" cy="18.6" r="0.95" />
+            <circle cx="19.2" cy="18.6" r="0.95" />
+            <circle cx="23.2" cy="18.6" r="0.95" />
+            <circle cx="27.2" cy="18.6" r="0.95" />
+            <circle cx="31.2" cy="18.6" r="0.95" />
           </g>
           {/* Puerta delantera */}
-          <rect x="34.8" y="16.4" width="1.3" height="2.8" rx="0.65" fill="#475569" opacity="0.5" />
+          <rect x="34.6" y="17.6" width="1.3" height="2.6" rx="0.65" fill="#475569" opacity="0.5" />
           {/* Ala cercana (barrida, con brillo de borde de ataque) */}
-          <path d="M21.5 21.5 L6 26.5 L6 30 L27.5 24 Z" fill="url(#g-via-a)" />
-          <path d="M21.5 21.5 L6 26.5 L6 27.8 L25 23.2 Z" fill="#ffffff" opacity="0.28" />
-          {/* Turbina bajo el ala cercana */}
+          <path d="M22 24.5 L6.5 29.5 L6.5 33.5 L28 27 Z" fill="url(#g-via-a)" />
+          <path d="M22 24.5 L6.5 29.5 L6.5 31 L26 26.2 Z" fill="#ffffff" opacity="0.3" />
+          {/* Turbina 1 bajo el ala cercana */}
           <g>
-            <rect x="11.6" y="27.4" width="4.6" height="6.6" rx="2.3" fill="url(#g-via-a)" />
-            <rect x="12.5" y="28.3" width="2.8" height="4.8" rx="1.4" fill="#0f172a" />
-            <rect x="13.3" y="28.9" width="1.2" height="3.6" rx="0.6" fill="#94a3b8" opacity="0.65" />
+            <rect x="11.6" y="29.4" width="4.8" height="5.4" rx="2.4" fill="url(#g-via-w)" />
+            <rect x="12.6" y="30.3" width="2.8" height="3.6" rx="1.4" fill="#0f172a" />
+            <rect x="13.4" y="30.9" width="1.2" height="2.4" rx="0.6" fill="#94a3b8" opacity="0.65" />
           </g>
         </g>
       </svg>
     ),
   },
   remesas: {
-    // Fajo de billetes 3D detallado rodeado por flecha dorada circular de envío
+    // Fajo de 3 billetes 3D (papel moneda verde) ligeramente inclinado + anillo dorado de envío
     to: '/remesas',
     title: 'Remesas',
     colors: ['#7c3aed', '#6d28d9', '#a78bfa'],
     svg: (
       <svg viewBox="0 0 48 48" className="w-full h-full" aria-hidden="true">
         <defs>
-          {/* Billete superior */}
+          {/* Billete superior: verde papel moneda */}
           <linearGradient id="g-rem-1" x1="0" y1="0" x2="1" y2="0">
-            <stop offset="0" stopColor="#34d399" />
-            <stop offset="1" stopColor="#059669" />
+            <stop offset="0" stopColor="#b7e4ae" />
+            <stop offset="1" stopColor="#6db45e" />
           </linearGradient>
-          {/* Dorado metálico de la flecha */}
+          {/* Dorado metálico del anillo */}
           <linearGradient id="g-rem-g" x1="0" y1="0" x2="1" y2="1">
             <stop offset="0" stopColor="#fde68a" />
             <stop offset="0.45" stopColor="#f59e0b" />
@@ -239,44 +235,52 @@ const ICON_3D = {
             <stop offset="1" stopColor="#b45309" />
           </linearGradient>
         </defs>
-        {/* Sombra */}
-        <ellipse cx="24" cy="41.5" rx="12" ry="2.2" fill="#0f172a" opacity="0.15" />
-        {/* Fajo de billetes (centrado, con canto del taco) */}
-        <g transform="translate(24 24) rotate(-3)">
-          {/* Canto del taco: billetes traseros */}
-          <rect x="-13.5" y="-8.5" width="27" height="15.5" rx="1.8" fill="#064e3b" />
-          <rect x="-13" y="-9.2" width="27" height="15.5" rx="1.8" fill="#065f46" />
-          <rect x="-12.5" y="-9.9" width="27" height="15.5" rx="1.8" fill="#047857" />
-          {/* Billete superior */}
-          <rect x="-12" y="-10.6" width="27" height="15.5" rx="1.8" fill="url(#g-rem-1)" />
+        {/* Sombra suave */}
+        <ellipse cx="24" cy="42.5" rx="11" ry="2.1" fill="#0f172a" opacity="0.13" />
+        {/* Fajo de 3 billetes, estrictamente centrado, ligeramente inclinado */}
+        <g transform="translate(24 24) rotate(-4)">
+          {/* Billete 1 (fondo) */}
+          <rect x="-12.5" y="-6.2" width="24" height="14" rx="1.7" fill="#14532d" />
+          {/* Billete 2 (medio) */}
+          <rect x="-12" y="-7" width="24" height="14" rx="1.7" fill="#166534" />
+          {/* Billete 3 (frente) */}
+          <rect x="-11.5" y="-7.8" width="24" height="14" rx="1.7" fill="url(#g-rem-1)" />
           {/* Marco de filigrana */}
-          <rect x="-10.4" y="-9" width="24" height="12.3" rx="1.1" fill="none" stroke="#a7f3d0" strokeWidth="0.8" opacity="0.9" />
-          {/* Óvalo retrato */}
-          <ellipse cx="-4.4" cy="-2.6" rx="3.4" ry="4" fill="#065f46" />
-          <ellipse cx="-4.4" cy="-2.6" rx="2.6" ry="3.1" fill="none" stroke="#a7f3d0" strokeWidth="0.5" opacity="0.8" />
-          {/* Denominación "100" */}
-          <g fill="none" stroke="#ecfdf5" strokeWidth="1.5" strokeLinecap="round">
-            <path d="M4.2 -5 v4.6 l-1.6 1" />
-            <circle cx="6.8" cy="-3.2" r="1.9" />
-            <circle cx="10.6" cy="-3.2" r="1.9" />
+          <rect x="-9.9" y="-6.2" width="20.8" height="10.8" rx="1" fill="none" stroke="#d1fae5" strokeWidth="0.7" opacity="0.85" />
+          {/* Retrato ovalado central (papel moneda) */}
+          <ellipse cx="0" cy="-1.2" rx="3.9" ry="4.4" fill="#14532d" />
+          <ellipse cx="0" cy="-1.2" rx="3.9" ry="4.4" fill="none" stroke="#bbf7d0" strokeWidth="0.5" opacity="0.7" />
+          {/* Texto simulado bajo el retrato */}
+          <rect x="-5.5" y="3.2" width="11" height="0.55" rx="0.27" fill="#d1fae5" opacity="0.8" />
+          <rect x="-4" y="4.05" width="8" height="0.55" rx="0.27" fill="#d1fae5" opacity="0.55" />
+          {/* Numerales de esquina "100" */}
+          <g fill="none" stroke="#ecfdf5" strokeWidth="1" strokeLinecap="round">
+            <path d="M-8.3 -4.4 v2.2 l-0.8 0.5" />
+            <circle cx="-6.9" cy="-3.4" r="0.95" />
+            <circle cx="-5.5" cy="-3.4" r="0.95" />
+            <path d="M8.3 3.4 v-2.2 l0.8 -0.5" />
+            <circle cx="6.9" cy="2.4" r="0.95" />
+            <circle cx="5.5" cy="2.4" r="0.95" />
           </g>
           {/* Franja de seguridad */}
-          <rect x="-9.2" y="0.8" width="21.4" height="0.7" fill="#a7f3d0" opacity="0.6" />
-          {/* Símbolo de envío sobre el billete */}
-          <circle cx="0" cy="2.6" r="2.5" fill="none" stroke="#ecfdf5" strokeWidth="0.9" opacity="0.9" />
-          <path d="M-1.3 2.6 l0.9 0.9 l1.9 -1.9" stroke="#ecfdf5" strokeWidth="0.9" fill="none" strokeLinecap="round" strokeLinejoin="round" opacity="0.9" />
-          {/* Brillo sutil */}
-          <rect x="-12" y="-10.6" width="27" height="15.5" rx="1.8" fill="#ffffff" opacity="0.06" />
+          <rect x="-9" y="4.9" width="18" height="0.6" rx="0.3" fill="#bbf7d0" opacity="0.5" />
+          {/* Brillo satinado */}
+          <rect x="-11.5" y="-7.8" width="24" height="14" rx="1.7" fill="#ffffff" opacity="0.05" />
         </g>
-        {/* Flecha dorada circular de envío (metálica, con punta direccional) */}
+        {/* Anillo dorado metálico de envío (único, con punta direccional) */}
         {/* 3 arcos menores de 90° alrededor de (24,24): 3 en punto → 12 en punto (hueco arriba-derecha) */}
         <path
-          d="M39.5 24 A 15.5 15.5 0 0 1 24 39.5 A 15.5 15.5 0 0 1 8.5 24 A 15.5 15.5 0 0 1 24 8.5"
-          fill="none" stroke="url(#g-rem-g)" strokeWidth="3.4" strokeLinecap="round"
+          d="M40 24 A 16 16 0 0 1 24 40 A 16 16 0 0 1 8 24 A 16 16 0 0 1 24 8"
+          fill="none" stroke="url(#g-rem-g)" strokeWidth="3.2" strokeLinecap="round"
+        />
+        {/* Brillo interior del anillo */}
+        <path
+          d="M38.4 24 A 14.4 14.4 0 0 1 24 38.4 A 14.4 14.4 0 0 1 9.6 24 A 14.4 14.4 0 0 1 24 9.6"
+          fill="none" stroke="#fde68a" strokeWidth="0.9" strokeLinecap="round" opacity="0.5"
         />
         {/* Punta de flecha en la dirección del flujo (tangente en 12 en punto) */}
         <path
-          d="M27.6 8.5 L23.6 6.3 L23.6 10.7 Z"
+          d="M27.8 8 L23.8 5.8 L23.8 10.2 Z"
           fill="url(#g-rem-g)"
         />
       </svg>
@@ -369,7 +373,7 @@ const ICON_3D = {
     ),
   },
   servicios: {
-    // Llave inglesa cromada + destornillador de mango ergonómico en X (soporte técnico)
+    // Llave inglesa ajustable + destornillador de cruz en X simétrica, acero cromado, sin artefactos
     to: '/servicios',
     title: 'Servicios',
     colors: ['#e11d48', '#be123c', '#fb7185'],
@@ -391,37 +395,42 @@ const ICON_3D = {
             <stop offset="1" stopColor="#881337" />
           </linearGradient>
         </defs>
-        {/* Sombra */}
-        <ellipse cx="24" cy="42" rx="14" ry="2.2" fill="#0f172a" opacity="0.15" />
-        {/* Llave inglesa (diagonal 45°, anillo arriba-derecha, boca abajo-izquierda) */}
+        {/* Sombra suave */}
+        <ellipse cx="24" cy="42" rx="13" ry="2.1" fill="#0f172a" opacity="0.12" />
+        {/* Llave inglesa ajustable (45°, cabeza con boca arriba-derecha) — sin anillos ni círculos */}
         <g transform="translate(24 24) rotate(45)">
-          {/* Anillo */}
-          <circle cx="0" cy="-11" r="4.3" fill="url(#g-ser-c)" />
-          <circle cx="0" cy="-11" r="2" fill="#334155" opacity="0.5" />
-          {/* Mango */}
-          <rect x="-2.2" y="-5" width="4.4" height="13" rx="2.2" fill="url(#g-ser-c)" />
-          {/* Cabeza con boca abierta */}
-          <rect x="-3.4" y="6.3" width="6.8" height="4.6" rx="2.4" fill="url(#g-ser-c)" />
-          <rect x="1" y="10.5" width="2.4" height="4.8" rx="1.1" fill="url(#g-ser-c)" />
-          <rect x="-3.4" y="10.5" width="2.4" height="4.8" rx="1.1" fill="url(#g-ser-c)" />
-          {/* Brillos cromados */}
-          <rect x="-1.2" y="-4.2" width="1" height="11" rx="0.5" fill="#ffffff" opacity="0.55" />
-          <rect x="-2.6" y="7.1" width="5.2" height="0.9" rx="0.45" fill="#ffffff" opacity="0.6" />
+          <g transform="translate(0 2.25)">
+            {/* Mordaza izquierda */}
+            <rect x="-5" y="-12" width="3.4" height="6.5" rx="1.5" fill="url(#g-ser-c)" />
+            {/* Mordaza derecha */}
+            <rect x="1.6" y="-12" width="3.4" height="6.5" rx="1.5" fill="url(#g-ser-c)" />
+            {/* Base de la cabeza */}
+            <rect x="-5" y="-5.5" width="10" height="4" rx="1.6" fill="url(#g-ser-c)" />
+            {/* Mecanismo de ajuste (integrado en la cabeza) */}
+            <rect x="-2.4" y="-6.7" width="4.8" height="1.8" rx="0.9" fill="#475569" />
+            <path d="M-1.2 -6.7 v1.8 M0 -6.7 v1.8 M1.2 -6.7 v1.8" stroke="#cbd5e1" strokeWidth="0.5" opacity="0.7" />
+            {/* Mango */}
+            <rect x="-2.1" y="-1.5" width="4.2" height="9" rx="2.1" fill="url(#g-ser-c)" />
+            {/* Brillos cromados */}
+            <rect x="-1.1" y="-0.7" width="0.9" height="7.5" rx="0.45" fill="#ffffff" opacity="0.55" />
+            <rect x="-4.2" y="-11.3" width="8.4" height="0.8" rx="0.4" fill="#ffffff" opacity="0.6" />
+          </g>
         </g>
-        {/* Destornillador (diagonal -45°, punta arriba-izquierda, mango abajo-derecha) */}
+        {/* Destornillador de cruz (diagonal -45°, punta arriba-izquierda, mango abajo-derecha) */}
         <g transform="translate(24 24) rotate(-45)">
           {/* Varilla cromada */}
-          <rect x="-1.1" y="-14.3" width="2.2" height="15.5" rx="1.1" fill="url(#g-ser-c)" />
-          {/* Punta plana */}
-          <path d="M-1.1 -14.3 h2.2 l-0.7 -2.4 h-0.8 z" fill="#94a3b8" />
+          <rect x="-1.15" y="-13.5" width="2.3" height="13.8" rx="1.15" fill="url(#g-ser-c)" />
+          {/* Punta de cruz (Phillips) */}
+          <path d="M-1.15 -13.5 h2.3 l-0.55 -2.3 h-1.2 z" fill="#94a3b8" />
+          <path d="M-0.75 -15.55 l1.5 1.55 M0.75 -15.55 l-1.5 1.55" stroke="#e2e8f0" strokeWidth="0.6" strokeLinecap="round" opacity="0.9" />
           {/* Anillo metálico del mango */}
-          <rect x="-1.6" y="1.2" width="3.2" height="1.6" rx="0.8" fill="url(#g-ser-c)" />
+          <rect x="-1.7" y="0.3" width="3.4" height="1.7" rx="0.85" fill="url(#g-ser-c)" />
           {/* Mango ergonómico rojo */}
-          <rect x="-3.4" y="2.8" width="6.8" height="14" rx="3" fill="url(#g-ser-2)" />
+          <rect x="-3.6" y="2" width="7.2" height="13.6" rx="3.4" fill="url(#g-ser-2)" />
           {/* Estrías de agarre */}
-          <path d="M-2.5 6.2 h5 M-2.5 9.2 h5 M-2.5 12.2 h5" stroke="#9f1239" strokeWidth="0.9" strokeLinecap="round" opacity="0.7" />
+          <path d="M-2.7 5.4 h5.4 M-2.7 8.6 h5.4 M-2.7 11.8 h5.4" stroke="#9f1239" strokeWidth="0.9" strokeLinecap="round" opacity="0.65" />
           {/* Brillo del mango */}
-          <rect x="-2.2" y="3.8" width="1.2" height="12" rx="0.6" fill="#ffffff" opacity="0.3" />
+          <rect x="-2.4" y="3" width="1.3" height="11" rx="0.65" fill="#ffffff" opacity="0.3" />
         </g>
       </svg>
     ),
