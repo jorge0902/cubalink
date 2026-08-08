@@ -2,6 +2,7 @@ import { Link } from 'react-router-dom'
 
 // Iconos 3D inline (SVG con degradados, sombras y brillos especulares).
 // No dependen de Google Fonts ni Material Symbols (bloqueada en Rusia) — siempre legibles.
+// Acabado común: iluminación suave, bordes redondeados, sombra paralela tenue y centrado total.
 const ICON_3D = {
   empleos: {
     // Maletín de negocios 3D
@@ -21,6 +22,8 @@ const ICON_3D = {
             <stop offset="1" stopColor="#1e40af" stopOpacity="0" />
           </radialGradient>
         </defs>
+        {/* Sombra paralela */}
+        <ellipse cx="24" cy="41" rx="16" ry="2.2" fill="#0f172a" opacity="0.14" />
         {/* Cuerpo del maletín */}
         <rect x="8" y="18" width="32" height="19" rx="4" fill="url(#g-emp-1)" />
         {/* Tapa superior */}
@@ -37,7 +40,7 @@ const ICON_3D = {
     ),
   },
   rentas: {
-    // Cama acogedora 3D con mesita de noche
+    // Cama acogedora 3D pulida con mesita de noche y lámpara
     to: '/rentas',
     title: 'Rentas Moscú',
     colors: ['#0d9488', '#0f766e', '#14b8a6'],
@@ -45,38 +48,56 @@ const ICON_3D = {
       <svg viewBox="0 0 48 48" className="w-full h-full" aria-hidden="true">
         <defs>
           <linearGradient id="g-ren-1" x1="0" y1="0" x2="0" y2="1">
-            <stop offset="0" stopColor="#14b8a6" />
-            <stop offset="1" stopColor="#0f766e" />
+            <stop offset="0" stopColor="#0d9488" />
+            <stop offset="1" stopColor="#134e4a" />
           </linearGradient>
           <linearGradient id="g-ren-2" x1="0" y1="0" x2="0" y2="1">
-            <stop offset="0" stopColor="#f0fdfa" />
-            <stop offset="1" stopColor="#99f6e4" />
+            <stop offset="0" stopColor="#ffffff" />
+            <stop offset="1" stopColor="#ccfbf1" />
+          </linearGradient>
+          <linearGradient id="g-ren-3" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0" stopColor="#5eead4" />
+            <stop offset="1" stopColor="#0f766e" />
           </linearGradient>
         </defs>
-        {/* Base de la cama */}
-        <rect x="6" y="28" width="32" height="9" rx="3" fill="url(#g-ren-1)" />
-        {/* Colchón */}
-        <rect x="8" y="22" width="28" height="8" rx="3" fill="url(#g-ren-2)" />
+        {/* Sombra proyectada en el suelo */}
+        <ellipse cx="23.5" cy="42" rx="16.5" ry="2.4" fill="#0f172a" opacity="0.15" />
+        {/* Patas */}
+        <rect x="7" y="37.5" width="2.4" height="3.4" rx="1" fill="#134e4a" />
+        <rect x="29.5" y="37.5" width="2.4" height="3.4" rx="1" fill="#134e4a" />
+        {/* Marco/base de la cama */}
+        <rect x="3" y="27" width="33" height="10" rx="3" fill="url(#g-ren-1)" />
+        <rect x="3" y="27" width="33" height="3.2" rx="1.6" fill="#ffffff" opacity="0.14" />
         {/* Cabecera */}
-        <rect x="6" y="18" width="5" height="19" rx="2" fill="#115e59" />
+        <rect x="3" y="15.5" width="4.6" height="21.5" rx="2" fill="#0f766e" />
+        <rect x="3.8" y="16.6" width="1.4" height="19" rx="0.7" fill="#5eead4" opacity="0.4" />
+        {/* Colchón */}
+        <rect x="5" y="20" width="29" height="9" rx="3" fill="url(#g-ren-2)" />
+        {/* Borde de luz superior del colchón */}
+        <rect x="7" y="21" width="25" height="1.5" rx="0.75" fill="#ffffff" opacity="0.85" />
+        {/* Costuras del colchón */}
+        <path d="M11 22.6 v3.6 M16 22.6 v3.6 M21 22.6 v3.6 M26 22.6 v3.6" stroke="#99f6e4" strokeWidth="0.9" strokeLinecap="round" opacity="0.9" />
         {/* Almohada */}
-        <rect x="10" y="23.5" width="8" height="5" rx="2" fill="#ffffff" opacity="0.85" />
-        {/* Pata delantera */}
-        <rect x="10" y="37" width="2.6" height="4" rx="1" fill="#0f766e" />
-        <rect x="32" y="37" width="2.6" height="4" rx="1" fill="#0f766e" />
-        {/* Mesita de noche */}
-        <rect x="41" y="26" width="7" height="12" rx="2" fill="#134e4a" />
-        <rect x="42.2" y="27.6" width="4.6" height="4.4" rx="1.2" fill="#5eead4" />
-        {/* Lámpara */}
-        <path d="M44.5 24 v-2.5" stroke="#fcd34d" strokeWidth="1.6" />
-        <path d="M42.5 20.6 h4 a1.4 1.4 0 0 1 0 2.8 h-4 z" fill="#fcd34d" />
-        {/* Brillo */}
-        <rect x="8" y="22" width="28" height="8" rx="3" fill="url(#g-ren-2)" opacity="0.35" />
+        <rect x="8.5" y="21.6" width="8.5" height="5.6" rx="2.3" fill="#ffffff" />
+        <path d="M11.5 24.5 h1.5 M9.8 26 h1.5" stroke="#99f6e4" strokeWidth="0.8" strokeLinecap="round" />
+        {/* Manta doblada al pie */}
+        <path d="M21.5 20 v9 h12.5 a3 3 0 0 0 3 -3 v-3 a3 3 0 0 0 -3 -3 z" fill="url(#g-ren-3)" />
+        <path d="M23 21.8 v5.8 h9.5" fill="none" stroke="#a7f3d0" strokeWidth="1.1" strokeLinecap="round" opacity="0.85" />
+        {/* Mesita de noche con lámpara */}
+        <g transform="translate(38.5 24)">
+          <rect x="0" y="4" width="6.5" height="10.5" rx="1.8" fill="#134e4a" />
+          <rect x="0.8" y="5.4" width="4.9" height="3.2" rx="1" fill="#5eead4" opacity="0.5" />
+          {/* Lámpara */}
+          <path d="M3.25 4 v-3" stroke="#fcd34d" strokeWidth="1.5" strokeLinecap="round" />
+          <path d="M1.4 -1.2 h3.7 l-0.6 -1.6 h-2.5 z" fill="#fcd34d" />
+          {/* Halo de luz */}
+          <path d="M0.4 -0.2 a2.85 2.85 0 0 1 5.7 0 z" fill="#fde68a" opacity="0.85" />
+        </g>
       </svg>
     ),
   },
   marketplace: {
-    // Smartphone de alta gama con reloj
+    // Smartphone vertical con app de tienda (limpio y simétrico)
     to: '/marketplace',
     title: 'Marketplace',
     colors: ['#f59e0b', '#d97706', '#fbbf24'],
@@ -84,77 +105,100 @@ const ICON_3D = {
       <svg viewBox="0 0 48 48" className="w-full h-full" aria-hidden="true">
         <defs>
           <linearGradient id="g-mkt-1" x1="0" y1="0" x2="1" y2="1">
-            <stop offset="0" stopColor="#fbbf24" />
+            <stop offset="0" stopColor="#fcd34d" />
+            <stop offset="0.5" stopColor="#f59e0b" />
             <stop offset="1" stopColor="#b45309" />
           </linearGradient>
-          <radialGradient id="g-mkt-2" cx="0.35" cy="0.25" r="0.8">
-            <stop offset="0" stopColor="#fde68a" />
-            <stop offset="1" stopColor="#d97706" stopOpacity="0.2" />
-          </radialGradient>
+          <linearGradient id="g-mkt-2" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0" stopColor="#1e3a8a" />
+            <stop offset="1" stopColor="#0f172a" />
+          </linearGradient>
         </defs>
-        {/* Smartphone (ligeramente inclinado) */}
-        <g transform="rotate(-8 24 24)">
-          <rect x="14" y="7" width="21" height="35" rx="4.5" fill="url(#g-mkt-1)" />
-          <rect x="16.5" y="10" width="16" height="27" rx="2.5" fill="#0f172a" />
-          {/* Pantalla brillante */}
-          <rect x="18" y="12" width="13" height="23" rx="1.8" fill="#1e3a8a" />
-          <rect x="18" y="12" width="13" height="23" rx="1.8" fill="url(#g-mkt-2)" opacity="0.55" />
-          {/* Notch */}
-          <rect x="22.5" y="9" width="3" height="1.6" rx="0.8" fill="#111827" />
-        </g>
-        {/* Reloj inteligente junto al teléfono */}
-        <g transform="translate(38 12)">
-          <rect x="0" y="3" width="9" height="13" rx="3" fill="#f59e0b" />
-          <rect x="1.5" y="4.6" width="6" height="9.6" rx="2" fill="#0f172a" />
-          <circle cx="4.5" cy="9.4" r="2.4" fill="#38bdf8" />
-          <path d="M1 3 q3 -4 7 0" fill="none" stroke="#b45309" strokeWidth="2" strokeLinecap="round" />
-        </g>
+        {/* Sombra */}
+        <ellipse cx="24" cy="42" rx="11" ry="2.2" fill="#0f172a" opacity="0.16" />
+        {/* Cuerpo del teléfono (vertical, centrado) */}
+        <rect x="13.5" y="6" width="21" height="36" rx="5" fill="url(#g-mkt-1)" />
+        {/* Bisel interno */}
+        <rect x="16" y="8.6" width="16" height="28.8" rx="3.2" fill="url(#g-mkt-2)" />
+        {/* Pantalla: app de marketplace */}
+        <rect x="17.8" y="10.4" width="12.4" height="25.2" rx="2" fill="#0f172a" />
+        {/* Cabecera de la app */}
+        <rect x="19.2" y="11.8" width="9.6" height="2.1" rx="1.05" fill="#1e40af" opacity="0.95" />
+        {/* Grid 2x2 de productos */}
+        <rect x="19.2" y="15.6" width="4.5" height="4.5" rx="1.2" fill="#fbbf24" />
+        <rect x="24.7" y="15.6" width="4.5" height="4.5" rx="1.2" fill="#34d399" />
+        <rect x="19.2" y="21.3" width="4.5" height="4.5" rx="1.2" fill="#38bdf8" />
+        <rect x="24.7" y="21.3" width="4.5" height="4.5" rx="1.2" fill="#f472b6" />
+        {/* Barra inferior de la app */}
+        <rect x="19.2" y="31.2" width="9.6" height="2.5" rx="1.25" fill="#f59e0b" />
+        <circle cx="24" cy="32.45" r="0.75" fill="#ffffff" />
+        {/* Notch */}
+        <rect x="22.5" y="7.5" width="3" height="1.5" rx="0.75" fill="#78350f" opacity="0.75" />
+        {/* Brillo especular del cristal */}
+        <path d="M18.6 11.4 h7.4" stroke="#ffffff" strokeWidth="1" strokeLinecap="round" opacity="0.3" />
+        <path d="M18.6 13 h4.2" stroke="#ffffff" strokeWidth="0.8" strokeLinecap="round" opacity="0.18" />
       </svg>
     ),
   },
   viajes: {
-    // Maleta de viaje 3D con etiqueta
+    // Avión comercial moderno 3D (reemplaza la maleta)
     to: '/viajes',
     title: 'Viajes',
     colors: ['#0284c7', '#0369a1', '#38bdf8'],
     svg: (
       <svg viewBox="0 0 48 48" className="w-full h-full" aria-hidden="true">
         <defs>
-          <linearGradient id="g-via-1" x1="0" y1="0" x2="0" y2="1">
-            <stop offset="0" stopColor="#38bdf8" />
-            <stop offset="1" stopColor="#075985" />
+          <linearGradient id="g-via-1" x1="0" y1="0" x2="1" y2="1">
+            <stop offset="0" stopColor="#7dd3fc" />
+            <stop offset="0.55" stopColor="#38bdf8" />
+            <stop offset="1" stopColor="#0284c7" />
           </linearGradient>
-          <radialGradient id="g-via-2" cx="0.35" cy="0.25" r="0.85">
-            <stop offset="0" stopColor="#bae6fd" stopOpacity="0.9" />
-            <stop offset="1" stopColor="#0284c7" stopOpacity="0.1" />
-          </radialGradient>
+          <linearGradient id="g-via-2" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0" stopColor="#bae6fd" />
+            <stop offset="1" stopColor="#0369a1" />
+          </linearGradient>
         </defs>
-        {/* Maleta tumbada */}
-        <g transform="rotate(-10 24 26)">
-          <rect x="8" y="16" width="32" height="21" rx="4" fill="url(#g-via-1)" />
-          {/* Canal central */}
-          <rect x="8" y="24.5" width="32" height="4" fill="#0c4a6e" />
-          {/* Cierre */}
-          <path d="M22.5 24.5 v-8 h3 v8" fill="none" stroke="#e0f2fe" strokeWidth="1.6" />
-          {/* Asa */}
-          <path d="M20 16 v-3 a4 4 0 0 1 8 0 v3" fill="none" stroke="#bae6fd" strokeWidth="2.4" strokeLinecap="round" />
-          {/* Esquinas reforzadas */}
-          <rect x="10.5" y="18.5" width="5" height="5" rx="1.2" fill="#0c4a6e" opacity="0.6" />
-          <rect x="32.5" y="18.5" width="5" height="5" rx="1.2" fill="#0c4a6e" opacity="0.6" />
-          {/* Brillo */}
-          <rect x="8" y="16" width="32" height="21" rx="4" fill="url(#g-via-2)" />
+        {/* Sombra en el suelo */}
+        <ellipse cx="23.5" cy="42" rx="14" ry="2.2" fill="#0f172a" opacity="0.16" />
+        {/* Estela / contrail */}
+        <g transform="translate(1.5 0)">
+          <path d="M4 33.5 q9 -1.5 13.5 -6" stroke="#bae6fd" strokeWidth="2.2" strokeLinecap="round" fill="none" opacity="0.75" />
+          <path d="M4 37 q10 -2 14.5 -7.5" stroke="#e0f2fe" strokeWidth="1.6" strokeLinecap="round" fill="none" opacity="0.5" />
         </g>
-        {/* Etiqueta de equipaje */}
-        <g transform="translate(36 10) rotate(14)">
-          <rect x="0" y="0" width="8" height="11" rx="1.5" fill="#fcd34d" />
-          <rect x="2.4" y="2.4" width="3.2" height="3.2" rx="1" fill="#b45309" />
-          <path d="M3 7 v2 M1.5 11 v1.4 h5 v-1.4" stroke="#b45309" strokeWidth="0.9" fill="none" />
+        {/* Avión en ligero ángulo ascendente */}
+        <g transform="translate(1.5 0) rotate(-14 24 24)">
+          {/* Ala lejana (detrás, más oscura) */}
+          <path d="M21 20.5 L6.5 27.5 L6.5 31 L25.5 23.5 Z" fill="#075985" />
+          {/* Estabilizador horizontal de cola */}
+          <path d="M10.5 15.5 L4.5 18.5 L4.5 21.5 L12.5 18.5 Z" fill="#0369a1" opacity="0.9" />
+          {/* Fuselaje */}
+          <path d="M11 17.5 Q11 11 22.5 11 H32 Q40 11 40 17.5 Q40 24 32 24 H22.5 Q11 24 11 17.5 Z" fill="url(#g-via-1)" />
+          {/* Grosor inferior del fuselaje */}
+          <path d="M11 17.5 Q11 24 22.5 24 H32 Q40 24 40 17.5 L40 20.5 Q40 24 32 24 H22.5 Q11 24 11 20.5 Z" fill="#075985" opacity="0.5" />
+          {/* Línea de cabina */}
+          <path d="M15.5 16.5 H33" stroke="#e0f2fe" strokeWidth="0.9" strokeLinecap="round" opacity="0.55" />
+          {/* Ventanillas */}
+          <g fill="#e0f2fe">
+            <circle cx="18.5" cy="17.8" r="1.1" />
+            <circle cx="22.5" cy="17.8" r="1.1" />
+            <circle cx="26.5" cy="17.8" r="1.1" />
+            <circle cx="30.5" cy="17.8" r="1.1" />
+          </g>
+          {/* Ala cercana */}
+          <path d="M23 18.5 L8 27 L8 30.5 L27 21.5 Z" fill="url(#g-via-2)" />
+          {/* Brillo del ala */}
+          <path d="M23 18.5 L27 21.5 L8 30.5 L8 27 Z" fill="#ffffff" opacity="0.18" />
+          {/* Motor bajo el ala */}
+          <rect x="13.5" y="25.5" width="4.2" height="5" rx="1.8" fill="#0c4a6e" />
+          {/* Cola vertical */}
+          <path d="M14.5 11 L11 3.5 L21.5 7.8 Z" fill="url(#g-via-2)" />
+          <path d="M14.5 11 L21.5 7.8 L21 9.5 Z" fill="#ffffff" opacity="0.15" />
         </g>
       </svg>
     ),
   },
   remesas: {
-    // Fajo de billetes con flechas de transferencia circular
+    // Fajo de billetes centrado con flechas de transferencia equilibradas
     to: '/remesas',
     title: 'Remesas',
     colors: ['#7c3aed', '#6d28d9', '#a78bfa'],
@@ -170,24 +214,31 @@ const ICON_3D = {
             <stop offset="1" stopColor="#10b981" />
           </linearGradient>
         </defs>
-        {/* Fajo de billetes */}
-        <g transform="rotate(-12 20 30)">
+        {/* Sombra */}
+        <ellipse cx="24" cy="41.5" rx="13" ry="2.2" fill="#0f172a" opacity="0.15" />
+        {/* Fajo de billetes perfectamente centrado */}
+        <g transform="translate(24 24.5) rotate(-5)">
           {/* Billetes de fondo */}
-          <rect x="10" y="20" width="20" height="12" rx="1.5" fill="#065f46" />
-          <rect x="9.5" y="18.5" width="20" height="12" rx="1.5" fill="#047857" />
+          <rect x="-9.75" y="-9.1" width="21" height="12.5" rx="1.8" fill="#065f46" />
+          <rect x="-10.5" y="-7.8" width="21" height="12.5" rx="1.8" fill="#047857" />
           {/* Billete superior */}
-          <rect x="9" y="17" width="20" height="12" rx="1.5" fill="url(#g-rem-1)" />
-          <rect x="11" y="19.4" width="16" height="7.2" rx="1" fill="url(#g-rem-2)" />
-          {/* Círculo de la moneda */}
-          <circle cx="19" cy="23" r="3" fill="#047857" stroke="#34d399" strokeWidth="0.8" />
-          <path d="M18.2 22.2 l1.6 1.6 l2.4 -2.6" fill="none" stroke="#a7f3d0" strokeWidth="1" strokeLinecap="round" strokeLinejoin="round" />
+          <rect x="-10.5" y="-6.5" width="21" height="12.5" rx="1.8" fill="url(#g-rem-1)" />
+          {/* Borde interior */}
+          <rect x="-8.6" y="-4.6" width="17.2" height="8.6" rx="1.3" fill="url(#g-rem-2)" />
+          {/* Círculo de la moneda (centrado en el billete) */}
+          <circle cx="0" cy="-0.3" r="3.3" fill="#047857" stroke="#a7f3d0" strokeWidth="0.9" />
+          <path d="M-1.5 -0.3 l1 1 l2.1 -2.3" fill="none" stroke="#ffffff" strokeWidth="1.1" strokeLinecap="round" strokeLinejoin="round" />
+          {/* Brillo sutil */}
+          <rect x="-10.5" y="-6.5" width="21" height="12.5" rx="1.8" fill="#ffffff" opacity="0.07" />
         </g>
-        {/* Flechas de transferencia circular */}
-        <g fill="none" stroke="#fcd34d" strokeWidth="2.4" strokeLinecap="round">
-          <path d="M40 20 a14 14 0 0 0 -6.5 -9" />
-          <path d="M32 6.5 l2.2 4.6 l-4.8 -1.6 z" fill="#fcd34d" stroke="none" />
-          <path d="M8 26 a14 14 0 0 0 8.5 10.5" />
-          <path d="M19.5 38 l-4.8 1.6 l2.2 -4.6 z" fill="#fcd34d" stroke="none" />
+        {/* Flechas de transferencia circulares y equilibradas */}
+        <g fill="none" stroke="#fcd34d" strokeWidth="2.1" strokeLinecap="round">
+          {/* Arco superior: izquierda → derecha */}
+          <path d="M8 13.5 C 13 5, 35 5, 40 13.5" />
+          <path d="M39.6 12.2 l2.2 2.8 l-4.1 0.3 z" fill="#fcd34d" stroke="none" />
+          {/* Arco inferior: derecha → izquierda */}
+          <path d="M40 30.5 C 35 39, 13 39, 8 30.5" />
+          <path d="M8.4 31.8 l-2.2 -2.8 l4.1 -0.3 z" fill="#fcd34d" stroke="none" />
         </g>
       </svg>
     ),
@@ -279,7 +330,7 @@ const ICON_3D = {
     ),
   },
   servicios: {
-    // Herramientas cruzadas (llave y martillo) 3D
+    // Herramientas cruzadas simétricas (llave y martillo) 3D, sin artefactos
     to: '/servicios',
     title: 'Servicios',
     colors: ['#e11d48', '#be123c', '#fb7185'],
@@ -287,39 +338,51 @@ const ICON_3D = {
       <svg viewBox="0 0 48 48" className="w-full h-full" aria-hidden="true">
         <defs>
           <linearGradient id="g-ser-1" x1="0" y1="0" x2="1" y2="1">
-            <stop offset="0" stopColor="#fda4af" />
-            <stop offset="0.45" stopColor="#e11d48" />
-            <stop offset="1" stopColor="#881337" />
+            <stop offset="0" stopColor="#e2e8f0" />
+            <stop offset="0.5" stopColor="#94a3b8" />
+            <stop offset="1" stopColor="#475569" />
           </linearGradient>
           <linearGradient id="g-ser-2" x1="0" y1="0" x2="0" y2="1">
-            <stop offset="0" stopColor="#fb7185" />
+            <stop offset="0" stopColor="#f43f5e" />
             <stop offset="1" stopColor="#9f1239" />
           </linearGradient>
+          <linearGradient id="g-ser-3" x1="0" y1="0" x2="1" y2="0">
+            <stop offset="0" stopColor="#cbd5e1" />
+            <stop offset="1" stopColor="#64748b" />
+          </linearGradient>
         </defs>
-        {/* Llave inglesa (diagonal) */}
-        <g transform="rotate(-38 28 20)">
+        {/* Sombra */}
+        <ellipse cx="24" cy="42" rx="14" ry="2.2" fill="#0f172a" opacity="0.15" />
+        {/* Llave inglesa (diagonal 45°, anillo arriba-derecha) */}
+        <g transform="translate(24 23.5) rotate(45)">
+          <circle cx="0" cy="-8.2" r="3.9" fill="url(#g-ser-1)" />
+          <circle cx="0" cy="-8.2" r="1.8" fill="#1e293b" opacity="0.35" />
+          <rect x="-2.3" y="-5.2" width="4.6" height="12.4" rx="2.3" fill="url(#g-ser-1)" />
           <path
-            d="M26 4 v14 a2.4 2.4 0 0 1 -1 1.9 l-2.6 2 v6 a2.4 2.4 0 0 1 2.4 2.4 v2.8 a2.4 2.4 0 0 1 -2.4 2.4 h-1 a2.4 2.4 0 0 1 -2.4 -2.4 v-2.8 a2.4 2.4 0 0 1 2.4 -2.4 v-5.4 l-2.6 -2.4 a2.4 2.4 0 0 1 -1 -1.9 V4 z"
+            d="M-3.2 7.6 h6.4 a2.9 2.9 0 0 1 2.9 2.9 v3.2 a2.9 2.9 0 0 1 -2.9 2.9 h-6.4 a2.9 2.9 0 0 1 -2.9 -2.9 v-3.2 a2.9 2.9 0 0 1 2.9 -2.9 z"
             fill="url(#g-ser-1)"
           />
-          <rect x="22.6" y="2" width="7" height="5" rx="2.2" fill="#fda4af" />
+          <rect x="-0.8" y="9.6" width="1.6" height="6.6" rx="0.8" fill="#334155" opacity="0.5" />
+          {/* Brillo del mango */}
+          <rect x="-1.2" y="-4.4" width="1" height="10" rx="0.5" fill="#ffffff" opacity="0.5" />
         </g>
-        {/* Martillo (diagonal inversa) */}
-        <g transform="rotate(34 20 28)">
-          {/* Mango */}
-          <rect x="17.2" y="16" width="5.6" height="20" rx="2.6" fill="url(#g-ser-2)" />
-          {/* Cabeza */}
-          <rect x="13.5" y="8.5" width="13" height="8" rx="2" fill="#e2e8f0" />
-          <rect x="13.5" y="8.5" width="13" height="8" rx="2" fill="#94a3b8" opacity="0.55" />
-          {/* Golpe metálico */}
-          <rect x="24.5" y="9" width="2.4" height="7" rx="1.1" fill="#cbd5e1" />
-          <path d="M14.5 10.5 h9" stroke="#f8fafc" strokeWidth="1" opacity="0.7" />
+        {/* Martillo (diagonal -45°, cabeza arriba-izquierda) */}
+        <g transform="translate(24 23.5) rotate(-45)">
+          {/* Mango rojo */}
+          <rect x="-2.3" y="1.5" width="4.6" height="14.5" rx="2.3" fill="url(#g-ser-2)" />
+          <rect x="-1.2" y="2.6" width="1" height="12" rx="0.5" fill="#ffffff" opacity="0.28" />
+          {/* Cabeza de acero */}
+          <rect x="-9" y="-11.5" width="18" height="8" rx="2" fill="url(#g-ser-3)" />
+          {/* Cara de golpe */}
+          <rect x="-9" y="-11" width="2.8" height="7" rx="1.3" fill="#94a3b8" />
+          {/* Brillo de la cabeza */}
+          <rect x="-5" y="-10.6" width="8.6" height="1.3" rx="0.65" fill="#ffffff" opacity="0.6" />
         </g>
       </svg>
     ),
   },
   lineas: {
-    // Tarjeta SIM / chip móvil brillante 3D
+    // Tarjeta SIM / chip móvil brillante 3D, limpia y centrada (sin ondas)
     to: '/lineas',
     title: 'Líneas',
     colors: ['#0ea5e9', '#0369a1', '#38bdf8'],
@@ -338,28 +401,27 @@ const ICON_3D = {
         </defs>
         {/* Sombra */}
         <ellipse cx="24" cy="42" rx="13" ry="2" fill="#0f172a" opacity="0.15" />
-        {/* Cuerpo de la SIM (ligeramente inclinada) */}
-        <g transform="rotate(-6 24 24)">
+        {/* Cuerpo de la SIM (ligeramente inclinada, centrada) */}
+        <g transform="rotate(-4 24 24)">
           <rect x="13" y="10" width="22" height="28" rx="4" fill="url(#g-lin-1)" />
+          {/* Borde de luz superior */}
+          <path d="M17 10.6 h14 a3.4 3.4 0 0 1 3.4 3.4 v2" fill="none" stroke="#bae6fd" strokeWidth="1.1" strokeLinecap="round" opacity="0.8" />
+          {/* Esquina recortada (SIM) */}
+          <path d="M35 21 v7 l-2.5 2.5 h-2.5 v-9.5 h5 z" fill="#0284c7" opacity="0.6" />
           {/* Chip dorado */}
-          <rect x="18.5" y="16" width="11" height="9" rx="2" fill="#fcd34d" />
-          <rect x="18.5" y="16" width="11" height="9" rx="2" fill="#ffffff" opacity="0.18" />
+          <rect x="18.5" y="15.5" width="11" height="9" rx="2" fill="#fcd34d" />
+          <rect x="18.5" y="15.5" width="11" height="9" rx="2" fill="#ffffff" opacity="0.18" />
           {/* Contactos del chip */}
           <g stroke="#b45309" strokeWidth="0.9" opacity="0.85">
-            <path d="M24 17.6 v5.8 M20.4 20.5 h7.2 M21.2 18.4 h5.6 M21.2 22.6 h5.6" />
+            <path d="M24 17 v5.8 M20.4 19.9 h7.2 M21.2 17.9 h5.6 M21.2 21.9 h5.6" />
           </g>
           {/* Número de serie estilizado */}
           <g fill="#7dd3fc" opacity="0.85">
-            <rect x="19" y="28.5" width="10" height="1.8" rx="0.9" />
-            <rect x="19" y="31.8" width="7" height="1.8" rx="0.9" />
+            <rect x="19" y="28" width="10" height="1.8" rx="0.9" />
+            <rect x="19" y="31.3" width="7" height="1.8" rx="0.9" />
           </g>
-          {/* Esquina recortada (SIM) */}
-          <path d="M35 22 v6 l-2 2 h-2 v-8 h4 z" fill="#0284c7" opacity="0.55" />
           {/* Brillo especular */}
           <rect x="13" y="10" width="22" height="28" rx="4" fill="url(#g-lin-2)" />
-          {/* Antenas de señal (ondas) */}
-          <path d="M7 17 a6 6 0 0 1 0 10" fill="none" stroke="#38bdf8" strokeWidth="1.8" strokeLinecap="round" />
-          <path d="M4.5 13.5 a10 10 0 0 1 0 17" fill="none" stroke="#7dd3fc" strokeWidth="1.5" strokeLinecap="round" opacity="0.7" />
         </g>
       </svg>
     ),
