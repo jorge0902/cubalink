@@ -64,7 +64,7 @@ const ICON_3D = {
         {/* Sombra de suelo (acabado común) */}
         <ellipse cx="24" cy="40.5" rx="15" ry="2" fill="#0f172a" opacity="0.13" />
         {/* Cama con 2 almohadas y manta (bed-svgrepo-com (5)), centrada y escalada al marco 48×48 */}
-        <g transform="translate(24 24) scale(1.12) translate(-38 -38)">
+        <g transform="translate(24 24) scale(0.9) translate(-38 -38)">
           <path fill="url(#g-ren-1)" d="M 17.4167,25.3333L 23.75,25.3333L 23.75,41.1667L 58.5833,41.1667L 58.5833,45.9167L 58.5833,50.6667L 53.8333,50.6667L 53.8333,45.9167L 23.75,45.9167L 23.75,50.6667L 17.4167,50.6667L 17.4167,25.3333 Z M 57,39.5833L 35.625,39.5833L 35.625,30.0834C 43.0139,30.0834 48.0278,30.0834 51.9861,31.6667C 55.9444,33.25 56.4722,36.4167 57,39.5833 Z M 25.3333,35.625L 31.6667,36.4167L 31.6667,39.5833L 25.3333,39.5833L 25.3333,35.625 Z M 28.5,28.5C 30.2489,28.5 31.6667,29.9178 31.6667,31.6667C 31.6667,33.4156 30.2489,34.8333 28.5,34.8333C 26.7511,34.8333 25.3333,33.4156 25.3333,31.6667C 25.3333,29.9178 26.7511,28.5 28.5,28.5 Z M 32.8542,30.0833L 34.8333,30.0833L 34.8333,39.5833L 32.8542,39.5833L 32.8542,30.0833 Z"/>
         </g>
       </svg>
@@ -77,40 +77,17 @@ const ICON_3D = {
     colors: ['#f59e0b', '#d97706', '#fbbf24'],
     svg: (
       <svg viewBox="0 0 48 48" className="w-full h-full" aria-hidden="true">
-        <defs>
-          <linearGradient id="g-mkt-1" x1="0" y1="0" x2="1" y2="1">
-            <stop offset="0" stopColor="#fcd34d" />
-            <stop offset="0.5" stopColor="#f59e0b" />
-            <stop offset="1" stopColor="#b45309" />
-          </linearGradient>
-          <linearGradient id="g-mkt-2" x1="0" y1="0" x2="0" y2="1">
-            <stop offset="0" stopColor="#2563eb" />
-            <stop offset="1" stopColor="#1e3a8a" />
-          </linearGradient>
-        </defs>
-        {/* Sombra */}
-        <ellipse cx="24" cy="42" rx="11" ry="2.2" fill="#0f172a" opacity="0.16" />
-        {/* Cuerpo del teléfono (vertical, centrado) */}
-        <rect x="13.5" y="6" width="21" height="36" rx="5" fill="url(#g-mkt-1)" />
-        {/* Bisel interno */}
-        <rect x="16" y="8.6" width="16" height="28.8" rx="3.2" fill="url(#g-mkt-2)" />
-        {/* Pantalla: app de marketplace */}
-        <rect x="17.8" y="10.4" width="12.4" height="25.2" rx="2" fill="#0f172a" />
-        {/* Cabecera de la app */}
-        <rect x="19.2" y="11.8" width="9.6" height="2.1" rx="1.05" fill="#1d4ed8" opacity="0.95" />
-        {/* Grid 2x2 de productos */}
-        <rect x="19.2" y="15.6" width="4.5" height="4.5" rx="1.2" fill="#fbbf24" />
-        <rect x="24.7" y="15.6" width="4.5" height="4.5" rx="1.2" fill="#34d399" />
-        <rect x="19.2" y="21.3" width="4.5" height="4.5" rx="1.2" fill="#38bdf8" />
-        <rect x="24.7" y="21.3" width="4.5" height="4.5" rx="1.2" fill="#818cf8" />
-        {/* Barra inferior de la app */}
-        <rect x="19.2" y="31.2" width="9.6" height="2.5" rx="1.25" fill="#f59e0b" />
-        <circle cx="24" cy="32.45" r="0.75" fill="#ffffff" />
-        {/* Notch */}
-        <rect x="22.5" y="7.5" width="3" height="1.5" rx="0.75" fill="#78350f" opacity="0.75" />
-        {/* Brillo especular del cristal */}
-        <path d="M18.6 11.4 h7.4" stroke="#ffffff" strokeWidth="1" strokeLinecap="round" opacity="0.3" />
-        <path d="M18.6 13 h4.2" stroke="#ffffff" strokeWidth="0.8" strokeLinecap="round" opacity="0.18" />
+        {/* Sombra de suelo (acabado común) */}
+        <ellipse cx="24" cy="45.5" rx="14" ry="2" fill="#0f172a" opacity="0.13" />
+        {/* Smartphone + tablet (smartphone-tablet-svgrepo-com), centrados en el marco 48×48 */}
+        <g transform="translate(24 24) scale(0.95) translate(-24 -24)">
+          <path fill="#37474F" d="M4,39V7c0-2.2,1.8-4,4-4h22c2.2,0,4,1.8,4,4v32c0,2.2-1.8,4-4,4H8C5.8,43,4,41.2,4,39z"/>
+          <path fill="#BBDEFB" d="M30,6H8C7.4,6,7,6.4,7,7v29c0,0.6,0.4,1,1,1h22c0.6,0,1-0.4,1-1V7C31,6.4,30.6,6,30,6z"/>
+          <rect x="15" y="39" fill="#78909C" width="6" height="2"/>
+          <path fill="#E38939" d="M24,41V17c0-2.2,1.8-4,4-4h12c2.2,0,4,1.8,4,4v24c0,2.2-1.8,4-4,4H28C25.8,45,24,43.2,24,41z"/>
+          <path fill="#FFF3E0" d="M40,16H28c-0.6,0-1,0.4-1,1v22c0,0.6,0.4,1,1,1h12c0.6,0,1-0.4,1-1V17C41,16.4,40.6,16,40,16z"/>
+          <circle fill="#A6642A" cx="34" cy="42.5" r="1.5"/>
+        </g>
       </svg>
     ),
   },
