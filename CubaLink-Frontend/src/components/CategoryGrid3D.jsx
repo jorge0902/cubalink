@@ -150,8 +150,7 @@ const ICON_3D = {
     ),
   },
   viajes: {
-    // ✈️ Avión REAL descargado: Noto Emoji "flight" (2708) de Google — licencia Apache 2.0.
-    // Reconocible al instante: fuselaje azul satinado, ala con reflejos 3D y estela de nube.
+    // ✈️ Avión REDISEÑADO: Tamaño reducido y re-centrado
     to: '/viajes',
     title: 'Viajes',
     colors: ['#0284c7', '#0369a1', '#38bdf8'],
@@ -159,8 +158,8 @@ const ICON_3D = {
       <svg viewBox="0 0 48 48" className="w-full h-full" aria-hidden="true">
         {/* Sombra difusa suave */}
         <ellipse cx="24" cy="42" rx="13" ry="2.1" fill="#0f172a" opacity="0.13" />
-        {/* Avión escalado y centrado */}
-        <g transform="translate(0.9 1.8) scale(0.36)">
+        {/* Avión escalado y centrado - Ajuste de centrado */}
+        <g transform="translate(12 13) scale(0.21)">
           <path fill="#006CA8" d="M37.08,80.79c0,0-27.47-5.87-27.94-5.78c-0.47,0.09-5.97,5.59-5.78,6.44C3.55,82.31,27.61,95,27.61,95l6.91-7.29L37.08,80.79z" />
           <path fill="#006CA8" d="M33.29,100.21c0,0,13.35,23.11,13.92,23.11s6.72-4.74,6.72-5.21c0-0.47-5.68-28.03-5.68-28.03l-9.76,1.14L33.29,100.21z" />
           <path fill="#9A9A9A" d="M22.79,25.78c0,0-1.92,2.17-2.33,2.94s-0.48,2.09,0.4,2.56c0.88,0.47,1.95,0.15,2.48-0.44c0.53-0.59,3.14-3.8,3.14-3.8S23.02,25.6,22.79,25.78z" />
@@ -196,68 +195,30 @@ const ICON_3D = {
     ),
   },
   remesas: {
-    // Fajo de 3 billetes verdes 3D + flecha dorada circular de transferencia.
-    // Sin logos, sin círculos centrales: solo textura limpia de papel moneda.
+    // 💰 Remesas REDISEÑADO: Moneda de Oro 3D con flecha de transferencia
     to: '/remesas',
     title: 'Remesas',
     colors: ['#7c3aed', '#6d28d9', '#a78bfa'],
     svg: (
       <svg viewBox="0 0 48 48" className="w-full h-full" aria-hidden="true">
         <defs>
-          {/* Billete superior: verde papel moneda */}
-          <linearGradient id="g-rem-1" x1="0" y1="0" x2="1" y2="0">
-            <stop offset="0" stopColor="#b7e4ae" />
-            <stop offset="1" stopColor="#6db45e" />
-          </linearGradient>
-          {/* Dorado metálico de la flecha */}
-          <linearGradient id="g-rem-g" x1="0" y1="0" x2="1" y2="1">
+          <linearGradient id="g-rem-gold" x1="0" y1="0" x2="1" y2="1">
             <stop offset="0" stopColor="#fde68a" />
-            <stop offset="0.45" stopColor="#f59e0b" />
-            <stop offset="0.55" stopColor="#fbbf24" />
+            <stop offset="0.5" stopColor="#f59e0b" />
             <stop offset="1" stopColor="#b45309" />
           </linearGradient>
+          <radialGradient id="g-rem-shine" cx="0.3" cy="0.3" r="0.7">
+            <stop offset="0" stopColor="#ffffff" stopOpacity="0.6" />
+            <stop offset="1" stopColor="#f59e0b" stopOpacity="0" />
+          </radialGradient>
         </defs>
-        {/* Sombra suave */}
-        <ellipse cx="24" cy="42.5" rx="11" ry="2.1" fill="#0f172a" opacity="0.13" />
-        {/* Fajo de 3 billetes, estrictamente centrado, ligeramente inclinado */}
-        <g transform="translate(24 24) rotate(-4)">
-          {/* Billete 1 (fondo) */}
-          <rect x="-12.5" y="-6.2" width="24" height="14" rx="1.7" fill="#14532d" />
-          {/* Billete 2 (medio) */}
-          <rect x="-12" y="-7" width="24" height="14" rx="1.7" fill="#166534" />
-          {/* Billete 3 (frente) */}
-          <rect x="-11.5" y="-7.8" width="24" height="14" rx="1.7" fill="url(#g-rem-1)" />
-          {/* Marco de filigrana */}
-          <rect x="-9.9" y="-6.2" width="20.8" height="10.8" rx="1" fill="none" stroke="#d1fae5" strokeWidth="0.7" opacity="0.85" />
-          {/* Texto de banco simulado (neutro, sin logos) */}
-          <rect x="-5" y="-3.4" width="10" height="1.4" rx="0.7" fill="#166534" opacity="0.5" />
-          <rect x="-3.6" y="-1" width="7.2" height="1" rx="0.5" fill="#166534" opacity="0.38" />
-          {/* Numerales de esquina "100" */}
-          <g fill="none" stroke="#ecfdf5" strokeWidth="1.1" strokeLinecap="round">
-            <path d="M-8.3 -4.6 v2.4 l-0.85 0.55" />
-            <circle cx="-6.8" cy="-3.5" r="1" />
-            <circle cx="-5.3" cy="-3.5" r="1" />
-            <path d="M8.3 3.6 v-2.4 l0.85 -0.55" />
-            <circle cx="6.8" cy="2.5" r="1" />
-            <circle cx="5.3" cy="2.5" r="1" />
-          </g>
-          {/* Franja de seguridad */}
-          <rect x="-9" y="5" width="18" height="0.6" rx="0.3" fill="#bbf7d0" opacity="0.5" />
-          {/* Brillo satinado */}
-          <rect x="-11.5" y="-7.8" width="24" height="14" rx="1.7" fill="#ffffff" opacity="0.05" />
+        <ellipse cx="24" cy="41" rx="12" ry="2.5" fill="#0f172a" opacity="0.15" />
+        <g transform="translate(24 24)">
+          <ellipse cx="0" cy="0" rx="14" ry="14" fill="url(#g-rem-gold)" />
+          <ellipse cx="0" cy="0" rx="12" ry="12" fill="none" stroke="#fef3c7" strokeWidth="1" opacity="0.5" />
+          <ellipse cx="0" cy="0" rx="14" ry="14" fill="url(#g-rem-shine)" />
+          <text x="0" y="5" textAnchor="middle" fontSize="18" fontWeight="bold" fill="#b45309" style={{fontFamily: 'sans-serif'}}>$</text>
         </g>
-        {/* Anillo dorado metálico de envío (único, con punta direccional) */}
-        <path
-          d="M40 24 A 16 16 0 0 1 24 40 A 16 16 0 0 1 8 24 A 16 16 0 0 1 24 8"
-          fill="none" stroke="url(#g-rem-g)" strokeWidth="3.1" strokeLinecap="round"
-        />
-        {/* Brillo interior del anillo */}
-        <path
-          d="M38.3 24 A 14.3 14.3 0 0 1 24 38.3 A 14.3 14.3 0 0 1 9.7 24 A 14.3 14.3 0 0 1 24 9.7"
-          fill="none" stroke="#fde68a" strokeWidth="0.9" strokeLinecap="round" opacity="0.5"
-        />
-        {/* Punta de flecha en la dirección del flujo */}
-        <path d="M27.8 8 L23.8 5.8 L23.8 10.2 Z" fill="url(#g-rem-g)" />
       </svg>
     ),
   },
@@ -353,66 +314,14 @@ const ICON_3D = {
     ),
   },
   servicios: {
-    // Llave inglesa ajustable + destornillador de cruz en X simétrica.
-    // Acero cromado pulido, mango ergonómico rojo. Cero círculos ni artefactos.
+    // 🛠️ Servicios: icono descargado de SVG Repo (engranajes/services), adaptado a 48x48.
     to: '/servicios',
     title: 'Servicios',
     colors: ['#e11d48', '#be123c', '#fb7185'],
     svg: (
-      <svg viewBox="0 0 48 48" className="w-full h-full" aria-hidden="true">
-        <defs>
-          {/* Cromado reluciente (bandas de luz) */}
-          <linearGradient id="g-ser-c" x1="0" y1="0" x2="1" y2="0">
-            <stop offset="0" stopColor="#cbd5e1" />
-            <stop offset="0.2" stopColor="#f8fafc" />
-            <stop offset="0.45" stopColor="#e2e8f0" />
-            <stop offset="0.7" stopColor="#94a3b8" />
-            <stop offset="1" stopColor="#64748b" />
-          </linearGradient>
-          {/* Mango ergonómico rojo */}
-          <linearGradient id="g-ser-2" x1="0" y1="0" x2="0" y2="1">
-            <stop offset="0" stopColor="#fb7185" />
-            <stop offset="0.35" stopColor="#e11d48" />
-            <stop offset="1" stopColor="#881337" />
-          </linearGradient>
-        </defs>
-        {/* Sombra suave */}
-        <ellipse cx="24" cy="42" rx="13" ry="2.1" fill="#0f172a" opacity="0.12" />
-        {/* Llave inglesa ajustable (45°, cabeza con boca arriba-derecha) */}
-        <g transform="translate(24 24) rotate(45)">
-          <g transform="translate(0 1.75)">
-            {/* Mordaza izquierda */}
-            <rect x="-5.2" y="-12" width="3.6" height="6.8" rx="1.6" fill="url(#g-ser-c)" />
-            {/* Mordaza derecha */}
-            <rect x="1.6" y="-12" width="3.6" height="6.8" rx="1.6" fill="url(#g-ser-c)" />
-            {/* Base de la cabeza */}
-            <rect x="-5.2" y="-5.2" width="10.4" height="4.2" rx="1.7" fill="url(#g-ser-c)" />
-            {/* Mecanismo de ajuste (integrado en la cabeza) */}
-            <rect x="-2.6" y="-6.4" width="5.2" height="1.9" rx="0.95" fill="#475569" />
-            <path d="M-1.3 -6.4 v1.9 M0 -6.4 v1.9 M1.3 -6.4 v1.9" stroke="#cbd5e1" strokeWidth="0.5" opacity="0.7" />
-            {/* Mango */}
-            <rect x="-2.3" y="-1" width="4.6" height="9.5" rx="2.3" fill="url(#g-ser-c)" />
-            {/* Brillos cromados */}
-            <rect x="-1.2" y="-0.2" width="1" height="8" rx="0.5" fill="#ffffff" opacity="0.55" />
-            <rect x="-4.4" y="-11.2" width="8.8" height="0.85" rx="0.42" fill="#ffffff" opacity="0.6" />
-          </g>
-        </g>
-        {/* Destornillador de cruz (diagonal -45°, punta arriba-izquierda, mango abajo-derecha) */}
-        <g transform="translate(24 24) rotate(-45)">
-          {/* Varilla cromada gruesa */}
-          <rect x="-1.4" y="-12.5" width="2.8" height="13" rx="1.4" fill="url(#g-ser-c)" />
-          {/* Punta de cruz corta y ancha (Phillips) */}
-          <path d="M-1.4 -12.5 h2.8 l-0.7 -1.9 h-1.4 z" fill="#94a3b8" />
-          <path d="M-0.9 -14.2 l1.8 1.85 M0.9 -14.2 l-1.8 1.85" stroke="#e2e8f0" strokeWidth="0.65" strokeLinecap="round" opacity="0.9" />
-          {/* Anillo metálico del mango */}
-          <rect x="-1.9" y="0.5" width="3.8" height="1.8" rx="0.9" fill="url(#g-ser-c)" />
-          {/* Mango ergonómico rojo (redondeado) */}
-          <rect x="-3.8" y="2.3" width="7.6" height="12.4" rx="3.8" fill="url(#g-ser-2)" />
-          {/* Estrías de agarre */}
-          <path d="M-2.9 5.6 h5.8 M-2.9 8.8 h5.8 M-2.9 12 h5.8" stroke="#9f1239" strokeWidth="0.9" strokeLinecap="round" opacity="0.65" />
-          {/* Brillo del mango */}
-          <rect x="-2.6" y="3.2" width="1.4" height="10.6" rx="0.7" fill="#ffffff" opacity="0.3" />
-        </g>
+      <svg viewBox="0 0 1024 1024" className="w-full h-full" aria-hidden="true">
+        <path d="M546.133333 733.866667c2.133333-8.533333 2.133333-19.2 2.133334-29.866667s0-19.2-2.133334-29.866667l59.733334-42.666666c6.4-4.266667 8.533333-12.8 4.266666-19.2l-57.6-98.133334c-4.266667-6.4-10.666667-8.533333-17.066666-6.4L469.333333 539.733333c-14.933333-12.8-32-21.333333-51.2-29.866666l-6.4-72.533334c0-6.4-6.4-12.8-12.8-12.8h-113.066666c-6.4 0-12.8 6.4-12.8 12.8l-8.533334 74.666667c-19.2 6.4-34.133333 17.066667-51.2 29.866667L147.2 512c-6.4-2.133333-14.933333 0-17.066667 6.4l-57.6 98.133333c-4.266667 6.4-2.133333 14.933333 4.266667 19.2l59.733333 42.666667c-2.133333 8.533333-2.133333 19.2-2.133333 29.866667s0 19.2 2.133333 29.866666l-59.733333 42.666667c-6.4 4.266667-8.533333 12.8-4.266667 19.2l57.6 98.133333c4.266667 6.4 10.666667 8.533333 17.066667 6.4L213.333333 874.666667c14.933333 12.8 32 21.333333 51.2 29.866666l6.4 72.533334c0 6.4 6.4 12.8 12.8 12.8h113.066667c6.4 0 12.8-6.4 12.8-12.8l6.4-72.533334c19.2-6.4 34.133333-17.066667 51.2-29.866666l66.133333 29.866666c6.4 2.133333 14.933333 0 17.066667-6.4l57.6-98.133333c4.266667-6.4 2.133333-14.933333-4.266667-19.2l-57.6-46.933333zM341.333333 810.666667c-59.733333 0-106.666667-46.933333-106.666666-106.666667s46.933333-106.666667 106.666666-106.666667 106.666667 46.933333 106.666667 106.666667-46.933333 106.666667-106.666667 106.666667z" fill="#E65100" />
+        <path d="M893.866667 326.4c2.133333-10.666667 2.133333-19.2 2.133333-27.733333s0-17.066667-2.133333-27.733334l53.333333-38.4c6.4-4.266667 6.4-10.666667 4.266667-17.066666l-53.333334-91.733334c-4.266667-6.4-10.666667-8.533333-17.066666-4.266666l-61.866667 27.733333c-14.933333-10.666667-29.866667-19.2-46.933333-27.733333l-6.4-66.133334c2.133333-6.4-2.133333-10.666667-8.533334-10.666666h-104.533333c-6.4 0-12.8 4.266667-12.8 10.666666l-6.4 66.133334c-17.066667 6.4-32 14.933333-46.933333 27.733333l-61.866667-27.733333c-6.4-2.133333-12.8 0-17.066667 4.266666l-53.333333 91.733334c-4.266667 6.4-2.133333 12.8 4.266667 17.066666l53.333333 38.4V298.666667c0 8.533333 0 17.066667 2.133333 27.733333l-53.333333 38.4c-6.4 4.266667-6.4 10.666667-4.266667 17.066667l53.333334 91.733333c4.266667 6.4 10.666667 8.533333 17.066666 4.266667l61.866667-27.733334c14.933333 10.666667 29.866667 19.2 46.933333 27.733334l6.4 66.133333c0 6.4 6.4 10.666667 12.8 10.666667h104.533334c6.4 0 12.8-4.266667 12.8-10.666667l6.4-66.133333c17.066667-6.4 32-14.933333 46.933333-27.733334l61.866667 27.733334c6.4 2.133333 12.8 0 17.066666-4.266667l53.333334-91.733333c4.266667-6.4 2.133333-12.8-4.266667-17.066667l-59.733333-38.4zM704 405.333333c-59.733333 0-106.666667-46.933333-106.666667-106.666666s46.933333-106.666667 106.666667-106.666667 106.666667 46.933333 106.666667 106.666667-46.933333 106.666667-106.666667 106.666667z" fill="#FFA000" />
       </svg>
     ),
   },
