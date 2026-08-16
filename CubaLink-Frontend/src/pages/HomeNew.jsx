@@ -4,6 +4,8 @@ import MaterialIcon from '../components/MaterialIcon'
 import SkyClouds from '../components/SkyClouds'
 import CategoryGrid3D from '../components/CategoryGrid3D'
 import ListingCarousel from '../components/ListingCarousel'
+import TrustSystemCard from '../components/TrustSystemCard'
+import DownloadCard from '../components/DownloadCard'
 import { rentals } from '../data/rentals'
 import { marketProducts } from '../data/marketplace'
 import { jobs } from '../data/jobs'
@@ -170,69 +172,11 @@ export default function HomeNew() {
         }))}
       />
 
-      {/* ===== BANNER SISTEMA DE CONFIANZA ===== */}
-      <section className="max-w-6xl mx-auto px-6 pb-16">
-        <Link
-          to="/confiables"
-          className="block bg-gradient-to-r from-emerald-600 to-teal-600 rounded-3xl p-8 md:p-10 text-white relative overflow-hidden group premium-hover"
-        >
-          <div className="absolute inset-0 opacity-10">
-            <div className="absolute -top-10 -right-10 w-48 h-48 rounded-full bg-white/30 blur-2xl"></div>
-            <div className="absolute bottom-0 left-1/3 w-40 h-40 rounded-full bg-white/20 blur-2xl"></div>
-          </div>
-          <div className="relative flex flex-col md:flex-row items-start md:items-center justify-between gap-6">
-            <div className="flex items-start sm:items-center gap-4">
-              <span className="w-14 h-14 rounded-2xl bg-white/20 backdrop-blur flex items-center justify-center group-hover:scale-110 transition-transform flex-shrink-0">
-                <MaterialIcon name="verified" className="text-3xl" />
-              </span>
-              <div>
-                <h3 className="font-headline-md text-headline-md">Sistema de Confianza</h3>
-                <p className="opacity-90 text-[13px] sm:text-body-md">Personas y negocios verificados por la comunidad. ¿Con quién haces negocios sin preocuparte?</p>
-              </div>
-            </div>
-            <span className="bg-white text-emerald-700 px-6 py-3 rounded-xl font-title-md hover:bg-emerald-50 transition-colors whitespace-nowrap w-full sm:w-auto text-center">
-              Ver Confiables →
-            </span>
-          </div>
-        </Link>
-      </section>
+      {/* ===== BANNER SISTEMA DE CONFIANZA (NUEVO COMPONENTE) ===== */}
+      <TrustSystemCard />
 
-      {/* ===== BANNER DESCARGA LA APP (APK) ===== */}
-      <section className="max-w-6xl mx-auto px-6 pb-16">
-        <div className="bg-gradient-to-r from-brand-blue-deep to-primary rounded-3xl p-8 md:p-10 text-white relative overflow-hidden">
-          <div className="absolute inset-0 opacity-10">
-            <div className="absolute top-0 right-1/4 w-56 h-56 rounded-full bg-brand-gold/40 blur-3xl"></div>
-          </div>
-          <div className="relative flex flex-col md:flex-row items-center justify-between gap-6">
-            <div className="flex items-start sm:items-center gap-4">
-              <span className="w-14 h-14 rounded-2xl bg-white/15 backdrop-blur flex items-center justify-center flex-shrink-0">
-                <MaterialIcon name="smartphone" className="text-3xl" />
-              </span>
-              <div>
-                <h3 className="font-headline-md text-headline-md">CubaLink en tu bolsillo</h3>
-                <p className="opacity-90 text-[13px] sm:text-body-md">Descarga la app y lleva la red profesional contigo a donde vayas.</p>
-              </div>
-            </div>
-            {/* Botón único de alto contraste: Descargar APK (icono Android inline, sin fuentes externas) */}
-            <a
-              href="/manifest.json"
-              download
-              className="flex items-center gap-3 bg-brand-gold text-primary px-7 py-3.5 rounded-xl font-label-sm text-label-sm font-bold shadow-lg shadow-brand-gold/30 hover:bg-brand-gold/90 hover:shadow-xl active:scale-95 transition-all btn-shine whitespace-nowrap w-full sm:w-auto justify-center"
-            >
-              <svg viewBox="0 0 24 24" fill="currentColor" className="w-[22px] h-[22px]" aria-hidden="true">
-                {/* Robot de Android */}
-                <path d="M6 9.5 a6 6 0 0 1 12 0 v8 a1.5 1.5 0 0 1 -1.5 1.5 h-9 A1.5 1.5 0 0 1 6 17.5 z" />
-                <path d="M6 11 h12 v5 h-12 z" fill="#ffffff" opacity="0.35" />
-                <circle cx="9.8" cy="13.8" r="1.1" />
-                <circle cx="14.2" cy="13.8" r="1.1" />
-                <path d="M8 3.5 l-1.6 -1.6 M16 3.5 l1.6 -1.6" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" fill="none" />
-                <path d="M5.5 9.5 l-2 -1 M18.5 9.5 l2 -1" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" fill="none" />
-              </svg>
-              Descargar APK
-            </a>
-          </div>
-        </div>
-      </section>
+      {/* ===== BANNER DESCARGA LA APP (NUEVO COMPONENTE) ===== */}
+      <DownloadCard />
 
       {/* ===== STATS ===== */}
       <section className="max-w-6xl mx-auto px-6 pb-28 sm:pb-20">
