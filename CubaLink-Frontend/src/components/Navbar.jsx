@@ -1,7 +1,9 @@
-import { useEffect, useState } from 'react'
+import { useState, useEffect } from 'react'
 import { Link, NavLink, useLocation } from 'react-router-dom'
 import MaterialIcon from './MaterialIcon'
 import PublishModal from './PublishModal'
+import { useFavorites } from '../context/FavoritesContext'
+import { useNotifications } from '../context/NotificationsContext'
 import logoCubaLink from '../assets/cubalink-logo.png'
 
 // Campos genéricos del modal de publicación (demo)
@@ -32,7 +34,14 @@ export const EXPLORE_LINKS = [
   { to: '/empresas', label: 'Empresas', icon: 'apartment', desc: 'Aliados y vacantes' },
   { to: '/servicios', label: 'Servicios', icon: 'handyman', desc: 'Profesionales de la red' },
   { to: '/confiables', label: 'Confiables', icon: 'shield', desc: 'Gente de confianza' },
+  { to: '/lineas', label: 'Líneas', icon: 'sim_card', desc: 'Chips y telefonía' },
 ]
+
+// Ítem de Soporte/Ayuda (se muestra al final del menú Explorar)
+export const SUPPORT_LINK = { to: '/soporte', label: 'Soporte', icon: 'help' }
+
+// URL de Caiman Cash
+const CAIMAN_CASH_URL = 'https://caimancash.vercel.app/'
 
 export default function Navbar() {
   const [scrolled, setScrolled] = useState(false)
@@ -41,12 +50,20 @@ export default function Navbar() {
   const [publishOpen, setPublishOpen] = useState(false)
   const [toast, setToast] = useState('')
   const location = useLocation()
+  const { favorites } = useFavorites()
+  const { unreadCount } = useNotifications()
 
-  useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 20)
-    window.addEventListener('scroll', onScroll)
-    return () => window.removeEventListener('scroll', onScroll)
-  }, [])
+  // Detect currency from URL params - Default to RUB (Russia)
+  const urlParams = new URLSearchParams(location.search)
+  const currencyParam = urlParams.get('currency') || 'RUB'
+  const sourceCurrency = currencyParam.toUpperCase()
+
+  // Currency change handler
+  const handleCurrencyChange = (e) => {
+    const newUrl = new URL(window.location.href)
+    newUrl.searchParams.set('currency', e.target.value)
+    window.history.pushState({}, '', newUrl.toString())
+  }
 
   // Cierra el dropdown al navegar
   useEffect(() => {
@@ -77,6 +94,18 @@ export default function Navbar() {
               CubaLink
             </span>
           </Link>
+        </div>
+
+        {/* Currency Selector (Desktop) */}
+        <div className="hidden md:flex items-center gap-2">
+          <select
+            value={sourceCurrency}
+            onChange={handleCurrencyChange}
+            className="px-3 py-1.5 border border-outline-variant rounded-lg text-sm font-medium text-on-surface-variant bg-background hover:bg-surface-container-low transition-colors"
+          >
+            <option value="AED">🇦🇪 AED (Dubai)</option>
+            <option value="RUB">🇷🇺 RUB (Rusia)</option>
+          </select>
         </div>
 
         {/* Navegación desktop */}
@@ -113,7 +142,7 @@ export default function Navbar() {
                         }`
                       }
                     >
-                      <span className={`w-9 h-9 rounded-lg flex items-center justify-center flex-shrink-0 ${isExploreActive && location.pathname === link.to ? 'bg-brand-blue-deep text-white' : 'bg-surface-container text-primary'}`}>
+                      <span className={`w-9 h-9 rounded-lg flex items-center justify-center flex-shrink-0 ${link.to.startsWith('/confiables') ? 'bg-brand-blue-deep text-white' : 'bg-surface-container text-primary'}`}>
                         <MaterialIcon name={link.icon} className="text-[18px]" />
                       </span>
                       <span>
@@ -122,6 +151,23 @@ export default function Navbar() {
                       </span>
                     </NavLink>
                   ))}
+
+                  {/* Separador */}
+                  <div className="border-t border-outline-variant my-2 mx-4"></div>
+
+                  {/* Soporte/Ayuda */}
+                  <NavLink
+                    to={SUPPORT_LINK.to}
+                    onClick={() => setMenuOpen(false)}
+                    className={({ isActive }) =>
+                      `flex items-center gap-3 px-3 py-2.5 rounded-lg font-label-sm text-label-sm transition-colors ${
+                        isActive ? 'bg-surface-container-low text-primary font-semibold' : 'text-on-surface-variant hover:bg-surface-container-low'
+                      }`
+                    }
+                  >
+                    <MaterialIcon name={SUPPORT_LINK.icon} className="text-[18px]" />
+                    {SUPPORT_LINK.label}
+                  </NavLink>
                 </div>
               </div>
             )}
@@ -129,8 +175,7 @@ export default function Navbar() {
         </nav>
 
         <div className="flex items-center gap-2 sm:gap-4">
-          <MaterialIcon name="notifications" className="text-on-surface-variant cursor-pointer active:scale-95 transition-transform hidden sm:block" />
-          {/* Botón Publicar anuncio — destacado, estilo Dubizzle "Place Your Ad" */}
+          {/* Botón Publicar anuncio */}
           <button
             onClick={() => setPublishOpen(true)}
             className="hidden md:inline-flex items-center gap-2 bg-brand-gold text-primary px-5 py-2.5 rounded-xl font-label-sm text-label-sm font-bold hover:shadow-lg hover:bg-brand-gold/90 active:scale-95 transition-all btn-shine"
@@ -138,12 +183,52 @@ export default function Navbar() {
             <MaterialIcon name="add_circle" className="text-[18px]" />
             Publicar anuncio
           </button>
+
+          <a
+            href={CAIMAN_CASH_URL}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="hidden md:inline-flex items-center gap-2 bg-brand-blue-deep text-white px-5 py-2.5 rounded-xl font-label-sm text-label-sm font-bold hover:shadow-lg hover:bg-brand-blue-deep/90 active:scale-95 transition-all"
+          >
+            <MaterialIcon name="smartphone" className="text-[18px]" />
+            Caiman Cash
+          </a>
+
           <Link
             to="/registro"
             className="hidden sm:inline-block bg-primary text-on-primary px-4 py-2 rounded-lg font-label-sm text-label-sm hover:opacity-90 transition-all"
           >
             Unirte
           </Link>
+
+          {/* Favoritos / Guardados */}
+          <Link
+            to="/guardados"
+            aria-label="Mis guardados"
+            className="relative flex items-center justify-center w-10 h-10 rounded-lg hover:bg-surface-container-low transition-colors text-on-surface-variant hover:text-brand-gold"
+          >
+            <MaterialIcon name={favorites.length > 0 ? 'favorite' : 'favorite_border'} fill={favorites.length > 0} className="text-[22px]" />
+            {favorites.length > 0 && (
+              <span className="absolute -top-0.5 -right-0.5 min-w-[18px] h-[18px] px-1 rounded-full bg-brand-gold text-white text-[10px] font-bold flex items-center justify-center shadow-sm">
+                {favorites.length > 9 ? '9+' : favorites.length}
+              </span>
+            )}
+          </Link>
+
+          {/* Campana de notificaciones */}
+          <Link
+            to="/notificaciones"
+            aria-label="Notificaciones"
+            className="relative flex items-center justify-center w-10 h-10 rounded-lg hover:bg-surface-container-low transition-colors text-on-surface-variant hover:text-brand-gold"
+          >
+            <MaterialIcon name={unreadCount > 0 ? 'notifications_active' : 'notifications'} className="text-[22px]" />
+            {unreadCount > 0 && (
+              <span className="absolute -top-0.5 -right-0.5 min-w-[18px] h-[18px] px-1 rounded-full bg-red-500 text-white text-[10px] font-bold flex items-center justify-center animate-soft-pulse">
+                {unreadCount > 9 ? '9+' : unreadCount}
+              </span>
+            )}
+          </Link>
+
           {/* Hamburger móvil */}
           <button
             className="md:hidden flex items-center justify-center w-10 h-10 rounded-lg hover:bg-surface-container-low transition-colors"
@@ -159,6 +244,21 @@ export default function Navbar() {
       {menuOpen && (
         <div className="fixed top-16 left-0 right-0 z-40 bg-surface-container-lowest border-b border-outline-variant shadow-lg md:hidden max-h-[calc(100vh-4rem)] overflow-y-auto">
           <nav className="flex flex-col p-4 gap-1">
+            {/* Selector de moneda móvil */}
+            <div className="border-b border-outline-variant pb-2 mb-2">
+              <select
+                value={sourceCurrency}
+                onChange={(e) => {
+                  handleCurrencyChange(e)
+                  setMenuOpen(false)
+                }}
+                className="w-full px-3 py-2 border border-outline-variant rounded-lg text-sm font-medium text-on-surface-variant bg-background"
+              >
+                <option value="AED">🇦🇪 AED (Dubai)</option>
+                <option value="RUB">🇷🇺 RUB (Rusia)</option>
+              </select>
+            </div>
+
             {NAV_LINKS.map((link) => (
               <NavLink
                 key={link.to}
@@ -175,21 +275,6 @@ export default function Navbar() {
                 {link.label}
               </NavLink>
             ))}
-
-            {/* Perfil — acceso secundario solo en móvil (hamburguesa) */}
-            <NavLink
-              key={PROFILE_LINK.to}
-              to={PROFILE_LINK.to}
-              onClick={() => setMenuOpen(false)}
-              className={({ isActive }) =>
-                `flex items-center gap-3 px-4 py-3 rounded-lg font-label-sm text-label-sm transition-colors ${
-                  isActive ? 'bg-surface-container-low text-primary font-semibold' : 'text-on-surface-variant hover:bg-surface-container-low'
-                }`
-              }
-            >
-              <MaterialIcon name={PROFILE_LINK.icon} className="text-[20px]" />
-              {PROFILE_LINK.label}
-            </NavLink>
 
             <p className="px-4 pt-3 pb-1 text-[11px] uppercase tracking-widest text-outline font-semibold">
               Explorar
@@ -210,6 +295,23 @@ export default function Navbar() {
               </NavLink>
             ))}
 
+            {/* Separador */}
+            <div className="border-t border-outline-variant my-2 mx-4"></div>
+
+            {/* Soporte/Ayuda */}
+            <NavLink
+              to={SUPPORT_LINK.to}
+              onClick={() => setMenuOpen(false)}
+              className={({ isActive }) =>
+                `flex items-center gap-3 px-4 py-3 rounded-lg font-label-sm text-label-sm transition-colors ${
+                  isActive ? 'bg-surface-container-low text-primary font-semibold' : 'text-on-surface-variant hover:bg-surface-container-low'
+                }`
+              }
+            >
+              <MaterialIcon name={SUPPORT_LINK.icon} className="text-[20px]" />
+              {SUPPORT_LINK.label}
+            </NavLink>
+
             <Link
               to="/registro"
               onClick={() => setMenuOpen(false)}
@@ -221,7 +323,24 @@ export default function Navbar() {
         </div>
       )}
 
-      {/* Modal Publicar anuncio (demo) */}
+      {/* Botón compartir app en remesas */}
+      <button
+        onClick={() => {
+          if (navigator.share) {
+            navigator.share({
+              title: 'CubaLink',
+              text: 'Comparte CubaLink con amigos',
+              url: window.location.href,
+            })
+          }
+        }}
+        className="fixed bottom-6 right-6 bg-brand-gold text-primary w-14 h-14 rounded-full shadow-xl hover:shadow-2xl active:scale-95 transition-all flex items-center justify-center md:hidden z-40 btn-shine"
+        aria-label="Compartir CubaLink"
+      >
+        <MaterialIcon name="share" className="text-[24px]" />
+      </button>
+
+      {/* Modal Publicar anuncio */}
       <PublishModal
         open={publishOpen}
         onClose={() => setPublishOpen(false)}
