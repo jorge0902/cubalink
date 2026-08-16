@@ -25,6 +25,7 @@ import TrustProfile from './pages/TrustProfile'
 import SavedListings from './pages/SavedListings'
 import Lines from './pages/Lines'
 import Notifications from './pages/Notifications'
+import Support from './pages/Support'
 
 export default function App() {
   return (
@@ -56,7 +57,8 @@ export default function App() {
               <Route path="/guardados" element={<SavedListings />} />
               <Route path="/lineas" element={<Lines />} />
               <Route path="/notificaciones" element={<Notifications />} />
-              <Route
+                            <Route path="/soporte" element={<Support />} />
+                            <Route
                 path="*"
                 element={
                   <div className="h-screen flex items-center justify-center text-center px-4">

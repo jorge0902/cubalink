@@ -37,6 +37,9 @@ export const EXPLORE_LINKS = [
   { to: '/lineas', label: 'Líneas', icon: 'sim_card', desc: 'Chips y telefonía' },
 ]
 
+// Ítem de Soporte/Ayuda (se muestra al final del menú Explorar)
+export const SUPPORT_LINK = { to: '/soporte', label: 'Soporte', icon: 'help' }
+
 export default function Navbar() {
   const [scrolled, setScrolled] = useState(false)
   const [menuOpen, setMenuOpen] = useState(false)
@@ -225,28 +228,45 @@ export default function Navbar() {
               Explorar
             </p>
             {EXPLORE_LINKS.map((link) => (
-              <NavLink
-                key={link.to}
-                to={link.to}
-                onClick={() => setMenuOpen(false)}
-                className={({ isActive }) =>
-                  `flex items-center gap-3 px-4 py-3 rounded-lg font-label-sm text-label-sm transition-colors ${
-                    isActive ? 'bg-surface-container-low text-primary font-semibold' : 'text-on-surface-variant hover:bg-surface-container-low'
-                  }`
-                }
-              >
-                <MaterialIcon name={link.icon} className="text-[20px]" />
-                {link.label}
-              </NavLink>
-            ))}
+                          <NavLink
+                            key={link.to}
+                            to={link.to}
+                            onClick={() => setMenuOpen(false)}
+                            className={({ isActive }) =>
+                              `flex items-center gap-3 px-4 py-3 rounded-lg font-label-sm text-label-sm transition-colors ${
+                                isActive ? 'bg-surface-container-low text-primary font-semibold' : 'text-on-surface-variant hover:bg-surface-container-low'
+                              }`
+                            }
+                          >
+                            <MaterialIcon name={link.icon} className="text-[20px]" />
+                            {link.label}
+                          </NavLink>
+                        ))}
 
-            <Link
-              to="/registro"
-              onClick={() => setMenuOpen(false)}
-              className="mt-2 bg-primary text-on-primary text-center px-4 py-3 rounded-lg font-label-sm text-label-sm"
-            >
-              Unirte a CubaLink
-            </Link>
+                        {/* Separador */}
+                        <div className="border-t border-outline-variant my-2 mx-4"></div>
+
+                        {/* Soporte/Ayuda */}
+                        <NavLink
+                          to={SUPPORT_LINK.to}
+                          onClick={() => setMenuOpen(false)}
+                          className={({ isActive }) =>
+                            `flex items-center gap-3 px-4 py-3 rounded-lg font-label-sm text-label-sm transition-colors ${
+                              isActive ? 'bg-surface-container-low text-primary font-semibold' : 'text-on-surface-variant hover:bg-surface-container-low'
+                            }`
+                          }
+                        >
+                          <MaterialIcon name={SUPPORT_LINK.icon} className="text-[20px]" />
+                          {SUPPORT_LINK.label}
+                        </NavLink>
+
+                        <Link
+                          to="/registro"
+                          onClick={() => setMenuOpen(false)}
+                          className="mt-2 bg-primary text-on-primary text-center px-4 py-3 rounded-lg font-label-sm text-label-sm"
+                        >
+                          Unirte a CubaLink
+                        </Link>
           </nav>
         </div>
       )}
