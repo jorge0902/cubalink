@@ -1,15 +1,8 @@
-import { useEffect, useState } from 'react'
+import { useState, useEffect } from 'react'
 import { Link, NavLink, useLocation } from 'react-router-dom'
 import MaterialIcon from './MaterialIcon'
 import PublishModal from './PublishModal'
 import logoCubaLink from '../assets/cubalink-logo.png'
-
-// Campos genéricos del modal de publicación (demo)
-export const PUBLISH_FIELDS = [
-  { key: 'titulo', label: 'Título del anuncio', placeholder: 'Ej: Cuarto en Kotelniki, iPhone 12, busco albañil...', required: true },
-  { key: 'detalle', label: 'Detalle', placeholder: 'Describe lo que publicas: precio, zona, condiciones...', required: true },
-  { key: 'contacto', label: 'Contacto (teléfono o Telegram)', placeholder: '+7 ...', required: true },
-]
 
 // Navegación principal de CubaLink (design del TopAppBar original de la landing)
 // Desktop: Inicio | Empleos | Rentas | Comunidad | Explorar (dropdown)
@@ -32,7 +25,11 @@ export const EXPLORE_LINKS = [
   { to: '/empresas', label: 'Empresas', icon: 'apartment', desc: 'Aliados y vacantes' },
   { to: '/servicios', label: 'Servicios', icon: 'handyman', desc: 'Profesionales de la red' },
   { to: '/confiables', label: 'Confiables', icon: 'shield', desc: 'Gente de confianza' },
+  { to: '/lineas', label: 'Líneas', icon: 'sim_card', desc: 'Chips y telefonía' },
 ]
+
+// Ítem de Soporte/Ayuda (se muestra al final del menú Explorar)
+export const SUPPORT_LINK = { to: '/soporte', label: 'Soporte', icon: 'help' }
 
 export default function Navbar() {
   const [scrolled, setScrolled] = useState(false)
@@ -41,12 +38,6 @@ export default function Navbar() {
   const [publishOpen, setPublishOpen] = useState(false)
   const [toast, setToast] = useState('')
   const location = useLocation()
-
-  useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 20)
-    window.addEventListener('scroll', onScroll)
-    return () => window.removeEventListener('scroll', onScroll)
-  }, [])
 
   // Cierra el dropdown al navegar
   useEffect(() => {
@@ -113,7 +104,7 @@ export default function Navbar() {
                         }`
                       }
                     >
-                      <span className={`w-9 h-9 rounded-lg flex items-center justify-center flex-shrink-0 ${isExploreActive && location.pathname === link.to ? 'bg-brand-blue-deep text-white' : 'bg-surface-container text-primary'}`}>
+                      <span className={`w-9 h-9 rounded-lg flex items-center justify-center flex-shrink-0 ${link.to.startsWith('/confiables') ? 'bg-brand-blue-deep text-white' : 'bg-surface-container text-primary'}`}>
                         <MaterialIcon name={link.icon} className="text-[18px]" />
                       </span>
                       <span>
@@ -122,6 +113,23 @@ export default function Navbar() {
                       </span>
                     </NavLink>
                   ))}
+
+                  {/* Separador */}
+                  <div className="border-t border-outline-variant my-2 mx-4"></div>
+
+                  {/* Soporte/Ayuda */}
+                  <NavLink
+                    to={SUPPORT_LINK.to}
+                    onClick={() => setMenuOpen(false)}
+                    className={({ isActive }) =>
+                      `flex items-center gap-3 px-3 py-2.5 rounded-lg font-label-sm text-label-sm transition-colors ${
+                        isActive ? 'bg-surface-container-low text-primary font-semibold' : 'text-on-surface-variant hover:bg-surface-container-low'
+                      }`
+                    }
+                  >
+                    <MaterialIcon name={SUPPORT_LINK.icon} className="text-[18px]" />
+                    {SUPPORT_LINK.label}
+                  </NavLink>
                 </div>
               </div>
             )}
@@ -129,8 +137,7 @@ export default function Navbar() {
         </nav>
 
         <div className="flex items-center gap-2 sm:gap-4">
-          <MaterialIcon name="notifications" className="text-on-surface-variant cursor-pointer active:scale-95 transition-transform hidden sm:block" />
-          {/* Botón Publicar anuncio — destacado, estilo Dubizzle "Place Your Ad" */}
+          {/* Botón Publicar anuncio */}
           <button
             onClick={() => setPublishOpen(true)}
             className="hidden md:inline-flex items-center gap-2 bg-brand-gold text-primary px-5 py-2.5 rounded-xl font-label-sm text-label-sm font-bold hover:shadow-lg hover:bg-brand-gold/90 active:scale-95 transition-all btn-shine"
@@ -138,12 +145,15 @@ export default function Navbar() {
             <MaterialIcon name="add_circle" className="text-[18px]" />
             Publicar anuncio
           </button>
+
+          {/* Unirte */}
           <Link
             to="/registro"
             className="hidden sm:inline-block bg-primary text-on-primary px-4 py-2 rounded-lg font-label-sm text-label-sm hover:opacity-90 transition-all"
           >
             Unirte
           </Link>
+
           {/* Hamburger móvil */}
           <button
             className="md:hidden flex items-center justify-center w-10 h-10 rounded-lg hover:bg-surface-container-low transition-colors"
@@ -176,21 +186,6 @@ export default function Navbar() {
               </NavLink>
             ))}
 
-            {/* Perfil — acceso secundario solo en móvil (hamburguesa) */}
-            <NavLink
-              key={PROFILE_LINK.to}
-              to={PROFILE_LINK.to}
-              onClick={() => setMenuOpen(false)}
-              className={({ isActive }) =>
-                `flex items-center gap-3 px-4 py-3 rounded-lg font-label-sm text-label-sm transition-colors ${
-                  isActive ? 'bg-surface-container-low text-primary font-semibold' : 'text-on-surface-variant hover:bg-surface-container-low'
-                }`
-              }
-            >
-              <MaterialIcon name={PROFILE_LINK.icon} className="text-[20px]" />
-              {PROFILE_LINK.label}
-            </NavLink>
-
             <p className="px-4 pt-3 pb-1 text-[11px] uppercase tracking-widest text-outline font-semibold">
               Explorar
             </p>
@@ -209,6 +204,23 @@ export default function Navbar() {
                 {link.label}
               </NavLink>
             ))}
+
+            {/* Separador */}
+            <div className="border-t border-outline-variant my-2 mx-4"></div>
+
+            {/* Soporte/Ayuda */}
+            <NavLink
+              to={SUPPORT_LINK.to}
+              onClick={() => setMenuOpen(false)}
+              className={({ isActive }) =>
+                `flex items-center gap-3 px-4 py-3 rounded-lg font-label-sm text-label-sm transition-colors ${
+                  isActive ? 'bg-surface-container-low text-primary font-semibold' : 'text-on-surface-variant hover:bg-surface-container-low'
+                }`
+              }
+            >
+              <MaterialIcon name={SUPPORT_LINK.icon} className="text-[20px]" />
+              {SUPPORT_LINK.label}
+            </NavLink>
 
             <Link
               to="/registro"
