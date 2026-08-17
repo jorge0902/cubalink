@@ -58,7 +58,7 @@ export default function Remittances() {
         <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-6">
           <div className="max-w-2xl">
             <h1 className="font-headline-lg text-headline-lg text-primary mb-2">
-              Remesas Cuba ⇄ Rusia <span className="align-middle">💸</span>
+              Remesas Cuba ⇄ Rusia 💸
             </h1>
             <p className="text-on-surface-variant font-body-md text-body-md">
               Contacta con personas que envían dinero entre Rusia y Cuba. Compara tasas, elige con confianza y opera con gente de la comunidad.
@@ -151,7 +151,9 @@ export default function Remittances() {
           <button
             onClick={() => setOnlyVerified((v) => !v)}
             className={`px-4 py-2 rounded-full font-label-sm text-label-sm transition-all flex items-center gap-1.5 ${
-              onlyVerified ? 'bg-secondary-container text-on-secondary-container font-bold' : 'bg-surface-container-lowest border border-outline-variant text-on-surface-variant hover:bg-surface-container-low'
+              onlyVerified
+                ? 'bg-secondary-container text-on-secondary-container font-bold'
+                : 'bg-surface-container-lowest border border-outline-variant text-on-surface-variant hover:bg-surface-container-low'
             }`}
           >
             <MaterialIcon name="verified" className="text-[15px]" />
@@ -164,7 +166,7 @@ export default function Remittances() {
       <section className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-gutter">
         {filtered.map((rem) => (
           <RemittanceCard key={rem.id} rem={rem} />
-        ))
+        ))}
       </section>
 
       {filtered.length === 0 && (
