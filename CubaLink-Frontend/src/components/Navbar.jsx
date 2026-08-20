@@ -47,9 +47,21 @@ export default function Navbar() {
   const { favorites } = useFavorites()
   const { unreadCount } = useNotifications()
 
+  // Scroll handler with passive listener for performance
   useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 20)
-    window.addEventListener('scroll', onScroll)
+    let ticking = false
+    
+    const onScroll = () => {
+      if (!ticking) {
+        requestAnimationFrame(() => {
+          setScrolled(window.scrollY > 20)
+          ticking = false
+        })
+        ticking = true
+      }
+    }
+    
+    window.addEventListener('scroll', onScroll, { passive: true })
     return () => window.removeEventListener('scroll', onScroll)
   }, [])
 
@@ -61,8 +73,9 @@ export default function Navbar() {
 
   const isExploreActive = EXPLORE_LINKS.some((l) => location.pathname.startsWith(l.to))
 
-  const headerClass = `fixed top-0 left-0 w-full z-50 flex justify-between items-center px-margin-mobile md:px-margin-desktop h-16 bg-surface-container-lowest border-b border-outline-variant transition-all duration-200 ${
-    scrolled ? 'shadow-md bg-surface-container-lowest/90 backdrop-blur-md' : 'shadow-sm'
+  // Header is fixed - no transform, no will-change to prevent jitter
+  const headerClass = `fixed top-0 left-0 right-0 z-50 flex justify-between items-center px-margin-mobile md:px-margin-desktop h-16 bg-surface-container-lowest border-b border-outline-variant transition-shadow duration-200 ${
+    scrolled ? 'shadow-md bg-surface-container-lowest/95 backdrop-blur-sm' : 'shadow-sm'
   }`
 
   const linkClass = ({ isActive }) =>
@@ -134,7 +147,7 @@ export default function Navbar() {
         </nav>
 
         <div className="flex items-center gap-2 sm:gap-4">
-          {/* Botón Publicar anuncio — destacado, estilo Dubizzle "Place Your Ad" */}
+          {/* Botón Publicar anuncio */}
           <button
             onClick={() => setPublishOpen(true)}
             className="hidden md:inline-flex items-center gap-2 bg-brand-gold text-primary px-5 py-2.5 rounded-xl font-label-sm text-label-sm font-bold hover:shadow-lg hover:bg-brand-gold/90 active:scale-95 transition-all btn-shine"
@@ -142,13 +155,15 @@ export default function Navbar() {
             <MaterialIcon name="add_circle" className="text-[18px]" />
             Publicar anuncio
           </button>
+
           <Link
             to="/registro"
             className="hidden sm:inline-block bg-primary text-on-primary px-4 py-2 rounded-lg font-label-sm text-label-sm hover:opacity-90 transition-all"
           >
             Unirte
           </Link>
-          {/* Favoritos / Guardados — justo a la izquierda del hamburguesa */}
+
+          {/* Favoritos / Guardados */}
           <Link
             to="/guardados"
             aria-label="Mis guardados"
@@ -161,7 +176,8 @@ export default function Navbar() {
               </span>
             )}
           </Link>
-          {/* Campana de notificaciones — junto a Favoritos, a la izquierda del hamburguesa */}
+
+          {/* Campana de notificaciones */}
           <Link
             to="/notificaciones"
             aria-label="Notificaciones"
@@ -174,6 +190,7 @@ export default function Navbar() {
               </span>
             )}
           </Link>
+
           {/* Hamburger móvil */}
           <button
             className="md:hidden flex items-center justify-center w-10 h-10 rounded-lg hover:bg-surface-container-low transition-colors"

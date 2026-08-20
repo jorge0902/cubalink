@@ -4,11 +4,18 @@
 
 /* ====== CubaLink - Estilos base (heredados del diseño Google Stitch) ====== */
 
+/* Prevent horizontal overflow globally */
+html, body {
+  overflow-x: hidden;
+}
+
 body {
   font-family: 'Inter', sans-serif;
   background-color: #f8f9ff;
   color: #0b1c30;
   -webkit-font-smoothing: antialiased;
+  /* Smooth scroll for anchor links */
+  scroll-behavior: smooth;
 }
 
 .material-symbols-outlined {
@@ -84,6 +91,17 @@ body {
   display: none;
 }
 
+/* Horizontal scroll containers - contain overflow behavior */
+.scroll-x-contained {
+  overflow-x: auto;
+  overflow-y: hidden;
+  overscroll-behavior-x: contain;
+  scrollbar-width: none;
+}
+.scroll-x-contained::-webkit-scrollbar {
+  display: none;
+}
+
 /* ===== Animaciones de entrada (revelado al hacer scroll) ===== */
 @keyframes fadeInUp {
   from { opacity: 0; transform: translateY(24px); }
@@ -151,4 +169,14 @@ body {
 }
 .animate-soft-pulse {
   animation: softPulse 2.4s ease-in-out infinite;
+}
+
+/* Prevent layout shift on fixed headers */
+.navbar-height {
+  height: 4rem; /* 64px = h-16 */
+}
+
+/* Ensure main content accounts for fixed navbar */
+.main-content {
+  padding-top: 4rem;
 }
