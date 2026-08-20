@@ -39,7 +39,7 @@ export default function CaimanCashBanner() {
             {/* Main Title */}
             <h2
               id="caiman-hero-title"
-              className="text-[#F8FAFC] text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold leading-tight tracking-tight mb-3"
+              className="text-[#F8FC] text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold leading-tight tracking-tight mb-3"
             >
               Envía dinero a Cuba.
             </h2>
@@ -59,30 +59,30 @@ export default function CaimanCashBanner() {
               <div className="flex items-center gap-2.5 px-3 py-2 bg-white/5 backdrop-blur-sm rounded-xl border border-white/10 transition-all hover:border-[#59D6B5]/50 hover:bg-white/10">
                 <MaterialIcon name="speed" className="text-[#59D6B5] text-[20px]" />
                 <div className="hidden sm:block">
-                  <div className="text-[#F8FAFC] text-sm font-semibold leading-tight">Rápido</div>
+                  <div className="text-[#F8FC] text-sm font-semibold leading-tight">Rápido</div>
                   <div className="text-[#CBD5E1] text-xs leading-tight">Tu dinero llega rápidamente</div>
                 </div>
-                <div className="sm:hidden text-[#F8FAFC] text-xs font-semibold">Rápido</div>
+                <div className="sm:hidden text-[#F8FC] text-xs font-semibold">Rápido</div>
               </div>
 
               {/* Benefit 2: Seguro */}
               <div className="flex items-center gap-2.5 px-3 py-2 bg-white/5 backdrop-blur-sm rounded-xl border border-white/10 transition-all hover:border-[#59D6B5]/50 hover:bg-white/10">
                 <MaterialIcon name="shield_lock" className="text-[#59D6B5] text-[20px]" />
                 <div className="hidden sm:block">
-                  <div className="text-[#F8FAFC] text-sm font-semibold leading-tight">Seguro</div>
+                  <div className="text-[#F8FC] text-sm font-semibold leading-tight">Seguro</div>
                   <div className="text-[#CBD5E1] text-xs leading-tight">Transacciones protegidas</div>
                 </div>
-                <div className="sm:hidden text-[#F8FAFC] text-xs font-semibold">Seguro</div>
+                <div className="sm:hidden text-[#F8FC] text-xs font-semibold">Seguro</div>
               </div>
 
               {/* Benefit 3: Buenas tasas */}
               <div className="flex items-center gap-2.5 px-3 py-2 bg-white/5 backdrop-blur-sm rounded-xl border border-white/10 transition-all hover:border-[#59D6B5]/50 hover:bg-white/10">
                 <MaterialIcon name="trending_up" className="text-[#59D6B5] text-[20px]" />
                 <div className="hidden sm:block">
-                  <div className="text-[#F8FAFC] text-sm font-semibold leading-tight">Buenas tasas</div>
+                  <div className="text-[#F8FC] text-sm font-semibold leading-tight">Buenas tasas</div>
                   <div className="text-[#CBD5E1] text-xs leading-tight">Más valor para tu envío</div>
                 </div>
-                <div className="sm:hidden text-[#F8FAFC] text-xs font-semibold">Buenas tasas</div>
+                <div className="sm:hidden text-[#F8FC] text-xs font-semibold">Buenas tasas</div>
               </div>
             </div>
 
@@ -112,7 +112,7 @@ export default function CaimanCashBanner() {
           </div>
         </div>
 
-        {/* ===== MOBILE: Vertical layout with NEW mobile image as background ===== */}
+        {/* ===== MOBILE: Vertical layout with new mobile image, everything INSIDE ===== */}
         <div className="md:hidden relative"
              style={{
                backgroundImage: `url(${caimanBgMobile})`,
@@ -121,12 +121,12 @@ export default function CaimanCashBanner() {
                backgroundRepeat: 'no-repeat',
                borderRadius: '1.25rem',
              }}>
-          {/* Content overlay - text on top, image visible in lower portion */}
-          <div className="relative z-10 px-5 py-6 pb-20">
+          {/* Container with padding to keep content within banner bounds */}
+          <div className="relative z-10 px-5 py-5 pb-8">
             {/* Brand identifier */}
-            <div className="mb-5">
+            <div className="mb-4">
               <div className="flex items-center gap-1.5">
-                <span className="text-[#F8FAFC] text-lg font-bold tracking-tight">Caiman</span>
+                <span className="text-[#F8FC] text-lg font-bold tracking-tight">Caiman</span>
                 <span className="text-[#59D6B5] text-lg font-bold tracking-tight">Cash</span>
               </div>
               <div className="flex items-center gap-1.5 mt-1">
@@ -138,75 +138,69 @@ export default function CaimanCashBanner() {
             </div>
 
             {/* Main Title */}
-            <h2 id="caiman-hero-title-mobile" className="text-[#F8FAFC] text-2xl sm:text-3xl font-extrabold leading-tight tracking-tight mb-1">
+            <h2 id="caiman-hero-title-mobile" className="text-[#F8FC] text-2xl font-extrabold leading-tight tracking-tight mb-1">
               Envía dinero
             </h2>
-            <h2 className="text-[#F8FAFC] text-2xl sm:text-3xl font-extrabold leading-tight tracking-tight mb-1">
+            <h2 className="text-[#F8FC] text-2xl font-extrabold leading-tight tracking-tight mb-1">
               a Cuba.
             </h2>
-            <p className="text-[#59D6B5] text-xl sm:text-2xl font-extrabold leading-tight mb-4">
+            <p className="text-[#59D6B5] text-xl font-extrabold leading-tight mb-3">
               Rápido y seguro.
             </p>
 
             {/* Subtitle */}
-            <p className="text-[#CBD5E1] text-sm sm:text-base font-medium leading-relaxed mb-6">
-              A solo <span className="font-bold text-white">2 clicks</span> de distancia.
+            <p className="text-[#CBD5E1] text-sm font-medium leading-relaxed mb-4">
+              A solo <span className="font-bold text-[#F8FC]">2 clicks</span> de distancia.
             </p>
 
-            {/* Benefits Row - horizontal on mobile if space allows */}
-            <div className="flex flex-wrap justify-center gap-2.5 mb-6">
+            {/* Benefits Row - horizontal on mobile */}
+            <div className="flex flex-wrap justify-center gap-2 mb-20">
               {/* Benefit 1: Rápido */}
-              <div className="flex items-center gap-2 px-3 py-2 bg-white/5 backdrop-blur-sm rounded-xl border border-white/10 min-w-[140px]">
-                <MaterialIcon name="speed" className="text-[#59D6B5] text-[20px] flex-shrink-0" />
+              <div className="flex items-center gap-1.5 px-2.5 py-1.5 bg-white/5 backdrop-blur-sm rounded-lg border border-white/10 min-w-[120px]">
+                <MaterialIcon name="speed" className="text-[#59D6B5] text-[16px] flex-shrink-0" />
                 <div>
-                  <div className="text-[#F8FAFC] text-sm font-semibold leading-tight">Rápido</div>
-                  <div className="text-[#94A3B8] text-xs leading-tight">Tu dinero llega rápidamente</div>
+                  <div className="text-[#F8FC] text-xs font-semibold leading-tight">Rápido</div>
+                  <div className="text-[#94A3B8] text-[10px] leading-tight">Tu dinero llega rápidamente</div>
                 </div>
               </div>
 
               {/* Benefit 2: Seguro */}
-              <div className="flex items-center gap-2 px-3 py-2 bg-white/5 backdrop-blur-sm rounded-xl border border-white/10 min-w-[140px]">
-                <MaterialIcon name="shield_lock" className="text-[#59D6B5] text-[20px] flex-shrink-0" />
+              <div className="flex items-center gap-1.5 px-2.5 py-1.5 bg-white/5 backdrop-blur-sm rounded-lg border border-white/10 min-w-[120px]">
+                <MaterialIcon name="shield_lock" className="text-[#59D6B5] text-[16px] flex-shrink-0" />
                 <div>
-                  <div className="text-[#F8FAFC] text-sm font-semibold leading-tight">Seguro</div>
-                  <div className="text-[#94A3B8] text-xs leading-tight">Transacciones protegidas</div>
+                  <div className="text-[#F8FC] text-xs font-semibold leading-tight">Seguro</div>
+                  <div className="text-[#94A3B8] text-[10px] leading-tight">Transacciones protegidas</div>
                 </div>
               </div>
 
               {/* Benefit 3: Buenas tasas */}
-              <div className="flex items-center gap-2 px-3 py-2 bg-white/5 backdrop-blur-sm rounded-xl border border-white/10 min-w-[140px]">
-                <MaterialIcon name="trending_up" className="text-[#59D6B5] text-[20px] flex-shrink-0" />
+              <div className="flex items-center gap-1.5 px-2.5 py-1.5 bg-white/5 backdrop-blur-sm rounded-lg border border-white/10 min-w-[120px]">
+                <MaterialIcon name="trending_up" className="text-[#59D6B5] text-[16px] flex-shrink-0" />
                 <div>
-                  <div className="text-[#F8FAFC] text-sm font-semibold leading-tight">Buenas tasas</div>
-                  <div className="text-[#94A3B8] text-xs leading-tight">Más valor para tu envío</div>
+                  <div className="text-[#F8FC] text-xs font-semibold leading-tight">Buenas tasas</div>
+                  <div className="text-[#94A3B8] text-[10px] leading-tight">Más valor para tu envío</div>
                 </div>
               </div>
             </div>
 
-            {/* Spacer to push image area down - this creates space for the background image to show */}
-            <div className="h-64 md:h-80" aria-hidden="true" />
-
-            {/* CTA Button */}
-            <div className="flex flex-col items-stretch gap-3">
+            {/* CTA Button - positioned to overlap with image lower area */}
+            <div className="flex flex-col items-stretch gap-2 absolute bottom-5 left-0 right-0 px-5">
               <Link
                 to="https://caimancash.vercel.app"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="group inline-flex items-center justify-center gap-2 bg-[#59D6B5] text-[#06131B] px-6 py-4 rounded-[22px] font-bold text-base transition-all duration-200 hover:bg-[#6DE8C7] hover:-translate-y-0.5 active:scale-[0.98] shadow-xl shadow-[#59D6B5]/30 hover:shadow-[#59D6B5]/40 focus:outline-none focus:ring-4 focus:ring-[#59D6B5]/50 focus:ring-offset-2 focus:ring-offset-[#06131B]"
+                className="group inline-flex items-center justify-center gap-2 bg-[#59D6B5] text-[#06131B] px-6 py-3.5 rounded-[22px] font-bold text-base transition-all duration-200 hover:bg-[#6DE8C7] hover:-translate-y-0.5 active:scale-[0.98] shadow-xl shadow-[#59D6B5]/30 hover:shadow-[#59D6B5]/40 focus:outline-none focus:ring-4 focus:ring-[#59D6B5]/50 focus:ring-offset-2 focus:ring-offset-[#06131B]"
                 aria-label="Enviar remesa con Caiman Cash - Se abre en nueva pestaña"
               >
                 Enviar remesa
                 <MaterialIcon name="arrow_forward" className="text-[20px] transition-transform group-hover:translate-x-1" />
               </Link>
 
-              <div className="flex items-center justify-center gap-1.5 text-[#94A3B8] text-sm font-medium">
-                <MaterialIcon name="shield_lock" className="text-[#59D6B5] text-[16px]" />
+              <div className="flex items-center justify-center gap-1.5 text-[#94A3B8] text-xs font-medium">
+                <MaterialIcon name="shield_lock" className="text-[#59D6B5] text-[14px]" />
                 <span>Fácil, rápido y sin complicaciones</span>
               </div>
             </div>
-
-            {/* Bottom padding to ensure background image is fully visible */}
-            <div className="h-20" aria-hidden="true" />
           </div>
         </div>
       </div>
