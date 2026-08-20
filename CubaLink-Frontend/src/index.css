@@ -180,3 +180,50 @@ body {
 .main-content {
   padding-top: 4rem;
 }
+
+/* ===== Caiman Cash Mobile Banner Custom CSS ===== */
+.caiman-mobile-banner {
+  width: 100vw;
+  position: relative;
+  left: 0;
+  right: 0;
+  margin-left: 0;
+  margin-right: 0;
+  background-size: contain;
+  background-position: center bottom;
+  background-repeat: no-repeat;
+}
+
+.caiman-mobile-text {
+  word-break: break-word !important;
+  hyphens: auto;
+}
+
+.caiman-mobile-white-text {
+  color: #FFFFFF !important;
+}
+
+.caiman-mobile-turquoise-text {
+  color: #59D6B5 !important;
+}
+
+.caiman-mobile-gray-text {
+  color: #94A3B8 !important;
+}
+
+.caiman-mobile-subtitle-gray {
+  color: #CBD5E1 !important;
+}
+
+.caiman-mobile-microcopy {
+  color: #A7B8B5 !important;
+}
+
+.caiman-mobile-navy-text {
+  color: #06131B !important;
+}
+
+.caiman-mobile-button {
+  background-color: #59D6B5 !important;
+  color: #06131B !important;
+}
