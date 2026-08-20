@@ -33,7 +33,7 @@ export default function BottomNav() {
 
   return (
     <>
-      <nav className="md:hidden fixed bottom-0 left-0 w-full z-50 flex justify-around items-stretch h-16 bg-surface-container-lowest pb-safe border-t border-outline-variant shadow-lg">
+      <nav className="md:hidden fixed bottom-0 left-0 right-0 z-50 flex justify-around items-stretch h-16 bg-surface-container-lowest pb-safe border-t border-outline-variant shadow-lg">
         {/* Inicio, Empleos — a la izquierda del botón central */}
         {items.slice(0, 2).map((item) => (
           <NavLink

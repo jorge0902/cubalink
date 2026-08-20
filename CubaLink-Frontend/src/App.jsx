@@ -36,7 +36,8 @@ export default function App() {
           <ScrollToTop />
           <Navbar />
 
-          <div className="flex-grow">
+          {/* Main content with proper padding for fixed navbar */}
+          <main className="flex-grow pt-16 md:pt-0" id="main-content">
             <Routes>
               <Route path="/" element={<HomeNew />} />
               <Route path="/empleos" element={<Jobs />} />
@@ -73,7 +74,7 @@ export default function App() {
                 }
               />
             </Routes>
-          </div>
+          </main>
 
           <Footer />
           <BottomNav />
