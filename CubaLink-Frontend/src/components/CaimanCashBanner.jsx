@@ -9,13 +9,17 @@ export default function CaimanCashBanner() {
       className="relative overflow-hidden rounded-2xl border border-outline-variant/30 mb-8 animate-fade-in-up"
       aria-labelledby="caiman-hero-title"
     >
-      {/* ===== DESKTOP: Horizontal layout with background-image (UNCHANGED) ===== */}
-      <div className="hidden md:block" style={{ backgroundImage: `url(${caimanBgDesktop})`, backgroundSize: 'cover', backgroundPosition: 'center', backgroundRepeat: 'no-repeat', borderRadius: '1.25rem' }}>
+      {/* ==================== DESKTOP: Horizontal background-image layout (UNCHANGED) ==================== */}
+      <div className="hidden md:block" style={{
+        backgroundImage: `url(${caimanBgDesktop})`,
+        backgroundSize: 'cover',
+        backgroundPosition: 'center',
+        backgroundRepeat: 'no-repeat',
+        borderRadius: '1.25rem'
+      }}>
         <div className="relative z-10 w-full max-w-7xl mx-auto px-4 sm:px-6 md:px-8 lg:px-12">
           <div className="flex md:items-center md:justify-between gap-8 md:gap-12 min-h-[280px] lg:min-h-[320px]">
-            {/* Left Content Area - texto a la izquierda */}
             <div className="flex-1 min-w-0 md:max-w-2xl text-left px-6 md:px-10 lg:px-12 py-10 md:py-12 lg:py-14">
-              {/* Brand identifier */}
               <div className="mb-6 md:mb-8">
                 <span className="text-white/60 text-xs sm:text-sm font-medium tracking-widest uppercase">
                   Caiman Cash
@@ -28,7 +32,6 @@ export default function CaimanCashBanner() {
                 </div>
               </div>
 
-              {/* Main Title */}
               <h2
                 id="caiman-hero-title"
                 className="text-[#F8FC] text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold leading-tight tracking-tight mb-3"
@@ -40,14 +43,11 @@ export default function CaimanCashBanner() {
                 Rápido y seguro.
               </p>
 
-              {/* Subtitle */}
               <p className="text-[#E5E7EB] text-base sm:text-lg md:text-xl font-medium leading-relaxed mb-8 max-w-lg">
                 A solo <span className="font-bold text-white">2 clicks</span> de distancia.
               </p>
 
-              {/* Benefits Row */}
               <div className="flex flex-wrap items-center gap-3 md:gap-4 mb-8 md:mb-10">
-                {/* Benefit 1: Rápido */}
                 <div className="flex items-center gap-2.5 px-3 py-2 bg-white/5 backdrop-blur-sm rounded-xl border border-white/10 transition-all hover:border-[#59D6B5]/50 hover:bg-white/10">
                   <MaterialIcon name="speed" className="text-[#59D6B5] text-[20px]" />
                   <div className="hidden sm:block">
@@ -56,8 +56,6 @@ export default function CaimanCashBanner() {
                   </div>
                   <div className="sm:hidden text-[#F8FC] text-xs font-semibold">Rápido</div>
                 </div>
-
-                {/* Benefit 2: Seguro */}
                 <div className="flex items-center gap-2.5 px-3 py-2 bg-white/5 backdrop-blur-sm rounded-xl border border-white/10 transition-all hover:border-[#59D6B5]/50 hover:bg-white/10">
                   <MaterialIcon name="shield_lock" className="text-[#59D6B5] text-[20px]" />
                   <div className="hidden sm:block">
@@ -66,8 +64,6 @@ export default function CaimanCashBanner() {
                   </div>
                   <div className="sm:hidden text-[#F8FC] text-xs font-semibold">Seguro</div>
                 </div>
-
-                {/* Benefit 3: Buenas tasas */}
                 <div className="flex items-center gap-2.5 px-3 py-2 bg-white/5 backdrop-blur-sm rounded-xl border border-white/10 transition-all hover:border-[#59D6B5]/50 hover:bg-white/10">
                   <MaterialIcon name="trending_up" className="text-[#59D6B5] text-[20px]" />
                   <div className="hidden sm:block">
@@ -78,7 +74,6 @@ export default function CaimanCashBanner() {
                 </div>
               </div>
 
-              {/* CTA Button */}
               <div className="flex flex-col sm:flex-row items-start sm:items-center gap-4">
                 <Link
                   to="https://caimancash.vercel.app"
@@ -90,116 +85,205 @@ export default function CaimanCashBanner() {
                   Enviar remesa
                   <MaterialIcon name="arrow_forward" className="text-[20px] transition-transform group-hover:translate-x-1" />
                 </Link>
-
                 <span className="text-[#A7B8B5] text-sm md:text-base font-medium italic hidden sm:inline self-center">
                   Fácil, rápido y sin complicaciones
                 </span>
               </div>
             </div>
-
-            {/* Right Visual Area - espacio reservado para el caimán/logo en el fondo */}
             <div className="hidden md:block w-[280px] md:w-[320px] lg:w-[360px] flex-shrink-0" aria-hidden="true">
-              {/* Espacio reservado - el fondo ya tiene la visual del caimán */}
             </div>
           </div>
         </div>
       </div>
 
-      {/* ===== MOBILE: Full-width vertical layout with new mobile-exclusive image ===== */}
-      {/* Image uses background-size: contain so the entire composition is visible */}
-      {/* FIX 1: 100% viewport width, no margins */}
-      {/* FIX 2: All text inside card bounds, word-break for overflow */}
-      {/* FIX 3: No pink colors - all text #FFFFFF */}
-      {/* FIX 4: CTA positioned at bottom, inside card bounds */}
+      {/* ==================== MOBILE: Full-width vertical banner ==================== */}
+      {/* 4 FIX APPLIED: */}
+      {/* 1. width: 100vw (no margins) */}
+      {/* 2. All text inside card with word-break */}
+      {/* 3. #FFFFFF instead of pink */}
+      {/* 4. CTA at bottom inside card */}
       <div className="md:hidden">
+        {/* Banner container: 100vw width, full mobile image visible with cover */}
         <div
-          className="caiman-mobile-banner"
           style={{
+            width: '100vw',
+            marginLeft: 'calc(-1 * (100vw - 100%) / 2)',
+            marginRight: 'calc(-1 * (100vw - 100%) / 2)',
             backgroundImage: `url(${caimanBgMobile})`,
+            backgroundSize: 'cover',
+            backgroundPosition: 'center top',
+            backgroundRepeat: 'no-repeat',
+            position: 'relative',
+            overflow: 'hidden',
+            borderRadius: '20px',
+            minHeight: '580px',
+            zIndex: 1,
           }}
         >
-          {/* Overlay for text readability */}
-          <div className="caiman-mobile-overlay"></div>
+          {/* Subtle overlay for text readability (NOT darkening the image) */}
+          <div style={{
+            position: 'absolute',
+            top: 0,
+            left: 0,
+            width: '100%',
+            height: '100%',
+            zIndex: -1,
+            background: 'linear-gradient(180deg, rgba(2,8,12,0.45) 0%, rgba(2,8,12,0.35) 35%, rgba(2,8,12,0.25) 55%, rgba(2,8,12,0.05) 75%, rgba(2,8,12,0.0) 100%)',
+          }}></div>
 
-          {/* Content - all text INSIDE the banner image bounds */}
-          <div className="relative z-10 px-4 py-4">
-            {/* Brand - Caiman Cash + POWERED BY CUBALINK */}
-            <div className="mb-3">
-              <div className="flex items-center gap-1.5">
-                <span className="w-1.5 h-1.5 rounded-full bg-[#59D6B5] animate-pulse" />
-                <span className="caiman-mobile-white-text text-lg font-extrabold caiman-mobile-text">Caiman</span>
-                <span className="caiman-mobile-turquoise-text text-lg font-extrabold caiman-mobile-text">Cash</span>
+          {/* Content layer - all text/CTA INSIDE the banner */}
+          <div style={{ position: 'relative', zIndex: 10, padding: '20px 16px 16px', width: '100%' }}>
+            {/* Branding: Caiman Cash + POWERED BY CUBALINK */}
+            <div style={{ marginBottom: '12px' }}>
+              <div style={{ display: 'flex', alignItems: 'center', gap: '6px' }}>
+                <span style={{ width: '6px', height: '6px', borderRadius: '50%', backgroundColor: '#59D6B5', boxShadow: '0 0 10px rgba(89,214,181,0.8)' }}></span>
+                <span style={{ color: '#FFFFFF', fontSize: '16px', fontWeight: 800, letterSpacing: '-0.045em', wordBreak: 'break-word' }}>Caiman</span>
+                <span style={{ color: '#59D6B5', fontSize: '16px', fontWeight: 800, letterSpacing: '-0.045em', wordBreak: 'break-word' }}>Cash</span>
               </div>
-              <div className="text-[#59D6B5] text-[10px] font-extrabold tracking-widest uppercase mt-0.5 ml-5 caiman-mobile-text">
+              <div style={{ color: '#59D6B5', fontSize: '9px', fontWeight: 800, letterSpacing: '0.15em', textTransform: 'uppercase', marginTop: '3px', marginLeft: '14px', wordBreak: 'break-all' }}>
                 POWERED BY CUBALINK
               </div>
             </div>
 
             {/* Eyebrow */}
-            <div className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-[#59D6B5]/8 border border-[#59D6B5]/16 mb-2 caiman-mobile-text">
-              <span className="text-[#59D6B5]">✦</span>
-              <span className="text-[8px] font-extrabold tracking-widest uppercase caiman-mobile-white-text">
-                ENVÍA DINERO A CUBA
-              </span>
+            <div style={{
+              display: 'inline-flex',
+              alignItems: 'center',
+              gap: '4px',
+              padding: '4px 8px',
+              borderRadius: '999px',
+              background: 'rgba(89,214,181,0.08)',
+              border: '1px solid rgba(89,214,181,0.16)',
+              color: '#59D6B5',
+              fontSize: '8px',
+              fontWeight: 800,
+              letterSpacing: '0.1em',
+              textTransform: 'uppercase',
+              marginBottom: '8px',
+              wordBreak: 'break-all'
+            }}>
+              <span>✦</span>
+              <span>ENVÍA DINERO A CUBA</span>
             </div>
 
-            {/* Main Title - Envía dinero / a Cuba. */}
-            <h1 className="caiman-mobile-white-text text-2xl font-extrabold caiman-mobile-text" style={{ lineHeight: '0.94' }}>
+            {/* Main Title: "Envía dinero" / "a Cuba." */}
+            <h1 style={{
+              color: '#FFFFFF',
+              fontSize: '28px',
+              fontWeight: 900,
+              lineHeight: '0.94',
+              letterSpacing: '-0.048em',
+              margin: '6px 0',
+              textShadow: '0 3px 25px rgba(0,0,0,0.35)',
+              wordBreak: 'break-word'
+            }}>
               Envía dinero
               <br />
-              <span className="caiman-mobile-turquoise-text">a Cuba.</span>
+              <span style={{ color: '#59D6B5' }}>a Cuba.</span>
             </h1>
 
-            {/* Rápido y seguro */}
-            <h2 className="caiman-mobile-turquoise-text font-extrabold text-lg mb-1 caiman-mobile-text">
+            {/* Subtitle: Rápido y seguro */}
+            <h2 style={{
+              color: '#59D6B5',
+              fontWeight: 800,
+              fontSize: '18px',
+              marginBottom: '6px',
+              wordBreak: 'break-word'
+            }}>
               Rápido y seguro.
             </h2>
 
-            {/* Subtitle - 2 clicks */}
-            <p className="caiman-mobile-subtitle-gray text-xs font-medium mb-3 caiman-mobile-text" style={{ lineHeight: '1.35' }}>
-              A solo <span className="font-bold caiman-mobile-white-text">2 clicks</span> de distancia.
+            {/* Subtitle: 2 clicks */}
+            <p style={{
+              color: '#CBD5E1',
+              fontSize: '13px',
+              fontWeight: 500,
+              lineHeight: '1.35',
+              maxWidth: '280px',
+              marginBottom: '12px',
+              wordBreak: 'break-word'
+            }}>
+              A solo <span style={{ color: '#FFFFFF', fontWeight: 700 }}>2 clicks</span> de distancia.
             </p>
 
-            {/* Benefits - compact grid */}
-            <div className="grid grid-cols-3 gap-1.5 mb-4">
-              <div className="bg-white/5 backdrop-blur-sm rounded-lg border border-white/10 px-2 py-1.5 text-center">
-                <div className="caiman-mobile-turquoise-text text-sm mb-0.5">⚡</div>
-                <div className="caiman-mobile-white-text text-[9px] font-extrabold caiman-mobile-text">Rápido</div>
-                <div className="caiman-mobile-gray-text text-[6px] caiman-mobile-text">Tu dinero llega rápidamente</div>
+            {/* Benefits Grid - 3 benefits */}
+            <div style={{
+              display: 'grid',
+              gridTemplateColumns: 'repeat(3, 1fr)',
+              gap: '6px',
+              maxWidth: '380px',
+              marginBottom: '180px'
+            }}>
+              {/* Rápido */}
+              <div style={{
+                padding: '8px 7px',
+                borderRadius: '12px',
+                border: '1px solid rgba(89,214,181,0.14)',
+                background: 'rgba(4,17,24,0.55)',
+                backdropFilter: 'blur(9px)',
+                textAlign: 'center'
+              }}>
+                <div style={{ color: '#59D6B5', fontSize: '14px', marginBottom: '3px' }}>⚡</div>
+                <div style={{ color: '#FFFFFF', fontSize: '9px', fontWeight: 800, wordBreak: 'break-all' }}>Rápido</div>
+                <div style={{ color: '#94A3B8', fontSize: '6px', lineHeight: '1.2', wordBreak: 'break-all' }}>Tu dinero llega rápidamente</div>
               </div>
-              <div className="bg-white/5 backdrop-blur-sm rounded-lg border border-white/10 px-2 py-1.5 text-center">
-                <div className="caiman-mobile-turquoise-text text-sm mb-0.5">🛡️</div>
-                <div className="caiman-mobile-white-text text-[9px] font-extrabold caiman-mobile-text">Seguro</div>
-                <div className="caiman-mobile-gray-text text-[6px] caiman-mobile-text">Transacciones protegidas</div>
+              {/* Seguro */}
+              <div style={{
+                padding: '8px 7px',
+                borderRadius: '12px',
+                border: '1px solid rgba(89,214,181,0.14)',
+                background: 'rgba(4,17,24,0.55)',
+                backdropFilter: 'blur(9px)',
+                textAlign: 'center'
+              }}>
+                <div style={{ color: '#59D6B5', fontSize: '14px', marginBottom: '3px' }}>🛡️</div>
+                <div style={{ color: '#FFFFFF', fontSize: '9px', fontWeight: 800, wordBreak: 'break-all' }}>Seguro</div>
+                <div style={{ color: '#94A3B8', fontSize: '6px', lineHeight: '1.2', wordBreak: 'break-all' }}>Transacciones protegidas</div>
               </div>
-              <div className="bg-white/5 backdrop-blur-sm rounded-lg border border-white/10 px-2 py-1.5 text-center">
-                <div className="caiman-mobile-turquoise-text text-sm mb-0.5">💸</div>
-                <div className="caiman-mobile-white-text text-[9px] font-extrabold caiman-mobile-text">Buenas tasas</div>
-                <div className="caiman-mobile-gray-text text-[6px] caiman-mobile-text">Más valor para tu envío</div>
+              {/* Buenas tasas */}
+              <div style={{
+                padding: '8px 7px',
+                borderRadius: '12px',
+                border: '1px solid rgba(89,214,181,0.14)',
+                background: 'rgba(4,17,24,0.55)',
+                backdropFilter: 'blur(9px)',
+                textAlign: 'center'
+              }}>
+                <div style={{ color: '#59D6B5', fontSize: '14px', marginBottom: '3px' }}>💸</div>
+                <div style={{ color: '#FFFFFF', fontSize: '9px', fontWeight: 800, wordBreak: 'break-all' }}>Buenas tasas</div>
+                <div style={{ color: '#94A3B8', fontSize: '6px', lineHeight: '1.2', wordBreak: 'break-all' }}>Más valor para tu envío</div>
               </div>
             </div>
 
-            {/* Flex spacer to push CTA to bottom of banner */}
-            <div className="flex-1 min-h-[10px]"></div>
+            {/* Spacer */}
+            <div style={{ flex: 1, minHeight: '10px' }}></div>
 
-            {/* CTA Button - positioned at bottom, inside banner bounds */}
+            {/* CTA Button - absolutely positioned at bottom, inside banner */}
             <div className="caiman-mobile-cta-area">
-              <Link
-                to="https://caimancash.vercel.app"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="caiman-mobile-button group w-full min-h-[50px] rounded-[15px] font-extrabold text-base flex items-center justify-center gap-2 caiman-mobile-text"
-                aria-label="Enviar remesa con Caiman Cash - Se abre en nueva pestaña"
-              >
-                Enviar remesa →
-                <MaterialIcon name="arrow_forward" className="text-[16px] transition-transform group-hover:translate-x-1" />
-              </Link>
+              <div style={{
+                padding: '9px',
+                borderRadius: '20px',
+                background: 'linear-gradient(180deg, rgba(5,20,27,0.45), rgba(5,20,27,0.75))',
+                border: '1px solid rgba(255,255,255,0.08)',
+                backdropFilter: 'blur(12px)'
+              }}>
+                <Link
+                  to="https://caimancash.vercel.app"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="group caiman-mobile-button w-full min-h-[50px] rounded-[15px] font-extrabold text-base flex items-center justify-center gap-2 caiman-mobile-text"
+                  aria-label="Enviar remesa con Caiman Cash - Se abre en nueva pestaña"
+                >
+                  Enviar remesa →
+                  <MaterialIcon name="arrow_forward" className="text-[16px] transition-transform group-hover:translate-x-1" />
+                </Link>
 
-              <div className="flex items-center justify-center gap-1.5 mt-2">
-                <MaterialIcon name="shield_lock" className="text-[#59D6B5] text-[14px]" />
-                <span className="caiman-mobile-gray-text text-xs font-medium caiman-mobile-text">
-                  Fácil, rápido y sin complicaciones
-                </span>
+                <div className="flex items-center justify-center gap-1.5 mt-2">
+                  <MaterialIcon name="shield_lock" className="text-[#59D6B5] text-[14px]" />
+                  <span className="caiman-mobile-gray-text text-xs font-medium caiman-mobile-text">
+                    Fácil, rápido y sin complicaciones
+                  </span>
+                </div>
               </div>
             </div>
           </div>
