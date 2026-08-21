@@ -9,7 +9,7 @@ export default function CaimanCashBanner() {
       className="relative overflow-hidden rounded-2xl border border-outline-variant/30 mb-8 animate-fade-in-up"
       aria-labelledby="caiman-hero-title"
     >
-      {/* ==================== DESKTOP: Horizontal background-image layout (UNCHANGED) ==================== */}
+      {/* ==================== DESKTOP: Horizontal layout (CLEAN COLORS) ==================== */}
       <div className="hidden md:block" style={{
         backgroundImage: `url(${caimanBgDesktop})`,
         backgroundSize: 'cover',
@@ -34,7 +34,7 @@ export default function CaimanCashBanner() {
 
               <h2
                 id="caiman-hero-title"
-                className="text-[#F8FC] text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold leading-tight tracking-tight mb-3"
+                className="text-[#FFFFFF] text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold leading-tight tracking-tight mb-3"
               >
                 Envía dinero a Cuba.
               </h2>
@@ -51,26 +51,26 @@ export default function CaimanCashBanner() {
                 <div className="flex items-center gap-2.5 px-3 py-2 bg-white/5 backdrop-blur-sm rounded-xl border border-white/10 transition-all hover:border-[#59D6B5]/50 hover:bg-white/10">
                   <MaterialIcon name="speed" className="text-[#59D6B5] text-[20px]" />
                   <div className="hidden sm:block">
-                    <div className="text-[#F8FC] text-sm font-semibold leading-tight">Rápido</div>
+                    <div className="text-[#FFFFFF] text-sm font-semibold leading-tight">Rápido</div>
                     <div className="text-[#CBD5E1] text-xs leading-tight">Tu dinero llega rápidamente</div>
                   </div>
-                  <div className="sm:hidden text-[#F8FC] text-xs font-semibold">Rápido</div>
+                  <div className="sm:hidden text-[#FFFFFF] text-xs font-semibold">Rápido</div>
                 </div>
                 <div className="flex items-center gap-2.5 px-3 py-2 bg-white/5 backdrop-blur-sm rounded-xl border border-white/10 transition-all hover:border-[#59D6B5]/50 hover:bg-white/10">
                   <MaterialIcon name="shield_lock" className="text-[#59D6B5] text-[20px]" />
                   <div className="hidden sm:block">
-                    <div className="text-[#F8FC] text-sm font-semibold leading-tight">Seguro</div>
+                    <div className="text-[#FFFFFF] text-sm font-semibold leading-tight">Seguro</div>
                     <div className="text-[#CBD5E1] text-xs leading-tight">Transacciones protegidas</div>
                   </div>
-                  <div className="sm:hidden text-[#F8FC] text-xs font-semibold">Seguro</div>
+                  <div className="sm:hidden text-[#FFFFFF] text-xs font-semibold">Seguro</div>
                 </div>
                 <div className="flex items-center gap-2.5 px-3 py-2 bg-white/5 backdrop-blur-sm rounded-xl border border-white/10 transition-all hover:border-[#59D6B5]/50 hover:bg-white/10">
                   <MaterialIcon name="trending_up" className="text-[#59D6B5] text-[20px]" />
                   <div className="hidden sm:block">
-                    <div className="text-[#F8FC] text-sm font-semibold leading-tight">Buenas tasas</div>
+                    <div className="text-[#FFFFFF] text-sm font-semibold leading-tight">Buenas tasas</div>
                     <div className="text-[#CBD5E1] text-xs leading-tight">Más valor para tu envío</div>
                   </div>
-                  <div className="sm:hidden text-[#F8FC] text-xs font-semibold">Buenas tasas</div>
+                  <div className="sm:hidden text-[#FFFFFF] text-xs font-semibold">Buenas tasas</div>
                 </div>
               </div>
 
@@ -96,31 +96,26 @@ export default function CaimanCashBanner() {
         </div>
       </div>
 
-      {/* ==================== MOBILE: Full-width vertical banner ==================== */}
-      {/* 4 FIX APPLIED: */}
-      {/* 1. width: 100vw (no margins) */}
-      {/* 2. All text inside card with word-break */}
-      {/* 3. #FFFFFF instead of pink */}
-      {/* 4. CTA at bottom inside card */}
+      {/* ==================== MOBILE: Full-width layout (FIXED OVERFLOW & POSITIONING) ==================== */}
       <div className="md:hidden">
-        {/* Banner container: 100vw width, full mobile image visible with cover */}
         <div
           style={{
             width: '100vw',
             marginLeft: 'calc(-1 * (100vw - 100%) / 2)',
             marginRight: 'calc(-1 * (100vw - 100%) / 2)',
             backgroundImage: `url(${caimanBgMobile})`,
-            backgroundSize: 'cover',
+            backgroundSize: 'contain', // FIX: Show FULL image, no cropping
             backgroundPosition: 'center top',
             backgroundRepeat: 'no-repeat',
             position: 'relative',
             overflow: 'hidden',
             borderRadius: '20px',
-            minHeight: '580px',
+            minHeight: '600px',
             zIndex: 1,
+            backgroundColor: '#06131B'
           }}
         >
-          {/* Subtle overlay for text readability (NOT darkening the image) */}
+          {/* Overlay */}
           <div style={{
             position: 'absolute',
             top: 0,
@@ -128,19 +123,26 @@ export default function CaimanCashBanner() {
             width: '100%',
             height: '100%',
             zIndex: -1,
-            background: 'linear-gradient(180deg, rgba(2,8,12,0.45) 0%, rgba(2,8,12,0.35) 35%, rgba(2,8,12,0.25) 55%, rgba(2,8,12,0.05) 75%, rgba(2,8,12,0.0) 100%)',
+            background: 'linear-gradient(180deg, rgba(6,19,28,0.5) 0%, rgba(6,19,28,0.2) 40%, rgba(6,19,28,0) 70%, rgba(6,19,28,0.6) 100%)',
           }}></div>
 
-          {/* Content layer - all text/CTA INSIDE the banner */}
-          <div style={{ position: 'relative', zIndex: 10, padding: '20px 16px 16px', width: '100%' }}>
-            {/* Branding: Caiman Cash + POWERED BY CUBALINK */}
-            <div style={{ marginBottom: '12px' }}>
+          {/* Content layer - Adjusted padding and layout to fit inside the visual card of the image */}
+          <div style={{ 
+            position: 'relative', 
+            zIndex: 10, 
+            padding: '24px 20px', 
+            width: '100%',
+            maxWidth: '400px',
+            margin: '0 auto'
+          }}>
+            {/* Branding */}
+            <div style={{ marginBottom: '16px' }}>
               <div style={{ display: 'flex', alignItems: 'center', gap: '6px' }}>
                 <span style={{ width: '6px', height: '6px', borderRadius: '50%', backgroundColor: '#59D6B5', boxShadow: '0 0 10px rgba(89,214,181,0.8)' }}></span>
-                <span style={{ color: '#FFFFFF', fontSize: '16px', fontWeight: 800, letterSpacing: '-0.045em', wordBreak: 'break-word' }}>Caiman</span>
-                <span style={{ color: '#59D6B5', fontSize: '16px', fontWeight: 800, letterSpacing: '-0.045em', wordBreak: 'break-word' }}>Cash</span>
+                <span style={{ color: '#FFFFFF', fontSize: '16px', fontWeight: 800, letterSpacing: '-0.045em' }}>Caiman</span>
+                <span style={{ color: '#59D6B5', fontSize: '16px', fontWeight: 800, letterSpacing: '-0.045em' }}>Cash</span>
               </div>
-              <div style={{ color: '#59D6B5', fontSize: '9px', fontWeight: 800, letterSpacing: '0.15em', textTransform: 'uppercase', marginTop: '3px', marginLeft: '14px', wordBreak: 'break-all' }}>
+              <div style={{ color: '#59D6B5', fontSize: '9px', fontWeight: 800, letterSpacing: '0.15em', textTransform: 'uppercase', marginTop: '3px', marginLeft: '14px' }}>
                 POWERED BY CUBALINK
               </div>
             </div>
@@ -152,135 +154,136 @@ export default function CaimanCashBanner() {
               gap: '4px',
               padding: '4px 8px',
               borderRadius: '999px',
-              background: 'rgba(89,214,181,0.08)',
-              border: '1px solid rgba(89,214,181,0.16)',
+              background: 'rgba(89,214,181,0.1)',
+              border: '1px solid rgba(89,214,181,0.2)',
               color: '#59D6B5',
               fontSize: '8px',
               fontWeight: 800,
               letterSpacing: '0.1em',
               textTransform: 'uppercase',
-              marginBottom: '8px',
-              wordBreak: 'break-all'
+              marginBottom: '12px',
             }}>
               <span>✦</span>
               <span>ENVÍA DINERO A CUBA</span>
             </div>
 
-            {/* Main Title: "Envía dinero" / "a Cuba." */}
+            {/* Main Title */}
             <h1 style={{
               color: '#FFFFFF',
-              fontSize: '28px',
+              fontSize: '26px',
               fontWeight: 900,
-              lineHeight: '0.94',
-              letterSpacing: '-0.048em',
-              margin: '6px 0',
-              textShadow: '0 3px 25px rgba(0,0,0,0.35)',
-              wordBreak: 'break-word'
+              lineHeight: '1.1',
+              letterSpacing: '-0.04em',
+              margin: '0 0 8px 0',
+              textShadow: '0 3px 20px rgba(0,0,0,0.4)',
             }}>
               Envía dinero
               <br />
               <span style={{ color: '#59D6B5' }}>a Cuba.</span>
             </h1>
 
-            {/* Subtitle: Rápido y seguro */}
+            {/* Subtitle 1 */}
             <h2 style={{
               color: '#59D6B5',
               fontWeight: 800,
-              fontSize: '18px',
-              marginBottom: '6px',
-              wordBreak: 'break-word'
+              fontSize: '17px',
+              marginBottom: '8px',
             }}>
               Rápido y seguro.
             </h2>
 
-            {/* Subtitle: 2 clicks */}
+            {/* Subtitle 2 */}
             <p style={{
               color: '#CBD5E1',
               fontSize: '13px',
               fontWeight: 500,
-              lineHeight: '1.35',
-              maxWidth: '280px',
-              marginBottom: '12px',
-              wordBreak: 'break-word'
+              lineHeight: '1.4',
+              marginBottom: '16px',
+              maxWidth: '260px'
             }}>
               A solo <span style={{ color: '#FFFFFF', fontWeight: 700 }}>2 clicks</span> de distancia.
             </p>
 
-            {/* Benefits Grid - 3 benefits */}
+            {/* Benefits Grid */}
             <div style={{
               display: 'grid',
               gridTemplateColumns: 'repeat(3, 1fr)',
-              gap: '6px',
-              maxWidth: '380px',
-              marginBottom: '180px'
+              gap: '8px',
+              marginBottom: '160px' 
             }}>
-              {/* Rápido */}
               <div style={{
-                padding: '8px 7px',
+                padding: '8px 6px',
                 borderRadius: '12px',
-                border: '1px solid rgba(89,214,181,0.14)',
-                background: 'rgba(4,17,24,0.55)',
-                backdropFilter: 'blur(9px)',
+                border: '1px solid rgba(89,214,181,0.15)',
+                background: 'rgba(4,17,24,0.6)',
+                backdropFilter: 'blur(10px)',
                 textAlign: 'center'
               }}>
-                <div style={{ color: '#59D6B5', fontSize: '14px', marginBottom: '3px' }}>⚡</div>
-                <div style={{ color: '#FFFFFF', fontSize: '9px', fontWeight: 800, wordBreak: 'break-all' }}>Rápido</div>
-                <div style={{ color: '#94A3B8', fontSize: '6px', lineHeight: '1.2', wordBreak: 'break-all' }}>Tu dinero llega rápidamente</div>
+                <div style={{ color: '#59D6B5', fontSize: '14px', marginBottom: '4px' }}>⚡</div>
+                <div style={{ color: '#FFFFFF', fontSize: '9px', fontWeight: 800 }}>Rápido</div>
+                <div style={{ color: '#94A3B8', fontSize: '6px', lineHeight: '1.2' }}>Envío instantáneo</div>
               </div>
-              {/* Seguro */}
               <div style={{
-                padding: '8px 7px',
+                padding: '8px 6px',
                 borderRadius: '12px',
-                border: '1px solid rgba(89,214,181,0.14)',
-                background: 'rgba(4,17,24,0.55)',
-                backdropFilter: 'blur(9px)',
+                border: '1px solid rgba(89,214,181,0.15)',
+                background: 'rgba(4,17,24,0.6)',
+                backdropFilter: 'blur(10px)',
                 textAlign: 'center'
               }}>
-                <div style={{ color: '#59D6B5', fontSize: '14px', marginBottom: '3px' }}>🛡️</div>
-                <div style={{ color: '#FFFFFF', fontSize: '9px', fontWeight: 800, wordBreak: 'break-all' }}>Seguro</div>
-                <div style={{ color: '#94A3B8', fontSize: '6px', lineHeight: '1.2', wordBreak: 'break-all' }}>Transacciones protegidas</div>
+                <div style={{ color: '#59D6B5', fontSize: '14px', marginBottom: '4px' }}>🛡️</div>
+                <div style={{ color: '#FFFFFF', fontSize: '9px', fontWeight: 800 }}>Seguro</div>
+                <div style={{ color: '#94A3B8', fontSize: '6px', lineHeight: '1.2' }}>Operación protegida</div>
               </div>
-              {/* Buenas tasas */}
               <div style={{
-                padding: '8px 7px',
+                padding: '8px 6px',
                 borderRadius: '12px',
-                border: '1px solid rgba(89,214,181,0.14)',
-                background: 'rgba(4,17,24,0.55)',
-                backdropFilter: 'blur(9px)',
+                border: '1px solid rgba(89,214,181,0.15)',
+                background: 'rgba(4,17,24,0.6)',
+                backdropFilter: 'blur(10px)',
                 textAlign: 'center'
               }}>
-                <div style={{ color: '#59D6B5', fontSize: '14px', marginBottom: '3px' }}>💸</div>
-                <div style={{ color: '#FFFFFF', fontSize: '9px', fontWeight: 800, wordBreak: 'break-all' }}>Buenas tasas</div>
-                <div style={{ color: '#94A3B8', fontSize: '6px', lineHeight: '1.2', wordBreak: 'break-all' }}>Más valor para tu envío</div>
+                <div style={{ color: '#59D6B5', fontSize: '14px', marginBottom: '4px' }}>💸</div>
+                <div style={{ color: '#FFFFFF', fontSize: '9px', fontWeight: 800 }}>Tasas</div>
+                <div style={{ color: '#94A3B8', fontSize: '6px', lineHeight: '1.2' }}>Mejor valor</div>
               </div>
             </div>
 
-            {/* Spacer */}
-            <div style={{ flex: 1, minHeight: '10px' }}></div>
-
-            {/* CTA Button - absolutely positioned at bottom, inside banner */}
-            <div className="caiman-mobile-cta-area">
+            {/* CTA Button - Positioned precisely inside the banner image bottom area */}
+            <div style={{
+              position: 'absolute',
+              bottom: '20px',
+              left: '20px',
+              right: '20px',
+              zIndex: 20
+            }}>
               <div style={{
-                padding: '9px',
+                padding: '10px',
                 borderRadius: '20px',
-                background: 'linear-gradient(180deg, rgba(5,20,27,0.45), rgba(5,20,27,0.75))',
-                border: '1px solid rgba(255,255,255,0.08)',
-                backdropFilter: 'blur(12px)'
+                background: 'linear-gradient(180deg, rgba(5,20,27,0.5), rgba(5,20,27,0.8))',
+                border: '1px solid rgba(255,255,255,0.1)',
+                backdropFilter: 'blur(12px)',
+                textAlign: 'center'
               }}>
                 <Link
                   to="https://caimancash.vercel.app"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="group caiman-mobile-button w-full min-h-[50px] rounded-[15px] font-extrabold text-base flex items-center justify-center gap-2 caiman-mobile-text"
-                  aria-label="Enviar remesa con Caiman Cash - Se abre en nueva pestaña"
+                  className="group w-full min-h-[50px] rounded-[15px] font-extrabold text-base flex items-center justify-center gap-2 transition-all hover:scale-[0.98]"
+                  style={{
+                    backgroundColor: '#59D6B5',
+                    color: '#06131B',
+                    textDecoration: 'none',
+                    boxShadow: '0 10px 20px rgba(89,214,181,0.3)'
+                  }}
                 >
                   Enviar remesa →
-                  <MaterialIcon name="arrow_forward" className="text-[16px] transition-transform group-hover:translate-x-1" />
+                  <MaterialIcon name="arrow_forward" className="text-[16px]" />
                 </Link>
 
                 <div className="flex items-center justify-center gap-1.5 mt-2">
                   <MaterialIcon name="shield_lock" className="text-[#59D6B5] text-[14px]" />
-                  <span className="caiman-mobile-gray-text text-xs font-medium caiman-mobile-text">
+                  <span style={{ color: '#94A3B8', fontSize: '11px', fontWeight: 500 }}>
                     Fácil, rápido y sin complicaciones
                   </span>
                 </div>
