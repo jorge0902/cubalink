@@ -2,6 +2,8 @@ import { useEffect, useState } from 'react'
 import { Link, NavLink, useLocation } from 'react-router-dom'
 import MaterialIcon from './MaterialIcon'
 import PublishModal from './PublishModal'
+import { useFavorites } from '../context/FavoritesContext'
+import { useNotifications } from '../context/NotificationsContext'
 import logoCubaLink from '../assets/cubalink-logo.png'
 
 // Campos genéricos del modal de publicación (demo)
@@ -32,6 +34,7 @@ export const EXPLORE_LINKS = [
   { to: '/empresas', label: 'Empresas', icon: 'apartment', desc: 'Aliados y vacantes' },
   { to: '/servicios', label: 'Servicios', icon: 'handyman', desc: 'Profesionales de la red' },
   { to: '/confiables', label: 'Confiables', icon: 'shield', desc: 'Gente de confianza' },
+  { to: '/lineas', label: 'Líneas', icon: 'sim_card', desc: 'Chips y telefonía' },
 ]
 
 export default function Navbar() {
@@ -41,10 +44,24 @@ export default function Navbar() {
   const [publishOpen, setPublishOpen] = useState(false)
   const [toast, setToast] = useState('')
   const location = useLocation()
+  const { favorites } = useFavorites()
+  const { unreadCount } = useNotifications()
 
+  // Scroll handler with passive listener for performance
   useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 20)
-    window.addEventListener('scroll', onScroll)
+    let ticking = false
+    
+    const onScroll = () => {
+      if (!ticking) {
+        requestAnimationFrame(() => {
+          setScrolled(window.scrollY > 20)
+          ticking = false
+        })
+        ticking = true
+      }
+    }
+    
+    window.addEventListener('scroll', onScroll, { passive: true })
     return () => window.removeEventListener('scroll', onScroll)
   }, [])
 
@@ -56,8 +73,9 @@ export default function Navbar() {
 
   const isExploreActive = EXPLORE_LINKS.some((l) => location.pathname.startsWith(l.to))
 
-  const headerClass = `fixed top-0 left-0 w-full z-50 flex justify-between items-center px-margin-mobile md:px-margin-desktop h-16 bg-surface-container-lowest border-b border-outline-variant transition-all duration-200 ${
-    scrolled ? 'shadow-md bg-surface-container-lowest/90 backdrop-blur-md' : 'shadow-sm'
+  // Header is fixed - no transform, no will-change to prevent jitter
+  const headerClass = `fixed top-0 left-0 right-0 z-50 flex justify-between items-center px-margin-mobile md:px-margin-desktop h-16 bg-surface-container-lowest border-b border-outline-variant transition-shadow duration-200 ${
+    scrolled ? 'shadow-md bg-surface-container-lowest/95 backdrop-blur-sm' : 'shadow-sm'
   }`
 
   const linkClass = ({ isActive }) =>
@@ -129,8 +147,7 @@ export default function Navbar() {
         </nav>
 
         <div className="flex items-center gap-2 sm:gap-4">
-          <MaterialIcon name="notifications" className="text-on-surface-variant cursor-pointer active:scale-95 transition-transform hidden sm:block" />
-          {/* Botón Publicar anuncio — destacado, estilo Dubizzle "Place Your Ad" */}
+          {/* Botón Publicar anuncio */}
           <button
             onClick={() => setPublishOpen(true)}
             className="hidden md:inline-flex items-center gap-2 bg-brand-gold text-primary px-5 py-2.5 rounded-xl font-label-sm text-label-sm font-bold hover:shadow-lg hover:bg-brand-gold/90 active:scale-95 transition-all btn-shine"
@@ -138,12 +155,42 @@ export default function Navbar() {
             <MaterialIcon name="add_circle" className="text-[18px]" />
             Publicar anuncio
           </button>
+
           <Link
             to="/registro"
             className="hidden sm:inline-block bg-primary text-on-primary px-4 py-2 rounded-lg font-label-sm text-label-sm hover:opacity-90 transition-all"
           >
             Unirte
           </Link>
+
+          {/* Favoritos / Guardados */}
+          <Link
+            to="/guardados"
+            aria-label="Mis guardados"
+            className="relative flex items-center justify-center w-10 h-10 rounded-lg hover:bg-surface-container-low transition-colors text-on-surface-variant hover:text-brand-gold"
+          >
+            <MaterialIcon name={favorites.length > 0 ? 'favorite' : 'favorite_border'} fill={favorites.length > 0} className="text-[22px]" />
+            {favorites.length > 0 && (
+              <span className="absolute -top-0.5 -right-0.5 min-w-[18px] h-[18px] px-1 rounded-full bg-brand-gold text-white text-[10px] font-bold flex items-center justify-center shadow-sm">
+                {favorites.length > 9 ? '9+' : favorites.length}
+              </span>
+            )}
+          </Link>
+
+          {/* Campana de notificaciones */}
+          <Link
+            to="/notificaciones"
+            aria-label="Notificaciones"
+            className="relative flex items-center justify-center w-10 h-10 rounded-lg hover:bg-surface-container-low transition-colors text-on-surface-variant hover:text-brand-gold"
+          >
+            <MaterialIcon name={unreadCount > 0 ? 'notifications_active' : 'notifications'} className="text-[22px]" />
+            {unreadCount > 0 && (
+              <span className="absolute -top-0.5 -right-0.5 min-w-[18px] h-[18px] px-1 rounded-full bg-red-500 text-white text-[10px] font-bold flex items-center justify-center shadow-sm animate-soft-pulse">
+                {unreadCount > 9 ? '9+' : unreadCount}
+              </span>
+            )}
+          </Link>
+
           {/* Hamburger móvil */}
           <button
             className="md:hidden flex items-center justify-center w-10 h-10 rounded-lg hover:bg-surface-container-low transition-colors"

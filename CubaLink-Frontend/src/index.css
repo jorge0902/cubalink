@@ -4,11 +4,18 @@
 
 /* ====== CubaLink - Estilos base (heredados del diseño Google Stitch) ====== */
 
+/* Prevent horizontal overflow globally */
+html, body {
+  overflow-x: hidden;
+}
+
 body {
   font-family: 'Inter', sans-serif;
   background-color: #f8f9ff;
   color: #0b1c30;
   -webkit-font-smoothing: antialiased;
+  /* Smooth scroll for anchor links */
+  scroll-behavior: smooth;
 }
 
 .material-symbols-outlined {
@@ -75,6 +82,26 @@ body {
   background: #737780;
 }
 
+/* Carruseles horizontales (Dubizzle): scroll táctil fluido sin barra visible */
+.scrollbar-hidden {
+  scrollbar-width: none; /* Firefox */
+  -ms-overflow-style: none; /* IE/Edge legacy */
+}
+.scrollbar-hidden::-webkit-scrollbar {
+  display: none;
+}
+
+/* Horizontal scroll containers - contain overflow behavior */
+.scroll-x-contained {
+  overflow-x: auto;
+  overflow-y: hidden;
+  overscroll-behavior-x: contain;
+  scrollbar-width: none;
+}
+.scroll-x-contained::-webkit-scrollbar {
+  display: none;
+}
+
 /* ===== Animaciones de entrada (revelado al hacer scroll) ===== */
 @keyframes fadeInUp {
   from { opacity: 0; transform: translateY(24px); }
@@ -91,6 +118,22 @@ body {
 .delay-300 { animation-delay: 0.3s; }
 .delay-400 { animation-delay: 0.4s; }
 .delay-500 { animation-delay: 0.5s; }
+
+/* Fade simple + slide-up (modal onboarding / bottom sheet) */
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+.animate-fade-in {
+  animation: fadeIn 0.25s ease-out forwards;
+}
+@keyframes slideUp {
+  from { opacity: 0.4; transform: translateY(48px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+.animate-slide-up {
+  animation: slideUp 0.35s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
 
 /* Hover premium: elevación suave */
 .premium-hover {
@@ -126,4 +169,62 @@ body {
 }
 .animate-soft-pulse {
   animation: softPulse 2.4s ease-in-out infinite;
+}
+
+/* Prevent layout shift on fixed headers */
+.navbar-height {
+  height: 4rem; /* 64px = h-16 */
+}
+
+/* Ensure main content accounts for fixed navbar */
+.main-content {
+  padding-top: 4rem;
+}
+
+/* ===== Caiman Cash Mobile Banner Custom CSS ===== */
+.caiman-mobile-banner {
+  /* These are now set via inline styles in the JSX */
+}
+
+.caiman-mobile-text {
+  word-break: break-word !important;
+  hyphens: auto;
+}
+
+.caiman-mobile-white-text {
+  color: #FFFFFF !important;
+}
+
+.caiman-mobile-turquoise-text {
+  color: #59D6B5 !important;
+}
+
+.caiman-mobile-gray-text {
+  color: #94A3B8 !important;
+}
+
+.caiman-mobile-subtitle-gray {
+  color: #CBD5E1 !important;
+}
+
+.caiman-mobile-navy-text {
+  color: #06131B !important;
+}
+
+.caiman-mobile-button {
+  background-color: #59D6B5 !important;
+  color: #06131B !important;
+  border: none;
+  padding: 14px 16px;
+  border-radius: 15px;
+}
+
+/* CTA area - positioned at bottom of banner, inside image bounds */
+.caiman-mobile-cta-area {
+  position: absolute;
+  bottom: 20px;
+  left: 0;
+  right: 0;
+  padding: 0 16px;
+  z-index: 10;
 }

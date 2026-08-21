@@ -2,6 +2,7 @@ import { useState } from 'react'
 import MaterialIcon from '../components/MaterialIcon'
 import RemittanceCard from '../components/RemittanceCard'
 import PublishModal from '../components/PublishModal'
+import CaimanCashBanner from '../components/CaimanCashBanner'
 import { remittances, remittanceTypes, paymentMethods, safetyRules } from '../data/remittances'
 
 const publishFields = [
@@ -57,7 +58,7 @@ export default function Remittances() {
         <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-6">
           <div className="max-w-2xl">
             <h1 className="font-headline-lg text-headline-lg text-primary mb-2">
-              Remesas Cuba ⇄ Rusia <span className="align-middle">💸</span>
+              Remesas Cuba ⇄ Rusia 💸
             </h1>
             <p className="text-on-surface-variant font-body-md text-body-md">
               Contacta con personas que envían dinero entre Rusia y Cuba. Compara tasas, elige con confianza y opera con gente de la comunidad.
@@ -72,7 +73,7 @@ export default function Remittances() {
           </button>
         </div>
 
-        {/* Advertencia de seguridad — siempre visible */}
+        {/* Advertencia de seguridad */}
         <div className="bg-error-container/40 border border-error/30 rounded-xl p-4 md:p-5 flex gap-3 items-start">
           <MaterialIcon name="warning" className="text-error text-[22px] flex-shrink-0 mt-0.5" />
           <div>
@@ -85,7 +86,7 @@ export default function Remittances() {
           </div>
         </div>
 
-        {/* Referencia de cambio — moneda nacional */}
+        {/* Referencia de cambio */}
         <div className="mt-4 bg-surface-container-lowest border border-outline-variant rounded-xl p-4 flex flex-wrap items-center gap-3">
           <span className="w-10 h-10 rounded-xl bg-brand-blue-deep/10 text-brand-blue-deep flex items-center justify-center">
             <MaterialIcon name="currency_ruble" className="text-[20px]" />
@@ -103,6 +104,19 @@ export default function Remittances() {
           </span>
         </div>
       </section>
+
+      {/* Caiman Cash Banner - Inserted after reference rate */}
+      <CaimanCashBanner />
+
+      {/* Separador P2P */}
+      <div className="mb-8 text-center">
+        <h3 className="font-title-md text-title-md text-primary mb-1">
+          Explora también las ofertas de la comunidad
+        </h3>
+        <p className="text-on-surface-variant text-label-sm font-label-sm">
+          Compara tasas y métodos publicados por otros usuarios y proveedores.
+        </p>
+      </div>
 
       {/* Filtros */}
       <section className="mb-8 space-y-4">
@@ -147,7 +161,9 @@ export default function Remittances() {
           <button
             onClick={() => setOnlyVerified((v) => !v)}
             className={`px-4 py-2 rounded-full font-label-sm text-label-sm transition-all flex items-center gap-1.5 ${
-              onlyVerified ? 'bg-secondary-container text-on-secondary-container font-bold' : 'bg-surface-container-lowest border border-outline-variant text-on-surface-variant hover:bg-surface-container-low'
+              onlyVerified
+                ? 'bg-secondary-container text-on-secondary-container font-bold'
+                : 'bg-surface-container-lowest border border-outline-variant text-on-surface-variant hover:bg-surface-container-low'
             }`}
           >
             <MaterialIcon name="verified" className="text-[15px]" />

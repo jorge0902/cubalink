@@ -4,6 +4,8 @@ import Footer from './components/Footer'
 import BottomNav from './components/BottomNav'
 import ScrollToTop from './components/ScrollToTop'
 import { ActivityProvider } from './context/ActivityContext'
+import { FavoritesProvider } from './context/FavoritesContext'
+import { NotificationsProvider } from './context/NotificationsContext'
 
 import HomeNew from './pages/HomeNew'
 import Jobs from './pages/Jobs'
@@ -20,16 +22,22 @@ import Register from './pages/Register'
 import Ranking from './pages/Ranking'
 import Trust from './pages/Trust'
 import TrustProfile from './pages/TrustProfile'
+import SavedListings from './pages/SavedListings'
+import Lines from './pages/Lines'
+import Notifications from './pages/Notifications'
 
 export default function App() {
   return (
-    <ActivityProvider>
-      <Router>
+    <FavoritesProvider>
+      <NotificationsProvider>
+        <ActivityProvider>
+        <Router>
         <div className="min-h-screen flex flex-col bg-surface text-on-surface antialiased">
           <ScrollToTop />
           <Navbar />
 
-          <div className="flex-grow">
+          {/* Main content with proper padding for fixed navbar */}
+          <main className="flex-grow pt-16 md:pt-0" id="main-content">
             <Routes>
               <Route path="/" element={<HomeNew />} />
               <Route path="/empleos" element={<Jobs />} />
@@ -46,6 +54,9 @@ export default function App() {
               <Route path="/viajes" element={<Travel />} />
               <Route path="/remesas" element={<Remittances />} />
               <Route path="/publicar/:tipo" element={<Publicar />} />
+              <Route path="/guardados" element={<SavedListings />} />
+              <Route path="/lineas" element={<Lines />} />
+              <Route path="/notificaciones" element={<Notifications />} />
               <Route
                 path="*"
                 element={
@@ -63,12 +74,14 @@ export default function App() {
                 }
               />
             </Routes>
-          </div>
+          </main>
 
           <Footer />
           <BottomNav />
         </div>
-      </Router>
-    </ActivityProvider>
+        </Router>
+        </ActivityProvider>
+      </NotificationsProvider>
+    </FavoritesProvider>
   )
 }
