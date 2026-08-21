@@ -189,9 +189,21 @@ body {
   right: 0;
   margin-left: 0;
   margin-right: 0;
+  /* FIX: Use contain so the ENTIRE mobile image is visible */
   background-size: contain;
-  background-position: center bottom;
+  background-position: center top;
   background-repeat: no-repeat;
+  /* Only apply mobile height on small screens */
+  height: auto;
+  min-height: 400px;
+}
+
+@media (max-width: 639px) {
+  .caiman-mobile-banner {
+    height: 215vw;
+    min-height: 580px;
+    max-height: 1000px;
+  }
 }
 
 .caiman-mobile-text {
@@ -215,10 +227,6 @@ body {
   color: #CBD5E1 !important;
 }
 
-.caiman-mobile-microcopy {
-  color: #A7B8B5 !important;
-}
-
 .caiman-mobile-navy-text {
   color: #06131B !important;
 }
@@ -226,4 +234,39 @@ body {
 .caiman-mobile-button {
   background-color: #59D6B5 !important;
   color: #06131B !important;
+  border: none;
+  padding: 14px 16px;
+  border-radius: 15px;
+}
+
+/* CTA area - positioned at bottom of banner, inside image bounds */
+.caiman-mobile-cta-area {
+  position: absolute;
+  bottom: 20px;
+  left: 0;
+  right: 0;
+  padding: 0 16px;
+  z-index: 10;
+}
+
+/* Caiman Cash Mobile overlay - subtle gradient for text readability */
+.caiman-mobile-banner .caiman-mobile-overlay {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  background: linear-gradient(
+    180deg,
+    rgba(2, 8, 12, 0.40) 0%,
+    rgba(2, 8, 12, 0.25) 15%,
+    rgba(2, 8, 12, 0.15) 35%,
+    rgba(2, 8, 12, 0.20) 55%,
+    rgba(2, 8, 12, 0.0) 68%,
+    rgba(2, 8, 12, 0.0) 100%
+  );
+}
+
+.caiman-mobile-banner > .caiman-mobile-overlay ~ div,
+.caiman-mobile-banner .relative {
+  position: relative;
+  z-index: 1;
 }
