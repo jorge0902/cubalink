@@ -12,9 +12,9 @@ const THEMES = {
     snow: false,
     blur: 'blur(20px)',
     atmosOpacity: 0.4,
-    // Velocidad +40% sobre el valor original (0.15→0.21, rango 0.2→0.28)
+    // Velocidad alta para mayor dinamismo en Viajes (+30% sobre el valor previo 0.21/0.28 → 0.27/0.36)
     cloud: {
-      speedMin: 0.21, speedRange: 0.28,
+      speedMin: 0.27, speedRange: 0.36,
       opacityMin: 0.18, opacityRange: 0.22,
       stop0: (o) => `rgba(255, 255, 255, ${o})`,
       stop1: (o) => `rgba(255, 255, 255, ${o * 0.7})`,
@@ -23,8 +23,8 @@ const THEMES = {
     },
     // Densidad −30%: menos puffs por nube (13-20 en vez de 18-29)
     puffDensity: 0.7,
-    // Atmosféricas +40% (0.35→0.49, rango 0.4→0.56)
-    atmos: { speedMin: 0.49, speedRange: 0.56, opacityMin: 0.08, opacityRange: 0.12 },
+    // Atmosféricas más rápidas (0.49/0.56 → 0.63/0.72)
+    atmos: { speedMin: 0.63, speedRange: 0.72, opacityMin: 0.08, opacityRange: 0.12 },
   },
   night: {
     // Gradiente nocturno profundo
@@ -85,13 +85,14 @@ export default function SkyClouds({ variant = 'day', className = '' }) {
     // Clase Copo de Nieve — cae hacia abajo con velocidad suave y oscila con el viento
     class Snowflake {
       constructor() {
-        this.reset()
+        this.reset(true)
       }
 
-      reset() {
+      reset(initial = false) {
         this.baseX = Math.random() * width
-        // Aparecen sobre la parte superior (algunos ya a media altura para llenar la escena al inicio)
-        this.y = -Math.random() * height
+        // Pre-poblado: en la creación inicial los copos llenan TODO el alto (la escena
+        // ya está nevando al abrir el sitio); al reciclarse reaparecen arriba
+        this.y = initial ? Math.random() * height : -4 - Math.random() * 10
         // Tamaños variados entre 0.8px y 2.5px para sensación de profundidad
         this.size = Math.random() * 1.7 + 0.8
         // Opacidad entre 0.3 y 0.8 (copos lejanos tenues, cercanos brillantes)
@@ -116,13 +117,13 @@ export default function SkyClouds({ variant = 'day', className = '' }) {
         }
       }
 
+      // Sin save/restore (no hay transformaciones): fillStyle se cachea una vez por frame
+      // en animate y globalAlpha numérico es más barato que interpolar string rgba()
       draw(currentCtx) {
-        currentCtx.save()
-        currentCtx.fillStyle = `rgba(255, 255, 255, ${this.opacity})`
+        currentCtx.globalAlpha = this.opacity
         currentCtx.beginPath()
         currentCtx.arc(this.x, this.y, this.size, 0, Math.PI * 2)
         currentCtx.fill()
-        currentCtx.restore()
       }
     }
 
@@ -168,8 +169,7 @@ export default function SkyClouds({ variant = 'day', className = '' }) {
       }
 
       draw(currentCtx) {
-        currentCtx.save()
-
+        // Sin save/restore: no hay transformaciones en este draw
         this.puffs.forEach((puff) => {
           const puffX = this.x + puff.dx
           const puffY = this.y + puff.dy
@@ -187,8 +187,6 @@ export default function SkyClouds({ variant = 'day', className = '' }) {
           currentCtx.arc(puffX, puffY, r, 0, Math.PI * 2)
           currentCtx.fill()
         })
-
-        currentCtx.restore()
       }
     }
 
@@ -213,12 +211,14 @@ export default function SkyClouds({ variant = 'day', className = '' }) {
       ctx.clearRect(0, 0, width, height)
       atmosphericCtx.clearRect(0, 0, width, height)
 
-      // Renderizar nieve (copos cayendo)
+      // Renderizar nieve (copos cayendo) — fillStyle cacheado, loop indexado sin callbacks
       if (snowCtx) {
-        snowflakes.forEach((flake) => {
+        snowCtx.fillStyle = 'rgba(255, 255, 255, 1)'
+        for (let i = 0; i < snowflakes.length; i++) {
+          const flake = snowflakes[i]
           flake.update()
           flake.draw(snowCtx)
-        })
+        }
       }
 
       // Renderizar nubes

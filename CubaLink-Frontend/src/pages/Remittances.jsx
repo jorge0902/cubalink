@@ -2,6 +2,7 @@ import { useState } from 'react'
 import MaterialIcon from '../components/MaterialIcon'
 import RemittanceCard from '../components/RemittanceCard'
 import PublishModal from '../components/PublishModal'
+import CaimanCashBanner from '../components/CaimanCashBanner'
 import { remittances, remittanceTypes, paymentMethods, safetyRules } from '../data/remittances'
 
 const publishFields = [
@@ -20,7 +21,8 @@ export default function Remittances() {
   const [methodFilter, setMethodFilter] = useState('todos')
   const [onlyVerified, setOnlyVerified] = useState(false)
   const [modalOpen, setModalOpen] = useState(false)
-  const [toast, setToast] = useState(false)
+    const [toast, setToast] = useState(false)
+    const [showWarning, setShowWarning] = useState(true)
 
   const filtered = items.filter((r) => {
     const okType = typeFilter === 'todos' || r.type === typeFilter
@@ -57,7 +59,7 @@ export default function Remittances() {
         <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-6">
           <div className="max-w-2xl">
             <h1 className="font-headline-lg text-headline-lg text-primary mb-2">
-              Remesas Cuba ⇄ Rusia <span className="align-middle">💸</span>
+              Remesas Cuba ⇄ Rusia 💸
             </h1>
             <p className="text-on-surface-variant font-body-md text-body-md">
               Contacta con personas que envían dinero entre Rusia y Cuba. Compara tasas, elige con confianza y opera con gente de la comunidad.
@@ -72,20 +74,7 @@ export default function Remittances() {
           </button>
         </div>
 
-        {/* Advertencia de seguridad — siempre visible */}
-        <div className="bg-error-container/40 border border-error/30 rounded-xl p-4 md:p-5 flex gap-3 items-start">
-          <MaterialIcon name="warning" className="text-error text-[22px] flex-shrink-0 mt-0.5" />
-          <div>
-            <p className="font-label-sm text-label-sm text-on-error-container font-bold mb-1">
-              ⚠️ CubaLink solo conecta personas. No participa en las transacciones ni garantiza su cumplimiento.
-            </p>
-            <p className="text-label-sm font-label-sm text-on-error-container/90 leading-relaxed">
-              Opera siempre bajo tu propio criterio, verifica al contacto y sigue las reglas de seguridad. Reporta cualquier actividad sospechosa a la comunidad.
-            </p>
-          </div>
-        </div>
-
-        {/* Referencia de cambio — moneda nacional */}
+        {/* Referencia de cambio */}
         <div className="mt-4 bg-surface-container-lowest border border-outline-variant rounded-xl p-4 flex flex-wrap items-center gap-3">
           <span className="w-10 h-10 rounded-xl bg-brand-blue-deep/10 text-brand-blue-deep flex items-center justify-center">
             <MaterialIcon name="currency_ruble" className="text-[20px]" />
@@ -103,6 +92,19 @@ export default function Remittances() {
           </span>
         </div>
       </section>
+
+      {/* Caiman Cash Banner - Inserted after reference rate */}
+      <CaimanCashBanner />
+
+      {/* Separador P2P */}
+      <div className="mb-8 text-center">
+        <h3 className="font-title-md text-title-md text-primary mb-1">
+          Explora también las ofertas de la comunidad
+        </h3>
+        <p className="text-on-surface-variant text-label-sm font-label-sm">
+          Compara tasas y métodos publicados por otros usuarios y proveedores.
+        </p>
+      </div>
 
       {/* Filtros */}
       <section className="mb-8 space-y-4">
@@ -147,7 +149,9 @@ export default function Remittances() {
           <button
             onClick={() => setOnlyVerified((v) => !v)}
             className={`px-4 py-2 rounded-full font-label-sm text-label-sm transition-all flex items-center gap-1.5 ${
-              onlyVerified ? 'bg-secondary-container text-on-secondary-container font-bold' : 'bg-surface-container-lowest border border-outline-variant text-on-surface-variant hover:bg-surface-container-low'
+              onlyVerified
+                ? 'bg-secondary-container text-on-secondary-container font-bold'
+                : 'bg-surface-container-lowest border border-outline-variant text-on-surface-variant hover:bg-surface-container-low'
             }`}
           >
             <MaterialIcon name="verified" className="text-[15px]" />
@@ -195,13 +199,59 @@ export default function Remittances() {
       </section>
 
       <PublishModal
-        open={modalOpen}
-        onClose={() => setModalOpen(false)}
-        onPublish={publish}
-        title="Publica tu oferta"
-        subtitle="Sé claro con tu tasa y condiciones. La confianza es lo primero."
-        fields={publishFields}
-      />
+              open={modalOpen}
+              onClose={() => setModalOpen(false)}
+              onPublish={publish}
+              title="Publica tu oferta"
+              subtitle="Sé claro con tu tasa y condiciones. La confianza es lo primero."
+              fields={publishFields}
+            />
+
+            {/* Modal de advertencia de seguridad */}
+            {showWarning && (
+              <div
+                className="fixed inset-0 z-[70] flex items-end sm:items-center justify-center bg-black/60 backdrop-blur-sm p-4 animate-fade-in"
+                onClick={() => setShowWarning(false)}
+                role="dialog"
+                aria-modal="true"
+                aria-label="Aviso de seguridad"
+              >
+                <div
+                  className="relative w-full max-w-md bg-surface-container-lowest rounded-t-3xl sm:rounded-3xl border border-outline-variant shadow-2xl p-6 sm:p-7 animate-slide-up"
+                  onClick={(e) => e.stopPropagation()}
+                >
+                  <button
+                    onClick={() => setShowWarning(false)}
+                    aria-label="Cerrar aviso de seguridad"
+                    className="absolute top-3 right-3 w-8 h-8 rounded-full flex items-center justify-center text-on-surface-variant hover:text-on-surface hover:bg-surface-container-low transition-colors"
+                  >
+                    <MaterialIcon name="close" className="text-[20px]" />
+                  </button>
+
+                  <div className="w-14 h-14 rounded-2xl bg-error-container/50 flex items-center justify-center mb-4">
+                    <MaterialIcon name="shield" className="text-error text-[30px]" />
+                  </div>
+
+                  <h3 className="font-headline-md text-headline-md text-primary mb-2">
+                    Opera con responsabilidad
+                  </h3>
+                  <p className="text-body-md text-body-md text-on-surface-variant leading-relaxed mb-4">
+                    <span className="font-bold text-on-surface">CubaLink solo conecta personas.</span> No participa en las transacciones ni garantiza su cumplimiento.
+                  </p>
+                  <p className="text-body-md text-body-md text-on-surface-variant leading-relaxed mb-6">
+                    Opera siempre bajo tu propio criterio, verifica al contacto y sigue las reglas de seguridad. Reporta cualquier actividad sospechosa a la comunidad.
+                  </p>
+
+                  <button
+                    onClick={() => setShowWarning(false)}
+                    className="w-full bg-brand-blue-deep text-white py-3 rounded-xl font-label-sm text-label-sm hover:bg-primary/90 transition-all active:scale-[0.98] flex items-center justify-center gap-2"
+                  >
+                    <MaterialIcon name="check" className="text-[18px]" />
+                    Entiendo
+                  </button>
+                </div>
+              </div>
+            )}
 
       {toast && (
         <div className="fixed bottom-24 left-1/2 -translate-x-1/2 z-50 bg-brand-blue-deep text-white px-6 py-3 rounded-full shadow-2xl font-label-sm text-label-sm md:bottom-8">
