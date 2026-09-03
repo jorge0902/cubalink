@@ -21,7 +21,8 @@ export default function Remittances() {
   const [methodFilter, setMethodFilter] = useState('todos')
   const [onlyVerified, setOnlyVerified] = useState(false)
   const [modalOpen, setModalOpen] = useState(false)
-  const [toast, setToast] = useState(false)
+    const [toast, setToast] = useState(false)
+    const [showWarning, setShowWarning] = useState(true)
 
   const filtered = items.filter((r) => {
     const okType = typeFilter === 'todos' || r.type === typeFilter
@@ -73,18 +74,27 @@ export default function Remittances() {
           </button>
         </div>
 
-        {/* Advertencia de seguridad */}
-        <div className="bg-error-container/40 border border-error/30 rounded-xl p-4 md:p-5 flex gap-3 items-start">
-          <MaterialIcon name="warning" className="text-error text-[22px] flex-shrink-0 mt-0.5" />
-          <div>
-            <p className="font-label-sm text-label-sm text-on-error-container font-bold mb-1">
-              ⚠️ CubaLink solo conecta personas. No participa en las transacciones ni garantiza su cumplimiento.
-            </p>
-            <p className="text-label-sm font-label-sm text-on-error-container/90 leading-relaxed">
-              Opera siempre bajo tu propio criterio, verifica al contacto y sigue las reglas de seguridad. Reporta cualquier actividad sospechosa a la comunidad.
-            </p>
-          </div>
-        </div>
+        {/* Advertencia de seguridad (desechable) */}
+                {showWarning && (
+                  <div className="relative bg-error-container/40 border border-error/30 rounded-xl p-4 md:p-4 flex gap-3 items-start pr-11">
+                    <MaterialIcon name="warning" className="text-error text-[22px] flex-shrink-0 mt-0.5" />
+                    <div className="min-w-0">
+                      <p className="font-label-sm text-label-sm text-on-error-container font-bold mb-1">
+                        ⚠️ CubaLink solo conecta personas. No participa en las transacciones ni garantiza su cumplimiento.
+                      </p>
+                      <p className="text-label-sm font-label-sm text-on-error-container/90 leading-relaxed">
+                        Opera siempre bajo tu propio criterio, verifica al contacto y sigue las reglas de seguridad. Reporta cualquier actividad sospechosa a la comunidad.
+                      </p>
+                    </div>
+                    <button
+                      onClick={() => setShowWarning(false)}
+                      aria-label="Cerrar aviso de seguridad"
+                      className="absolute top-3 right-3 w-7 h-7 rounded-full flex items-center justify-center text-on-error-container/70 hover:text-on-error-container hover:bg-error/20 transition-colors flex-shrink-0"
+                    >
+                      <MaterialIcon name="close" className="text-[18px]" />
+                    </button>
+                  </div>
+                )}
 
         {/* Referencia de cambio */}
         <div className="mt-4 bg-surface-container-lowest border border-outline-variant rounded-xl p-4 flex flex-wrap items-center gap-3">
