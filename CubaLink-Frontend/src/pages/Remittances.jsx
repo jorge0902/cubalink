@@ -74,28 +74,6 @@ export default function Remittances() {
           </button>
         </div>
 
-        {/* Advertencia de seguridad (desechable) */}
-                {showWarning && (
-                  <div className="relative bg-error-container/40 border border-error/30 rounded-xl p-4 md:p-4 flex gap-3 items-start pr-11">
-                    <MaterialIcon name="warning" className="text-error text-[22px] flex-shrink-0 mt-0.5" />
-                    <div className="min-w-0">
-                      <p className="font-label-sm text-label-sm text-on-error-container font-bold mb-1">
-                        ⚠️ CubaLink solo conecta personas. No participa en las transacciones ni garantiza su cumplimiento.
-                      </p>
-                      <p className="text-label-sm font-label-sm text-on-error-container/90 leading-relaxed">
-                        Opera siempre bajo tu propio criterio, verifica al contacto y sigue las reglas de seguridad. Reporta cualquier actividad sospechosa a la comunidad.
-                      </p>
-                    </div>
-                    <button
-                      onClick={() => setShowWarning(false)}
-                      aria-label="Cerrar aviso de seguridad"
-                      className="absolute top-3 right-3 w-7 h-7 rounded-full flex items-center justify-center text-on-error-container/70 hover:text-on-error-container hover:bg-error/20 transition-colors flex-shrink-0"
-                    >
-                      <MaterialIcon name="close" className="text-[18px]" />
-                    </button>
-                  </div>
-                )}
-
         {/* Referencia de cambio */}
         <div className="mt-4 bg-surface-container-lowest border border-outline-variant rounded-xl p-4 flex flex-wrap items-center gap-3">
           <span className="w-10 h-10 rounded-xl bg-brand-blue-deep/10 text-brand-blue-deep flex items-center justify-center">
@@ -221,13 +199,59 @@ export default function Remittances() {
       </section>
 
       <PublishModal
-        open={modalOpen}
-        onClose={() => setModalOpen(false)}
-        onPublish={publish}
-        title="Publica tu oferta"
-        subtitle="Sé claro con tu tasa y condiciones. La confianza es lo primero."
-        fields={publishFields}
-      />
+              open={modalOpen}
+              onClose={() => setModalOpen(false)}
+              onPublish={publish}
+              title="Publica tu oferta"
+              subtitle="Sé claro con tu tasa y condiciones. La confianza es lo primero."
+              fields={publishFields}
+            />
+
+            {/* Modal de advertencia de seguridad */}
+            {showWarning && (
+              <div
+                className="fixed inset-0 z-[70] flex items-end sm:items-center justify-center bg-black/60 backdrop-blur-sm p-4 animate-fade-in"
+                onClick={() => setShowWarning(false)}
+                role="dialog"
+                aria-modal="true"
+                aria-label="Aviso de seguridad"
+              >
+                <div
+                  className="relative w-full max-w-md bg-surface-container-lowest rounded-t-3xl sm:rounded-3xl border border-outline-variant shadow-2xl p-6 sm:p-7 animate-slide-up"
+                  onClick={(e) => e.stopPropagation()}
+                >
+                  <button
+                    onClick={() => setShowWarning(false)}
+                    aria-label="Cerrar aviso de seguridad"
+                    className="absolute top-3 right-3 w-8 h-8 rounded-full flex items-center justify-center text-on-surface-variant hover:text-on-surface hover:bg-surface-container-low transition-colors"
+                  >
+                    <MaterialIcon name="close" className="text-[20px]" />
+                  </button>
+
+                  <div className="w-14 h-14 rounded-2xl bg-error-container/50 flex items-center justify-center mb-4">
+                    <MaterialIcon name="shield" className="text-error text-[30px]" />
+                  </div>
+
+                  <h3 className="font-headline-md text-headline-md text-primary mb-2">
+                    Opera con responsabilidad
+                  </h3>
+                  <p className="text-body-md text-body-md text-on-surface-variant leading-relaxed mb-4">
+                    <span className="font-bold text-on-surface">CubaLink solo conecta personas.</span> No participa en las transacciones ni garantiza su cumplimiento.
+                  </p>
+                  <p className="text-body-md text-body-md text-on-surface-variant leading-relaxed mb-6">
+                    Opera siempre bajo tu propio criterio, verifica al contacto y sigue las reglas de seguridad. Reporta cualquier actividad sospechosa a la comunidad.
+                  </p>
+
+                  <button
+                    onClick={() => setShowWarning(false)}
+                    className="w-full bg-brand-blue-deep text-white py-3 rounded-xl font-label-sm text-label-sm hover:bg-primary/90 transition-all active:scale-[0.98] flex items-center justify-center gap-2"
+                  >
+                    <MaterialIcon name="check" className="text-[18px]" />
+                    Entiendo
+                  </button>
+                </div>
+              </div>
+            )}
 
       {toast && (
         <div className="fixed bottom-24 left-1/2 -translate-x-1/2 z-50 bg-brand-blue-deep text-white px-6 py-3 rounded-full shadow-2xl font-label-sm text-label-sm md:bottom-8">
